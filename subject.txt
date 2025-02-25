@@ -64,7 +64,7 @@ X ◦ env with no options or arguments
 X ◦ exit with no options
 
 
-
+1
 
 Bonus part
 Your program must implement:
@@ -75,7 +75,7 @@ completed perfectly. Perfect means the mandatory part is fully
 implemented and functions without any issues. If you have not passed
 ALL the mandatory requirements your bonus part will not be evaluated
 at all.
-8
+9
 Chapter V
 Submission and peer-evaluation
 Submit your assignment in your Git repository as usual. Only the work inside your
