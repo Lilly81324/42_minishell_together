@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybiloshy <ybiloshy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/25 15:56:43 by ybiloshy         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:11:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int main(int argc, char **argv, char **envp)
 // Argument substitution
 // Argument declaration?
 // <<
-// piping
 // Ctrl+C makes newline
 // builtins:
 // echo with -n flag

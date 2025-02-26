@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:24:50 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:22:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:58:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int	ft_token_redirect(char *arg[], int i)
 		else
 			i++;
 	}
-	if (arg[i] != NULL && arg[i][0] == '|')
-		ft_stdout_to_pipe();
 	return (-1);
 }
 

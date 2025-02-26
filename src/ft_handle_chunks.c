@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/25 17:03:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 16:02:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 // then runs commands for all tokens
 // then skips to end of chunk
 // return values:
-// INT_MIN-(-2)for pipe fd, will continue
 // -1 for continue doing the line
 // 0-255 for stop the current the line
 // 1000-1255 for stop whole programm
