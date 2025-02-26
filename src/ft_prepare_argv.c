@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:09:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:29:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:16:48 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_prepare_argv(char **arg, int *pos)
 	char	**ret;
 
 	len = 0;
-	while (ft_is_delimiter(arg[len + (*pos)]) == 0)
+	while (ft_is_del_or_red(arg[len + (*pos)]) == 0)
 		len++;
 	ret = ft_copy_argv(arg, *pos, len);
 	return (ret);

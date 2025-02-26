@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdin_to_pipe.c                                 :+:      :+:    :+:   */
+/*   ft_pipe_setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 15:14:02 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 16:02:29 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/26 15:41:17 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/26 16:06:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// redirects STDIN to the read end of a pipe
-// returns 0
-// returns -1 if error
-int	ft_stdin_to_pipe(int r_end)
+// checks wether current block needs piping, by checking next delimiter
+// returns -1 if no pipe needed or a positive fd if needed
+// if piping is required for chunk, then redirect stdin to pipe 
+// and give back r_end fd so next chunk can take it as input
+int	ft_pipe_setup(char **tokens, int pos)
 {
-	if (r_end == -1)
-	{
-		perror("Error with read end of pipe");
+	while (ft_is_delimiter(tokens[pos]) == 0)
+		pos++;
+	if (tokens[pos] == NULL || tokens[pos][0] == ';')
 		return (-1);
-	}
-	if (dup2(r_end, STDIN_FILENO) < 0)
-	{
-		perror("Error redirecting stdin to read end of pipe");
-		close(r_end);
-		return (-1);
-	}
-	close(r_end);
-	return (0);
+	return(ft_stdout_to_pipe());
 }

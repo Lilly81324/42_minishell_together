@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:24:50 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:52:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:58:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ft_token_redirect(char *arg[], int i)
 {
 	int	status;
 
-	while (arg[i] != NULL && arg[i][0] != '|' && arg[i][0] != ';')
+	while (ft_is_delimiter(arg[i]) == 0)
 	{
-		if (ft_is_delimiter(arg[i]) == 1)
+		if (ft_is_redirector(arg[i]) == 1)
 		{
 			status = ft_redirection(arg, i);
 			if (status != -1)
@@ -34,8 +34,6 @@ int	ft_token_redirect(char *arg[], int i)
 		else
 			i++;
 	}
-	if (arg[i] != NULL && arg[i][0] == '|')
-		ft_stdout_to_pipe();
 	return (-1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 16:16:41 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:15:35 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 	char	*new_cwd;
 
 	(*pos)++;
-	if (ft_is_delimiter(tokens[*pos]) == 1)
+	if (ft_is_del_or_red(tokens[*pos]) == 1)
 		return (-1);
 	if (tokens[*pos][0] == '/')
 		status = chdir(tokens[*pos]);
