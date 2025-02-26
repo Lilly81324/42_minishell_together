@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 17:57:44 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 17:09:49 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ static void	ft_add_to_env(char ***ptr, char *pair)
 	new[len + 1] = NULL;
 	new[len] = ft_strdup(pair);
 	while (--len >= 0)
-	{
-		if ((*ptr)[len] == NULL)
-			new[len] = NULL;
-		else
-			new[len] = ft_strdup((*ptr)[len]);
-	}
+		new[len] = ft_strdup((*ptr)[len]);
 	ft_nullb(*ptr);
 	*ptr = new;
 }
@@ -46,7 +41,7 @@ void	ft_change_env(char ***envp, char *pair)
 	pos = 0;
 	while ((*envp)[pos] != NULL)
 	{
-		if (ft_strncmp((*envp)[pos], pair, ft_find_c('=', pair)) == 0)
+		if (ft_strncmp((*envp)[pos], pair, ft_find_c('=', pair) + 1) == 0)
 			break ;
 		pos++;
 	}
@@ -71,7 +66,10 @@ char	*ft_get_env(char **envp, char *key)
 	while (envp[++i] != NULL)
 	{
 		if (ft_strncmp(envp[i], key, ft_strlen(key)) == 0)
-			return (envp[i]);
+		{
+			if (envp[i][ft_strlen(key)] == '=')
+				return (envp[i]);
+		}
 	}
 	return (NULL);
 }
@@ -114,13 +112,7 @@ char	**ft_copy_env(char **envp)
 		len++;
 	res = (char **)malloc((len + 1) * sizeof(char *));
 	res[len] = NULL;
-	while (len >= 0)
-	{
-		if (envp[len] == NULL)
-			res[len] = NULL;
-		else
-			res[len] = ft_strdup(envp[len]);
-		len--;
-	}
+	while (--len >= 0)
+		res[len] = ft_strdup(envp[len]);
 	return (res);
 }

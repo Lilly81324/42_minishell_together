@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:52:20 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:15:57 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 17:05:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ int	ft_builtin_unset(char **tokens, int *pos, char ***envp)
 
 	(*pos)++;
 	if (ft_is_del_or_red(tokens[*pos]) == 1)
-		return(-1);
+		return (-1);
 	i = -1;
 	while ((*envp)[++i] != NULL)
 	{
 		index = ft_find_c('=', (*envp)[i]);
 		if (index < 0)
-			continue;
+			continue ;
 		if (ft_strncmp(tokens[*pos], (*envp)[i], index) == 0)
 			ft_remove_env(envp, tokens[*pos]);
 	}
 	(*pos)++;
 	return (-1);
 }
-
