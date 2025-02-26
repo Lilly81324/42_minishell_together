@@ -31,27 +31,28 @@ git reset --hard origin/main
 
 
 Workflow:
+
 ----------------------------------------------
 Switch branches with "git checkout <branchname>"
 Stay on your branch
 Here you can "git add .", "git commit" and "git push"
 To update your remote and local branch
-----------------------
+----------------------------------------------
 Checking out another branch after making changes:
 If you want to check out another branch,
 then you should commit your recent changes.
 Then you can run "git checkout <branchname>".
-----------------------
+----------------------------------------------
 Getting the newest main version to your personal branch:
 Be checked into the branch you want to reset, then run
 "git reset --hard origin/main"
 To set your local branch to the newest commit from remote main
-----------------------
+----------------------------------------------
 Resetting current branch to last pushed version:
 Be checked into the branch you want to reset, then run
 "git reset --hard origin/<branchname>"
 To set your local branch to the newest commit from remote <branchname>
-----------------------
+----------------------------------------------
 Providing working code to main:
 Once you have working code, add, comitt
 and push it to your remote branch
