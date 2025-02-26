@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:50:32 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 17:31:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # include "../libft/libft.h"
 
 // Error messages
-# define INVALID_COMMAND "lilshell: Not a valid command\n"
-# define FORK_ERROR "lilshell: Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR "lilshell: pwd: No pwd exists\n"
-# define CD_INVALID_PATH "lilshell: cd: %s: No such file or directory\n"
+# define INVALID_COMMAND "yevshell: Not a valid command\n"
+# define FORK_ERROR "yevshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR "yevshell: pwd: No pwd exists\n"
+# define CD_INVALID_PATH "yevshell: cd: %s: No such file or directory\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -38,8 +38,8 @@
 // example:
 // PROMPT="lilshell:"	POST_PROMPT=">"
 // lilshell:/home/sikunne>
-# define PROMPT "[lilshell]>"
-# define POST_PROMPT "> "
+# define PROMPT "[yevshell]>"
+# define POST_PROMPT "$ "
 
 // Utility-------------------------------------------------
 char	*ft_get_path(char *cmd);
