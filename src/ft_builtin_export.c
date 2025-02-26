@@ -6,11 +6,25 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:15:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 17:04:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// returns 1 if valid pair
+// a vaild pair has at least one character and then a '='
+static int	ft_check_key(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] != '=')
+		i++;
+	if (str[i] == '\0' || i == 0)
+		return (0);
+	return (1);
+}
 
 // handles output of export with no arguments
 // by printing out all the envp vaiables
@@ -44,7 +58,8 @@ int	ft_builtin_export(char **tokens, int *pos, char ***envp)
 	(*pos)++;
 	if (ft_is_del_or_red(tokens[*pos]) == 1)
 		return(ft_print_env(envp));
-	ft_change_env(envp, tokens[*pos]);
+	if (ft_check_key(tokens[*pos]) == 1)
+		ft_change_env(envp, tokens[*pos]);
 	(*pos)++;
 	return (-1);
 }

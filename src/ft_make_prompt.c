@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:23:13 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 15:57:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 17:29:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,23 @@ char	*ft_make_prompt(char ***envp)
 	char	*prompt;
 	int		len_pwd;
 	int		len_pro;
-	int		len_post;
+	int		found;
 	char	*pwd;
 
 	pwd = ft_get_env(*envp, "PWD");
+	found = 4;
 	if (pwd == NULL)
-		pwd = "NO_PATH";
-	len_pwd = ft_strlen(pwd);
+	{
+		found = 0;
+		pwd = getcwd(NULL, 0);
+	}
+	len_pwd = ft_strlen(pwd + found);
 	len_pro = ft_strlen(PROMPT);
-	len_post = ft_strlen(POST_PROMPT);
-	prompt = (char *)malloc((len_pwd + len_pro + len_post + 1) * sizeof(char));
+	prompt = (char *)malloc((len_pwd + len_pro + ft_strlen(POST_PROMPT) + 1) * sizeof(char));
 	ft_write(PROMPT, prompt, 0);
-	ft_write(pwd, prompt, len_pro);
+	ft_write(pwd + found, prompt, len_pro);
 	ft_write(POST_PROMPT, prompt, len_pwd + len_pro);
+	if (found == 0)
+		free(pwd);
 	return (prompt);
 }
