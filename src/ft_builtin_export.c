@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 16:45:37 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:15:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	ft_print_env(char ***envp)
 int	ft_builtin_export(char **tokens, int *pos, char ***envp)
 {
 	(*pos)++;
-	if (ft_is_delimiter(tokens[*pos]) == 1)
+	if (ft_is_del_or_red(tokens[*pos]) == 1)
 		return(ft_print_env(envp));
 	ft_change_env(envp, tokens[*pos]);
 	(*pos)++;

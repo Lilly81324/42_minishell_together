@@ -25,6 +25,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_c_in_s.c \
 	ft_handle_chunks.c \
 	ft_is_delimiter.c \
+	ft_is_redirector.c \
+	ft_is_del_or_red.c \
 	ft_token_count.c \
 	ft_token_extractor.c \
 	ft_tokenization.c \

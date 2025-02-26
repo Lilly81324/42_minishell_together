@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 17:52:53 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:15:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	ft_skip_spaces(int *i, char *str);
 int		ft_c_in_s(char *big, char little);
 int		ft_cooler_open(char *filename);
 int		ft_is_delimiter(char *str);
+int		ft_is_redirector(char *str);
+int		ft_is_del_or_red(char *str);
 char	**ft_split_quot_ex(char const *s, char c);
 int		ft_find_c(char c, char *string);
 // Redirection
@@ -108,5 +110,11 @@ void	ft_token_skip_chunk(char *arg[], int *i);
 // I used continue instead of return, are we allowed to use that?
 
 // env -> remove a rule, add a rule
+
+// what if every chunk is run as child process, 
+// and then the execve call is run as a child of that?
+
+// tokens given
+// check if next delimiter 
 
 #endif

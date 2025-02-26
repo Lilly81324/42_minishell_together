@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/24 15:50:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/26 15:18:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	ft_token_cmds(char *arg[], int i, char ***envp)
 {
 	int	status;
 
-	while (arg[i] != NULL && arg[i][0] != '|' && arg[i][0] != ';')
+	while (ft_is_delimiter(arg[i]) == 0)
 	{
-		if (ft_is_delimiter(arg[i]) == 1)
+		if (ft_is_redirector(arg[i]) == 1)
 			i += 2;
 		else
 		{
