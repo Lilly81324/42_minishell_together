@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 
-
 // creates a file via touch wherever the name places it
 static void	ft_touch_file(char *name)
 {
