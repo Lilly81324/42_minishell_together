@@ -35,7 +35,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_cooler_open.c \
 	ft_token_redirect.c \
 	ft_token_cmds.c \
-	ft_token_skip_chunk.c \
 	ft_print_tokens.c \
 	ft_dup_std.c \
 	ft_reset_std.c \
