@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 17:29:00 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:26:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,7 @@ int	main(int argc, char **argv, char **envp)
 // Ctrl+D
 // Ctrl+'\'
 // autocomplete of commands
+
+// Issues:	Commands can be chained together too easily:
+//				history cd .. ls -> should probably only run 1 command
+//			Commands can somehow still be executed even if PATH is gone

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:41:17 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 16:06:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:28:37 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,5 @@ int	ft_pipe_setup(char **tokens, int pos)
 		pos++;
 	if (tokens[pos] == NULL || tokens[pos][0] == ';')
 		return (-1);
-	return(ft_stdout_to_pipe());
+	return (ft_stdout_to_pipe());
 }

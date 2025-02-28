@@ -55,6 +55,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_echo.c \
 	ft_builtin_history.c \
 	ft_write_string.c \
+	ft_handle_input_loop.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

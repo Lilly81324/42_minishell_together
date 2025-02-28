@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 17:27:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:34:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char **result);
 char	**ft_tokenization(char *s);
 // Executing the input
+int		ft_handle_input_loop(char **tokens, int *std, char ***envp);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(char *arg[], int *ri, char ***envp);
 // Redirecting
