@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 17:06:25 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:26:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,18 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // TODO:
+// Launching commands with relative/absolute paths
 // Signaling
 // Exit Codes
-// Argument substitution
-// Argument declaration?
-// <<
-// Ctrl+C makes newline
-// builtins:
-// echo with -n flag
-// autocomplete of commands
 // maybe remove handling of semicolon
+// <<
+// Argument substitution
+// Argument declaration
+// Ctrl+C
+// Ctrl+D
+// Ctrl+'\'
+// autocomplete of commands
+
+// Issues:	Commands can be chained together too easily:
+//				history cd .. ls -> should probably only run 1 command
+//			Commands can somehow still be executed even if PATH is gone

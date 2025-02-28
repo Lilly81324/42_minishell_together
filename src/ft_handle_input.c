@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 16:11:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:35:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 int	ft_handle_input(char *inp, char ***envp)
 {
 	char	**tokens;
-	int		i;
 	int		status;
 	int		std[3];
 	int		r_end;
@@ -32,19 +31,8 @@ int	ft_handle_input(char *inp, char ***envp)
 	if (tokens == NULL)
 		return (1);
 	ft_print_tokens(tokens);
-	i = 0;
-	status = -1;
 	ft_dup_std(std);
-	while (tokens[i] != NULL && status == -1)
-	{
-		ft_reset_std(std);
-		if (r_end != -1)
-			ft_stdin_to_pipe(r_end);
-		r_end = ft_pipe_setup(tokens, i);
-		status = ft_handle_chunks(tokens, &i, envp);
-		if (tokens[i] != NULL)
-			i++;
-	}
+	status = ft_handle_input_loop(tokens, std, envp);
 	ft_reset_std(std);
 	ft_nullb(tokens);
 	return (status);
@@ -52,7 +40,5 @@ int	ft_handle_input(char *inp, char ***envp)
 
 // sets up tokenization of input
 // makes copy of fds from before the commands
-// then repeats: reset fds, check if current chunk takes pipe input,
-//				  then checks if new pipe needs to be made for current chunk
-//					then handles contents of chunk
+// then runs the loop for each chunk
 // after that resets file descriptors and returns exit status of chunk

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 14:56:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:34:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		ft_is_redirector(char *str);
 int		ft_is_del_or_red(char *str);
 char	**ft_split_quot_ex(char const *s, char c);
 int		ft_find_c(char c, char *string);
+void	ft_write_string(char *string);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -81,6 +82,7 @@ int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char **result);
 char	**ft_tokenization(char *s);
 // Executing the input
+int		ft_handle_input_loop(char **tokens, int *std, char ***envp);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(char *arg[], int *ri, char ***envp);
 // Redirecting
@@ -97,6 +99,7 @@ int		ft_builtin_cd(char **tokens, int *pos, char ***envp);
 int		ft_builtin_export(char **tokens, int *pos, char ***envp);
 int		ft_builtin_unset(char **tokens, int *pos, char ***envp);
 int		ft_builtin_echo(char **tokens, int *pos);
+int		ft_builtin_history(int *pos);
 // Basic command or rest
 int		ft_regular_cmd(char **arg, int *pos, char ***envp);
 char	**ft_prepare_argv(char **arg, int *pos);

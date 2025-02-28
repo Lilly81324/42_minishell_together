@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 17:04:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 18:36:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_builtin_export(char **tokens, int *pos, char ***envp)
 {
 	(*pos)++;
 	if (ft_is_del_or_red(tokens[*pos]) == 1)
-		return(ft_print_env(envp));
+		return (ft_print_env(envp));
 	if (ft_check_key(tokens[*pos]) == 1)
 		ft_change_env(envp, tokens[*pos]);
 	(*pos)++;
