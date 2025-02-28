@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 16:02:22 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/27 14:26:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	ft_handle_chunks(char *arg[], int *i, char ***envp)
 	status = ft_token_cmds(arg, *i, envp);
 	if (status > -1)
 		return (status);
-	ft_token_skip_chunk(arg, i);
+	while (ft_is_delimiter(arg[*i]) != 1)
+		(*i)++;
 	return (-1);
 }
