@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_write_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 17:29:00 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/28 17:26:50 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/28 17:27:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+// Writes given string to stdout
+void	ft_write_string(char *string)
 {
-	char	**new_env;
+	int	i;
 
-	(void)argv;
-	(void)argc;
-	new_env = ft_copy_env(envp);
-	return (ft_loop(&new_env));
+	i = -1;
+	if (string == NULL)
+		return ;
+	while (string[++i] != '\0')
+		write(STDOUT_FILENO, &string[i], sizeof(char));
 }
-
-// TODO:
-// Launching commands with relative/absolute paths
-// Signaling
-// Exit Codes
-// maybe remove handling of semicolon
-// <<
-// Argument substitution
-// Argument declaration
-// Ctrl+C
-// Ctrl+D
-// Ctrl+'\'
-// autocomplete of commands

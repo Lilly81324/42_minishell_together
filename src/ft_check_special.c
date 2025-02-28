@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:08:21 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 14:58:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 16:53:23 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	ft_check_special(char *inp)
 	else if (ft_text_check(inp, "unset", 5, i) == 1)
 		return (1);
 	else if (ft_text_check(inp, "echo", 4, i) == 1)
+		return (1);
+	else if (ft_text_check(inp, "history", 7, i) == 1)
 		return (1);
 	return (0);
 }

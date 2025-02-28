@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_builtin_history.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 17:29:00 by sikunne          ###   ########.fr       */
+/*   Created: 2025/02/28 16:56:38 by sikunne           #+#    #+#             */
+/*   Updated: 2025/02/28 17:28:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+// Print out history of inputs
+int	ft_builtin_history(int *pos)
 {
-	char	**new_env;
+	HIST_ENTRY	**hist;
+	int		i;
 
-	(void)argv;
-	(void)argc;
-	new_env = ft_copy_env(envp);
-	return (ft_loop(&new_env));
+	hist = history_list();
+	i = -1;
+	if (hist == NULL)
+		return (-1);
+	while (hist[++i] != NULL)
+	{
+		ft_write_string("  ");
+		ft_putnbr_fd(i + 1, STDOUT_FILENO);
+		ft_write_string("  ");
+		ft_write_string(hist[i]->line);
+		ft_write_string("\n");
+	}
+	(*pos)++;
+	return (-1);
 }
-
-// TODO:
-// Launching commands with relative/absolute paths
-// Signaling
-// Exit Codes
-// maybe remove handling of semicolon
-// <<
-// Argument substitution
-// Argument declaration
-// Ctrl+C
-// Ctrl+D
-// Ctrl+'\'
-// autocomplete of commands

@@ -53,6 +53,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_stdout_to_outfile_append.c \
 	ft_pipe_setup.c \
 	ft_builtin_echo.c \
+	ft_builtin_history.c \
+	ft_write_string.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

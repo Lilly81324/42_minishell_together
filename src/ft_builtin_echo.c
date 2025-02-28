@@ -6,26 +6,16 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:46:57 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 15:50:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/02/28 17:28:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Writes given string to stdout
-void	ft_write_string(char *string)
-{
-	int	i;
-
-	i = -1;
-	while (string[++i] != '\0')
-		write(STDOUT_FILENO, &string[i], sizeof(char));
-}
-
 // Checks wether current token is "-n"
 // Returns 1 if yes (and moves to next token)
 // Returns 0 if no
-int	ft_handle_n_flag(char *token, int *pos)
+static int	ft_handle_n_flag(char *token, int *pos)
 {
 	if (ft_is_del_or_red(token) == 0)
 	{
