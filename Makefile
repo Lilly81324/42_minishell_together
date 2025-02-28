@@ -52,6 +52,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_unset.c \
 	ft_stdout_to_outfile_append.c \
 	ft_pipe_setup.c \
+	ft_builtin_echo.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
@@ -96,7 +97,7 @@ show:
 	echo $(OBJ_FILES)
 
 # Basic execution
-run:
+run: $(NAME)
 	valgrind --leak-check=full ./$(NAME)
 
 # Redo programm
