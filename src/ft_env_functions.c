@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 17:27:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/02 14:30:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	*ft_get_env(char **envp, char *key)
 }
 
 // Removes the key string from evp by reassignement
+// May only be called if you know for certain that the key to remove exists
+// so it may never be called for an empty envp
 void	ft_remove_env(char ***envp, char *key)
 {
 	int		len;
@@ -106,10 +108,11 @@ char	**ft_copy_env(char **envp)
 	char	**res;
 
 	len = 0;
-	if (envp == NULL)
-		return (NULL);
-	while (envp[len] != NULL)
-		len++;
+	if (envp != NULL)
+	{
+		while (envp[len] != NULL)
+			len++;
+	}
 	res = (char **)malloc((len + 1) * sizeof(char *));
 	res[len] = NULL;
 	while (--len >= 0)
