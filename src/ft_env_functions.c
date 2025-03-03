@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/02 14:30:54 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:11:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,15 @@ void	ft_remove_env(char ***envp, char *key)
 	new = (char **)malloc((len) * sizeof(char *));
 	new[len - 1] = NULL;
 	i = -1;
-	while (ft_strncmp((*envp)[++i], key, ft_strlen(key)) != 0)
-		new[i] = ft_strdup((*envp)[i]);
-	while ((*envp)[i + 1] != NULL)
+	while ((*envp)[++i] != NULL)
 	{
-		new[i] = ft_strdup((*envp)[i + 1]);
-		i++;
+		if (ft_strncmp((*envp)[i], key, ft_strlen(key)) == 0 && \
+			(*envp)[i][ft_strlen(key)] == '=')
+			break ;
+		new[i] = ft_strdup((*envp)[i]);
 	}
+	while ((*envp)[++i] != NULL)
+		new[i - 1] = ft_strdup((*envp)[i]);
 	ft_nullb(*envp);
 	*envp = new;
 }
