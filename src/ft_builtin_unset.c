@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:52:20 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 17:05:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:20:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	ft_builtin_unset(char **tokens, int *pos, char ***envp)
 			ft_strlen(tokens[*pos])) == 0 && \
 			(*envp)[i][ft_strlen(tokens[*pos])] == '=')
 		{
-			printf("%s is pair to key %s on c:%c\n", (*envp)[i], tokens[*pos], (*envp)[i][ft_strlen(tokens[*pos])]);
 			ft_remove_env(envp, tokens[*pos]);
 			break ;
 		}

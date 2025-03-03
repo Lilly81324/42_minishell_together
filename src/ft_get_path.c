@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:23:06 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:36:41 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:11:36 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_get_path(char *cmd)
 	cmd = ft_space_bef(cmd);
 	paths = ft_split(getenv("PATH"), ':');
 	path = ft_check_access(paths, cmd);
-	ft_null(cmd);
-	ft_nullb(paths);
+	ft_null(&cmd);
+	ft_nullb(&paths);
 	return (path);
 }

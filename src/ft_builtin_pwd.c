@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:25:52 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/20 16:45:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:10:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	ft_builtin_pwd(int *pos)
 		return (1000);
 	}
 	printf("%s\n", pwd);
-	ft_null(pwd);
+	ft_null(&pwd);
 	return (-1);
 }

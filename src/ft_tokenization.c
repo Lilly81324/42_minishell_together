@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:40:45 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:00:12 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:31:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ char	**ft_tokenization(char *s)
 	count = ft_token_count(s);
 	if (count < 1)
 		return (NULL);
-	result = (char **)malloc((count + 1) * sizeof(int *));
+	result = (char **)malloc((count + 1) * sizeof(char *));
 	i = -1;
 	while (++i < count)
 		result[i] = NULL;
-	ft_token_extractor(s, result);
+	ft_token_extractor(s, &result);
 	return (result);
 }

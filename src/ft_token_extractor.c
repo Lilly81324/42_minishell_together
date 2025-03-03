@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:37:24 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:39:51 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:32:17 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static char	*get_token(char *s, int *i)
 // sets the <result> to all the tokens extracted from <s>
 // <result> should already be allocated for its length
 // result will be NULL in case of error and will already be freed and cleaned
-void	ft_token_extractor(char *s, char **result)
+void	ft_token_extractor(char *s, char ***result)
 {
 	int	arrpos;
 	int	i;
@@ -97,8 +97,8 @@ void	ft_token_extractor(char *s, char **result)
 		ft_skip_spaces(&i, s);
 		if (s[i] != '\0')
 		{
-			result[arrpos] = get_token(s, &i);
-			if (result[arrpos] == NULL)
+			(*result)[arrpos] = get_token(s, &i);
+			if ((*result)[arrpos] == NULL)
 			{
 				ft_nullb(result);
 				return ;
@@ -106,5 +106,5 @@ void	ft_token_extractor(char *s, char **result)
 			arrpos++;
 		}
 	}
-	result[arrpos] = NULL;
+	(*result)[arrpos] = NULL;
 }

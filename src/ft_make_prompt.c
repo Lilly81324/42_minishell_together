@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:23:13 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 18:29:12 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:48:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,30 @@ static void	ft_write(char *src, char *target, int pos)
 char	*ft_make_prompt(char ***envp)
 {
 	char	*prompt;
-	int		len_pwd;
-	int		len_pro;
-	int		found;
 	char	*pwd;
+	int		allocated_pwd;
 
 	pwd = ft_get_env(*envp, "PWD");
-	found = 4;
+	allocated_pwd = 0;
 	if (pwd == NULL)
 	{
-		found = 0;
 		pwd = getcwd(NULL, 0);
+		allocated_pwd = 1;
 	}
-	len_pwd = ft_strlen(pwd + found);
-	len_pro = ft_strlen(PROMPT);
-	prompt = (char *)malloc((len_pwd + len_pro + \
-			ft_strlen(POST_PROMPT) + 1) * sizeof(char));
+	if (!pwd)
+		return ("[NO PATH]");
+	prompt = (char *)malloc((ft_strlen(pwd) + ft_strlen(PROMPT) + \
+	ft_strlen(POST_PROMPT) + 1) * sizeof(char));
+	if (!prompt)
+	{
+		if (allocated_pwd)
+			free(pwd);
+		return ("[NO PATH]");
+	}
 	ft_write(PROMPT, prompt, 0);
-	ft_write(pwd + found, prompt, len_pro);
-	ft_write(POST_PROMPT, prompt, len_pwd + len_pro);
-	if (found == 0)
+	ft_write(pwd, prompt, ft_strlen(PROMPT));
+	ft_write(POST_PROMPT, prompt, ft_strlen(pwd) + ft_strlen(PROMPT));  
+	if (allocated_pwd)
 		free(pwd);
 	return (prompt);
 }

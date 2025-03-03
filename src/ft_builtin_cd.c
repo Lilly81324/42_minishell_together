@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:15:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:10:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static int	ft_rel_directory(char *target)
 	while (--len_cwd > 0)
 		res[len_cwd - 1] = cwd[len_cwd -1];
 	len_goal = chdir(res);
-	ft_null(cwd);
-	ft_null(res);
+	ft_null(&cwd);
+	ft_null(&res);
 	return (len_goal);
 }
 
@@ -65,7 +65,7 @@ static char	*ft_new_envp_pwd(void)
 	new[len + 4] = '\0';
 	while (--len >= 0)
 		new[len + 4] = cwd[len];
-	ft_null(cwd);
+	ft_null(&cwd);
 	return (new);
 }
 
@@ -93,6 +93,6 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 	(*pos)++;
 	new_cwd = ft_new_envp_pwd();
 	ft_change_env(envp, new_cwd);
-	ft_null(new_cwd);
+	ft_null(&new_cwd);
 	return (status);
 }

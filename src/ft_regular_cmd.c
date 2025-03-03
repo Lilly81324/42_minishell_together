@@ -6,14 +6,14 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:50:39 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:17:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:31:49 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // needed more lines >:c
-static void	ft_cleanup(char **arg, char **argv, char *path, int *pos)
+static void	ft_cleanup(char **arg, char ***argv, char **path, int *pos)
 {
 	int	len;
 
@@ -49,6 +49,6 @@ int	ft_regular_cmd(char **arg, int *pos, char ***envp)
 	if (pid == 0)
 		execve(path, argv, *envp);
 	waitpid(pid, NULL, 0);
-	ft_cleanup(arg, argv, path, pos);
+	ft_cleanup(arg, &argv, &path, pos);
 	return (-1);
 }

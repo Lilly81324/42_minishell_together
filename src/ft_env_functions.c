@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 17:11:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:11:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_add_to_env(char ***ptr, char *pair)
 	new[len] = ft_strdup(pair);
 	while (--len >= 0)
 		new[len] = ft_strdup((*ptr)[len]);
-	ft_nullb(*ptr);
+	ft_nullb(ptr);
 	*ptr = new;
 }
 
@@ -57,19 +57,23 @@ void	ft_change_env(char ***envp, char *pair)
 }
 
 // returns string that starts with <key> in <envp>
+// does NOT allocate on heap, only gives back reference
 // or NULL if not found
 char	*ft_get_env(char **envp, char *key)
 {
-	int	i;
+	int i;
+	int key_len;
 
-	i = -1;
-	while (envp[++i] != NULL)
+	key_len = ft_strlen(key);
+	i = 0;
+	while (envp[i] != NULL)
 	{
-		if (ft_strncmp(envp[i], key, ft_strlen(key)) == 0)
+		if (ft_strncmp(envp[i], key, key_len) == 0)
 		{
-			if (envp[i][ft_strlen(key)] == '=')
-				return (envp[i]);
+			if (envp[i][key_len] == '=')
+				return (envp[i] + key_len + 1);
 		}
+		i++;
 	}
 	return (NULL);
 }
@@ -98,7 +102,7 @@ void	ft_remove_env(char ***envp, char *key)
 	}
 	while ((*envp)[++i] != NULL)
 		new[i - 1] = ft_strdup((*envp)[i]);
-	ft_nullb(*envp);
+	ft_nullb(envp);
 	*envp = new;
 }
 

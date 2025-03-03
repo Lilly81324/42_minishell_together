@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 18:34:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/03 18:32:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@
 // Utility-------------------------------------------------
 char	*ft_get_path(char *cmd);
 char	*ft_space_bef(char *str);
-void	ft_null(void *ptr);
-void	ft_nullb(char **ptr);
-void	ft_nullc(char **ptr);
+void	ft_null(char **ptr);
+void	ft_nullb(char ***ptr);
+void	ft_nullc(char ***ptr);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_c_in_s(char *big, char little);
 int		ft_cooler_open(char *filename);
@@ -79,7 +79,7 @@ char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char *inp, char ***envp);
 // Tokenize input
 int		ft_token_count(char *s);
-void	ft_token_extractor(char *s, char **result);
+void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 // Executing the input
 int		ft_handle_input_loop(char **tokens, int *std, char ***envp);
