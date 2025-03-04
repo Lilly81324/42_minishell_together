@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/04 15:20:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:28:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv, char **envp)
 // Ctrl+'\'
 // autocomplete of commands
 // tokenization should be run on arguments for regular commands
+// quotes are wrongy included in the output of some things, such as echo
 
 // Issues:	Commands can be chained together too easily:
 //				history cd .. ls -> should probably only run 1 command

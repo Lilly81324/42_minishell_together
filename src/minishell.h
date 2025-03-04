@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/04 15:05:25 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:09:28 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		ft_builtin_unset(char **tokens, int *pos, char ***envp);
 int		ft_builtin_echo(char **tokens, int *pos);
 int		ft_builtin_history(int *pos);
 // Basic command or rest
+int		ft_abs_commands(char **arg, int *pos);
 int		ft_regular_cmd(char **arg, int *pos, char ***envp);
 char	**ft_prepare_argv(char **arg, int *pos);
 

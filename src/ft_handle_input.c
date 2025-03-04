@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:50:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:26:40 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_handle_input(char *inp, char ***envp)
 	tokens = ft_tokenization(inp);
 	if (tokens == NULL)
 		return (1);
-	// ft_print_tokens(tokens);
+	ft_print_tokens(tokens);
 	ft_dup_std(std);
 	status = ft_handle_input_loop(tokens, std, envp);
 	ft_reset_std(std);
