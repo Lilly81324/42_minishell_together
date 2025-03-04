@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:10:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:18:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,34 @@ static char	*ft_new_envp_pwd(void)
 	return (new);
 }
 
+// called when running cd with no arguments
+// moves pwd to HOME from envp
+// prints out Error if no HOME
+// and another Error if invalid home to move to
+static int	ft_blank_cd(char ***envp)
+{
+	char	*home;
+	int		status;
+	char	*new_cwd;
+
+	home = ft_get_env(*envp, "HOME");
+	if (!home)
+	{
+		printf(CD_HOMELESS_ERROR);
+		return (1);
+	}
+	status = chdir(home);
+	if (status == -1)
+	{
+		printf(CD_INVALID_PATH, home);
+		return (1);
+	}
+	new_cwd = ft_new_envp_pwd();
+	ft_change_env(envp, new_cwd);
+	ft_null(&new_cwd);
+	return (-1);
+}
+
 // changes current directory to either an absolute or relative path
 // as defined by the token after <tokens[*pos]>
 int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
@@ -78,7 +106,7 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 
 	(*pos)++;
 	if (ft_is_del_or_red(tokens[*pos]) == 1)
-		return (-1);
+		return (ft_blank_cd(envp));
 	if (tokens[*pos][0] == '/')
 		status = chdir(tokens[*pos]);
 	else
@@ -88,7 +116,7 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 	else
 	{
 		printf(CD_INVALID_PATH, tokens[*pos]);
-		status = 2;
+		status = 1;
 	}
 	(*pos)++;
 	new_cwd = ft_new_envp_pwd();

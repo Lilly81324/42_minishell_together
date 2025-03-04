@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:05:07 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:36:15 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 14:52:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	ft_nullb(char ***ptr)
 	if (*ptr == NULL)
 		return ;
 	while ((*ptr)[++i] != NULL)
-		ft_null(&((*ptr)[i]));
-	ft_null(*ptr);
+	{
+		free((*ptr)[i]);
+		(*ptr)[i] = NULL;
+	}
+	free(*ptr);
 	*ptr = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:50:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:05:25 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define FORK_ERROR "yevshell: Error creating fork\n"
 # define PWD_NONEXISTENT_ERROR "yevshell: pwd: No pwd exists\n"
 # define CD_INVALID_PATH "yevshell: cd: %s: No such file or directory\n"
+# define CD_HOMELESS_ERROR "yevshell: cd: HOME not set\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:11:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:19:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_add_to_env(char ***ptr, char *pair)
 }
 
 // Searches the key from <pair> in <*envp> and replaces it with <pair>
-// Or adds it at the end of <*envp> by reassingement
+// Or adds it at the end of <*envp> by reassingement and allocating new copy
 void	ft_change_env(char ***envp, char *pair)
 {
 	int		pos;
