@@ -107,7 +107,11 @@ show:
 run: $(NAME)
 	valgrind --leak-check=full ./$(NAME)
 
+# Norminette
+norm:
+	norminette | grep -v OK!
+
 # Redo programm
 re: fclean all
 
-PHONY: all clean fclean show run re
+PHONY: all clean fclean show run norm re

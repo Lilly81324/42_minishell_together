@@ -6,15 +6,15 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:14:05 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:26:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// allocates path for absolute commands
+// allocates path for absolute commands and returns it
 // needs to be freed 
-static char	*ft_prepare_path(char **token, int pos)
+static char	*st_prepare_path(char **token, int pos)
 {
 	char	*path;
 	char	*pwd;
@@ -31,7 +31,8 @@ static char	*ft_prepare_path(char **token, int pos)
 	return (path);
 }
 
-static int	ft_run_cmd(char *path, char **argv, char ***envp)
+// Executes the command by running execve with path and argv
+static int	st_run_cmd(char *path, char **argv, char ***envp)
 {
 	pid_t	pid;
 
@@ -47,6 +48,8 @@ static int	ft_run_cmd(char *path, char **argv, char ***envp)
 	return (-1);
 }
 
+// For running absolute commands like /usr/local/bin/norminette or ./minishell
+// Waits for process to be done before giving back control
 int	ft_absolute_cmd(char **token, int *pos, char ***envp)
 {
 	int		len;
@@ -55,7 +58,6 @@ int	ft_absolute_cmd(char **token, int *pos, char ***envp)
 	char	**argv;
 
 	path = ft_prepare_path(token, *pos);
-	printf("Path defined: %s\n", path);
 	argv = ft_prepare_argv(token, pos);
 	status = ft_run_cmd(path, argv, envp);
 	ft_nullc(&argv);

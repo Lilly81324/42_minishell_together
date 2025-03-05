@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:47:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:21:50 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:26:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static int	st_get_len(char *s1)
 	}
 	return (len);
 }
+
 // Adds string1 and 2 together and returns the result
 // Allocates a new string on the heap, which is then returned
 // abc + def -> abcdef\0
