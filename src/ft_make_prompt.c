@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:23:13 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:35:44 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:42:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static char	*st_promp_assign(int allocated_pwd, char *pwd)
 			free(pwd);
 		return (NULL);
 	}
-	ft_write(PROMPT, prompt, 0);
-	ft_write(pwd, prompt, ft_strlen(PROMPT));
-	ft_write(POST_PROMPT, prompt, ft_strlen(pwd) + ft_strlen(PROMPT));
+	st_write(PROMPT, prompt, 0);
+	st_write(pwd, prompt, ft_strlen(PROMPT));
+	st_write(POST_PROMPT, prompt, ft_strlen(pwd) + ft_strlen(PROMPT));
 	return (prompt);
 }
 

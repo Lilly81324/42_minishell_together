@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:26:07 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:43:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	ft_absolute_cmd(char **token, int *pos, char ***envp)
 	char	*path;
 	char	**argv;
 
-	path = ft_prepare_path(token, *pos);
+	path = st_prepare_path(token, *pos);
 	argv = ft_prepare_argv(token, pos);
-	status = ft_run_cmd(path, argv, envp);
+	status = st_run_cmd(path, argv, envp);
 	ft_nullc(&argv);
 	ft_null(&path);
 	len = 0;
