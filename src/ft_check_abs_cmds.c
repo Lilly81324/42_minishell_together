@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reset_std.c                                     :+:      :+:    :+:   */
+/*   ft_check_abs_cmds.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 16:47:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 15:48:07 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/05 15:18:14 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/05 15:24:36 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Resets standard streams based off std
-void	ft_reset_std(int *std)
+// returns 1 if absolute command like /usr/bin/echo
+// or ./a.out
+// or 0 if not
+int	ft_check_abs_cmds(char **token, int pos)
 {
-	if (std == NULL)
-		return ;
-	close(STDIN_FILENO);
-	close(STDOUT_FILENO);
-	close(STDERR_FILENO);
-	dup2(std[0], STDIN_FILENO);
-	dup2(std[1], STDOUT_FILENO);
-	dup2(std[2], STDERR_FILENO);
+	if (token[pos] == NULL || ft_strlen(token[pos]) < 3)
+		return (0);
+	if (token[pos][0] == '/')
+		return (1);
+	if (token[pos][0] == '.' && token[pos][1] == '/')
+		return (1);
+	return (0);
 }

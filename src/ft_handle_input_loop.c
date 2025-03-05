@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 18:30:46 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 18:35:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/05 18:01:49 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_handle_input_loop(char **tokens, int *std, char ***envp)
 	i = 0;
 	while (tokens[i] != NULL && status == -1)
 	{
-		ft_reset_std(std);
+		ft_std_reset(std);
 		if (r_end != -1)
 			ft_stdin_to_pipe(r_end);
 		r_end = ft_pipe_setup(tokens, i);

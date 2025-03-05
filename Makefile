@@ -36,8 +36,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_token_redirect.c \
 	ft_token_cmds.c \
 	ft_print_tokens.c \
-	ft_dup_std.c \
-	ft_reset_std.c \
+	ft_std_dup.c \
+	ft_std_reset.c \
 	ft_stdin_to_infile.c \
 	ft_stdout_to_pipe.c \
 	ft_stdin_to_pipe.c \
@@ -56,7 +56,10 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_history.c \
 	ft_write_string.c \
 	ft_handle_input_loop.c \
-	ft_abs_commands.c \
+	ft_absolute_cmd.c \
+	ft_check_abs_cmds.c \
+	ft_std_close.c \
+	ft_str_add.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
