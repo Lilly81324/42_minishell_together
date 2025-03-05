@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/04 15:19:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/04 15:41:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	ft_change_env(char ***envp, char *pair)
 // or NULL if not found
 char	*ft_get_env(char **envp, char *key)
 {
-	int i;
-	int key_len;
+	int	i;
+	int	key_len;
 
 	key_len = ft_strlen(key);
 	i = 0;
