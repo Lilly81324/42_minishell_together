@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 18:03:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:19:29 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@
 # define SHELL_NAME "yevshell"
 
 // Error messages
-# define INVALID_COMMAND 	SHELL_NAME ": Not a valid command\n"
-# define FORK_ERROR 		SHELL_NAME": Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR SHELL_NAME ": pwd: No pwd exists\n"
-# define ARG_MUCH_ERROR 	SHELL_NAME ": %s: too many arguments\n"
-# define CD_INVALID_PATH 	SHELL_NAME ": cd: %s: No such file or directory\n"
-# define CD_HOMELESS_ERROR 	SHELL_NAME ": cd: HOME not set\n"
-# define EXIT_NUMERIC_ERROR	SHELL_NAME ": exit: %s: numeric argument required\n"
+# define INVALID_COMMAND 		"yevshell: Not a valid command\n"
+# define FORK_ERROR 			"yevshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR  "yevshell: pwd: No pwd exists\n"
+# define ARG_MUCH_ERROR  		"yevshell: %s: too many arguments\n"
+# define CD_INVALID_PATH 		"yevshell: cd: %s: No such file or \
+								directory\n"
+# define CD_HOMELESS_ERROR  	"yevshell: cd: HOME not set\n"
+# define EXIT_NUMERIC_ERROR 	"yevshell: exit: %s: numeric argument\
+										 required\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"

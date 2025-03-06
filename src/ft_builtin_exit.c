@@ -6,11 +6,29 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 17:54:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:16:41 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+// first part of atoi that skips to the number
+// returns factor for final atoi number
+static int	st_skip_for_atoi(char *nptr, int *i)
+{
+	int	fac;
+
+	fac = 1;
+	while (nptr[*i] == ' ' || nptr[*i] == '\n' || nptr[*i] == '\t' \
+		|| nptr[*i] == '\v' || nptr[*i] == '\f' || nptr[*i] == '\r')
+		(*i)++;
+	if (nptr[*i] == '-' || nptr[*i] == '+')
+	{
+		if (nptr[*i] == '-')
+			fac = fac * -1;
+		(*i)++;
+	}
+	return (fac);
+}
 
 // Special Atoi for exit codes
 // turns string into number % 256
@@ -19,19 +37,10 @@ static int	st_exit_atoi(char *nptr)
 	int				i;
 	int				fac;
 	long long int	number;
-	
+
 	i = 0;
-	fac = 1;
-	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' \
-		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
-		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
-	{
-		if (nptr[i] == '-')
-			fac = fac * -1;
-		i++;
-	}
 	number = 0;
+	fac = st_skip_for_atoi(nptr, &i);
 	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
 		return (-1);
 	while (nptr[i] >= '0' && nptr[i] <= '9')
