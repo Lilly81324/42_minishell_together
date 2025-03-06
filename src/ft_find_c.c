@@ -23,7 +23,7 @@ int	ft_find_c(char c, char *string)
 		return (-1);
 	while (string[ret] != '\0' && string[ret] != c)
 		ret++;
-	if (string[ret] == '\0' && c != '\0')
+	if (string[ret] == '\0')
 		return (-1);
 	return (ret);
 }

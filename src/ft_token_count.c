@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:35:33 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 17:38:25 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:21:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 // returns -1 if character not found (quotation opened and not closed)
 static int	move_until(char *s, int i, char opt)
 {
-	i++;
+	if (s[i] != '\0')
+		i++;
 	while (s[i] != opt && s[i] != '\0')
 		i++;
 	if (s[i] == '\0')
@@ -29,8 +30,8 @@ static int	move_until(char *s, int i, char opt)
 // so either a SPACES or a SPECIALS or a \0
 static int	move_regulars(char *s, int *i)
 {
-	while (s[*i] != '\0' && ft_c_in_s(SPACES, s[*i]) == 0 && \
-			ft_c_in_s(SPECIALS, s[*i]) == 0)
+	while (s[*i] != '\0' && ft_find_c(s[*i], SPACES) == -1 && \
+			ft_find_c(s[*i], SPECIALS) == -1)
 	{
 		if (s[*i] == '\'')
 			*i = move_until(s, *i, '\'');
@@ -47,7 +48,7 @@ static int	move_regulars(char *s, int *i)
 // if abc doesnt move
 static int	move_specials(char *s, int *i)
 {
-	if (ft_c_in_s(SPECIALS, s[*i]) == 0)
+	if (ft_find_c(s[*i], SPECIALS) == -1)
 		return (*i);
 	if (s[*i] == '>' && s[(*i) + 1] == '>')
 		(*i) += 2;
