@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:35:33 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 14:19:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:21:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 // returns -1 if character not found (quotation opened and not closed)
 static int	move_until(char *s, int i, char opt)
 {
-	i++;
+	if (s[i] != '\0')
+		i++;
 	while (s[i] != opt && s[i] != '\0')
 		i++;
 	if (s[i] == '\0')
