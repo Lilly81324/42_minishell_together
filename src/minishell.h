@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 14:22:48 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:19:29 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 
+# define SHELL_NAME "yevshell"
+
 // Error messages
-# define INVALID_COMMAND "yevshell: Not a valid command\n"
-# define FORK_ERROR "yevshell: Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR "yevshell: pwd: No pwd exists\n"
-# define CD_INVALID_PATH "yevshell: cd: %s: No such file or directory\n"
-# define CD_HOMELESS_ERROR "yevshell: cd: HOME not set\n"
+# define INVALID_COMMAND 		"yevshell: Not a valid command\n"
+# define FORK_ERROR 			"yevshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR  "yevshell: pwd: No pwd exists\n"
+# define ARG_MUCH_ERROR  		"yevshell: %s: too many arguments\n"
+# define CD_INVALID_PATH 		"yevshell: cd: %s: No such file or \
+								directory\n"
+# define CD_HOMELESS_ERROR  	"yevshell: cd: HOME not set\n"
+# define EXIT_NUMERIC_ERROR 	"yevshell: exit: %s: numeric argument\
+										 required\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -72,6 +78,8 @@ char	**ft_copy_env(char **envp);
 void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
+// Error Functions
+int		ft_too_many_args(char *str);
 
 // Programm------------------------------------------------
 int		ft_loop(char ***envp);
@@ -94,13 +102,14 @@ int		ft_token_cmds(char *arg[], int i, char ***envp);
 // Builtin command
 int		ft_check_special(char *inp);
 int		ft_special_cmd(char **tokens, int *pos, char ***envp);
+int		ft_builtin_exit(char **tokens, int *pos);
 int		ft_builtin_env(int *pos, char ***envp);
-int		ft_builtin_pwd(int *pos);
+int		ft_builtin_pwd(char **tokens, int *pos);
 int		ft_builtin_cd(char **tokens, int *pos, char ***envp);
 int		ft_builtin_export(char **tokens, int *pos, char ***envp);
 int		ft_builtin_unset(char **tokens, int *pos, char ***envp);
 int		ft_builtin_echo(char **tokens, int *pos);
-int		ft_builtin_history(int *pos);
+int		ft_builtin_history(char **tokens, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
 int		ft_absolute_cmd(char **token, int *pos, char ***envp);
