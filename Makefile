@@ -22,7 +22,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_regular_cmd.c \
 	ft_check_special.c \
 	ft_skip_spaces.c \
-	ft_c_in_s.c \
 	ft_handle_chunks.c \
 	ft_is_delimiter.c \
 	ft_is_redirector.c \

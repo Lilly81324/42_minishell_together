@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 18:30:46 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:01:49 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:26:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_handle_input_loop(char **tokens, int *std, char ***envp)
 		status = ft_handle_chunks(tokens, &i, envp);
 		if (tokens[i] != NULL)
 			i++;
+		if (status != -1)
+			return (status);
 	}
 	return (status);
 }

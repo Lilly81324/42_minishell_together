@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:10:49 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:22:48 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
 void	ft_skip_spaces(int *i, char *str);
-int		ft_c_in_s(char *big, char little);
 int		ft_cooler_open(char *filename);
 int		ft_is_delimiter(char *str);
 int		ft_is_redirector(char *str);
