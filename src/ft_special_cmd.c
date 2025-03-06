@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 17:21:44 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:03:39 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_special_cmd(char **tokens, int *pos, char ***envp)
 	else if (ft_strncmp(&tokens[*pos][i], "echo", 4) == 0)
 		return (ft_builtin_echo(tokens, pos));
 	else if (ft_strncmp(&tokens[*pos][i], "history", 7) == 0)
-		return (ft_builtin_history(pos));
+		return (ft_builtin_history(tokens, pos));
 	(*pos)++;
 	return (-1);
 }

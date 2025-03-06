@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:52:20 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:20:22 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 18:01:06 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ int	ft_builtin_unset(char **tokens, int *pos, char ***envp)
 	}
 	(*pos)++;
 	return (-1);
-}
+}// needs to handle multiple variable unsetting in one command
+// should be handled left to right, skipping things that dont exist
