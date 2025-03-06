@@ -60,6 +60,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_std_close.c \
 	ft_str_add.c \
 	ft_too_many_args.c \
+	ft_builtin_exit.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

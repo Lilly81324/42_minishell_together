@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 16:56:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 17:21:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_special_cmd(char **tokens, int *pos, char ***envp)
 	i = 0;
 	ft_skip_spaces(&i, tokens[*pos]);
 	if (ft_strncmp(&tokens[*pos][i], "exit", 4) == 0)
-		return (1000);
+		return (ft_builtin_exit(tokens, pos));
 	else if (ft_strncmp(&tokens[*pos][i], "env", 3) == 0)
 		return (ft_builtin_env(pos, envp));
 	else if (ft_strncmp(&tokens[*pos][i], "pwd", 3) == 0)

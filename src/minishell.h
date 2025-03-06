@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 16:55:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 17:21:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ARG_MUCH_ERROR 	SHELL_NAME ": %s: too many arguments\n"
 # define CD_INVALID_PATH 	SHELL_NAME ": cd: %s: No such file or directory\n"
 # define CD_HOMELESS_ERROR 	SHELL_NAME ": cd: HOME not set\n"
+# define EXIT_NUMERIC_ERROR	SHELL_NAME ": exit: %s: numeric argument required\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -99,6 +100,7 @@ int		ft_token_cmds(char *arg[], int i, char ***envp);
 // Builtin command
 int		ft_check_special(char *inp);
 int		ft_special_cmd(char **tokens, int *pos, char ***envp);
+int		ft_builtin_exit(char **tokens, int *pos);
 int		ft_builtin_env(int *pos, char ***envp);
 int		ft_builtin_pwd(char **tokens, int *pos);
 int		ft_builtin_cd(char **tokens, int *pos, char ***envp);
