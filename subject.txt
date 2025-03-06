@@ -1,22 +1,6 @@
 X = done
 ? = halfway done
 
-Turn in files Makefile, *.h, *.c
-Makefile NAME, all, clean, fclean, re
-Arguments
-External functs. readline, rl_clear_history, rl_on_new_line,
-rl_replace_line, rl_redisplay, add_history,
-printf, malloc, free, write, access, open, read,
-close, fork, wait, waitpid, wait3, wait4, signal,
-sigaction, sigemptyset, sigaddset, kill, exit,
-getcwd, chdir, stat, lstat, fstat, unlink, execve,
-dup, dup2, pipe, opendir, readdir, closedir,
-strerror, perror, isatty, ttyname, ttyslot, ioctl,
-getenv, tcsetattr, tcgetattr, tgetent, tgetflag,
-tgetnum, tgetstr, tgoto, tputs
-Libft authorized Yes
-Description Write a shell
-
 Your shell should:
 X • Display a prompt when waiting for a new command.
 X • Have a working history.
@@ -30,7 +14,6 @@ and must not provide any additional information or access to data.
 Therefore, using "norm" type structures in the global scope is
 forbidden.
 
-Minishell As beautiful as a shell
 • Not interpret unclosed quotes or special characters which are not required by the
 subject such as \ (backslash) or ; (semicolon).
 ? • Handle ’ (single quote) which should prevent the shell from interpreting the meta-
@@ -42,8 +25,8 @@ X ◦ < should redirect input.
 X ◦ > should redirect output.
 ◦ << should be given a delimiter, then read the input until a line containing the
 delimiter is seen. However, it doesn’t have to update the history!
-◦ >> should redirect output in append mode.
-• Implement pipes (| character). The output of each command in the pipeline is
+X >> should redirect output in append mode.
+X Implement pipes (| character). The output of each command in the pipeline is
 connected to the input of the next command via a pipe.
 • Handle environment variables ($ followed by a sequence of characters) which
 should expand to their values.
@@ -55,7 +38,7 @@ foreground pipeline.
 ◦ ctrl-D exits the shell.
 ◦ ctrl-\ does nothing.
 • Your shell must implement the following built-in commands:
-◦ echo with option -n
+X echo with option -n
 X ◦ cd with only a relative or absolute path
 X ◦ pwd with no options
 X ◦ export with no options

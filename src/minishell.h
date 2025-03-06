@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 14:22:48 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:55:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 
+# define SHELL_NAME "yevshell"
+
 // Error messages
-# define INVALID_COMMAND "yevshell: Not a valid command\n"
-# define FORK_ERROR "yevshell: Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR "yevshell: pwd: No pwd exists\n"
-# define CD_INVALID_PATH "yevshell: cd: %s: No such file or directory\n"
-# define CD_HOMELESS_ERROR "yevshell: cd: HOME not set\n"
+# define INVALID_COMMAND 	SHELL_NAME ": Not a valid command\n"
+# define FORK_ERROR 		SHELL_NAME": Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR SHELL_NAME ": pwd: No pwd exists\n"
+# define ARG_MUCH_ERROR 	SHELL_NAME ": %s: too many arguments\n"
+# define CD_INVALID_PATH 	SHELL_NAME ": cd: %s: No such file or directory\n"
+# define CD_HOMELESS_ERROR 	SHELL_NAME ": cd: HOME not set\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -72,6 +75,8 @@ char	**ft_copy_env(char **envp);
 void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
+// Error Functions
+int		ft_too_many_args(char *str);
 
 // Programm------------------------------------------------
 int		ft_loop(char ***envp);
@@ -95,7 +100,7 @@ int		ft_token_cmds(char *arg[], int i, char ***envp);
 int		ft_check_special(char *inp);
 int		ft_special_cmd(char **tokens, int *pos, char ***envp);
 int		ft_builtin_env(int *pos, char ***envp);
-int		ft_builtin_pwd(int *pos);
+int		ft_builtin_pwd(char **tokens, int *pos);
 int		ft_builtin_cd(char **tokens, int *pos, char ***envp);
 int		ft_builtin_export(char **tokens, int *pos, char ***envp);
 int		ft_builtin_unset(char **tokens, int *pos, char ***envp);

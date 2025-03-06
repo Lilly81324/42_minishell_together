@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/04 15:18:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:46:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
 	(*pos)++;
 	if (ft_is_del_or_red(tokens[*pos]) == 1)
 		return (ft_blank_cd(envp));
+	if (ft_is_del_or_red(tokens[(*pos) + 1]) == 0)
+		return (ft_too_many_args("cd"));
 	if (tokens[*pos][0] == '/')
 		status = chdir(tokens[*pos]);
 	else

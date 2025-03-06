@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/04 15:28:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/06 16:34:50 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // TODO:
-// Launching commands with relative/absolute paths
 // Signaling
 // Exit Codes
 // maybe remove handling of semicolon
