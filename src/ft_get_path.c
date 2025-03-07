@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:23:06 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:11:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:30:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,24 @@ static char	*ft_check_access(char **paths, char *name)
 // Tries to find the path of the binary  of the given command
 // from the enviroment pointer (PATHS) and returns
 // the path with the file, so /usr/bin/ls
-char	*ft_get_path(char *cmd)
+char	*ft_get_path(char *cmd, char ***envp)
 {
+	char	*env_path;
 	char	**paths;
 	char	*path;
 
 	if (cmd == NULL || cmd[0] == '\0')
 		return (NULL);
-	cmd = ft_space_bef(cmd);
-	paths = ft_split(getenv("PATH"), ':');
+	cmd = ft_strip(SPACES, cmd);
+	if (cmd == NULL)
+		return (NULL);
+	env_path = ft_get_env(*envp, "PATH");
+	paths = ft_split(env_path, ':');
+	if (paths == NULL)
+	{
+		ft_null(&cmd);
+		return (NULL);
+	}
 	path = ft_check_access(paths, cmd);
 	ft_null(&cmd);
 	ft_nullb(&paths);

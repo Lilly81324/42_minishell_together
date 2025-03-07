@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:43:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 18:48:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,29 @@ static int	st_run_cmd(char *path, char **argv, char ***envp)
 	return (-1);
 }
 
+// handles error
+// returns the error code or -1 if it works
+static int	st_check_acces(char *path, char *cmd)
+{
+	int	exists;
+	int	acces;
+
+	acces = -1;
+	exists = access(path, F_OK);
+	if (exists != 0)
+	{
+		printf(INVALID_COMMAND, cmd);
+		return (127);
+	}
+	acces = access(path, X_OK);
+	if (acces != 0)
+	{
+		printf(FILE_EXECUTE_NO_PERMISSION, cmd);
+		return (127);
+	}
+	return (-1);
+}
+
 // For running absolute commands like /usr/local/bin/norminette or ./minishell
 // Waits for process to be done before giving back control
 int	ft_absolute_cmd(char **token, int *pos, char ***envp)
@@ -58,6 +81,12 @@ int	ft_absolute_cmd(char **token, int *pos, char ***envp)
 	char	**argv;
 
 	path = st_prepare_path(token, *pos);
+	status = st_check_acces(path, token[*pos]);
+	if (status != -1)
+	{
+		ft_null(&path);
+		return (status);
+	}
 	argv = ft_prepare_argv(token, pos);
 	status = st_run_cmd(path, argv, envp);
 	ft_nullc(&argv);

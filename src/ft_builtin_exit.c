@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 18:16:41 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 15:56:29 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ int	ft_builtin_exit(char **tokens, int *pos)
 	}
 	printf("exit\n");
 	ft_too_many_args("exit");
-	return (1001);
+	return (1);
 }

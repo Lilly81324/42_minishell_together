@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 18:19:29 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:01:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,16 @@
 # define SHELL_NAME "yevshell"
 
 // Error messages
-# define INVALID_COMMAND 		"yevshell: Not a valid command\n"
-# define FORK_ERROR 			"yevshell: Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR  "yevshell: pwd: No pwd exists\n"
-# define ARG_MUCH_ERROR  		"yevshell: %s: too many arguments\n"
-# define CD_INVALID_PATH 		"yevshell: cd: %s: No such file or \
-								directory\n"
-# define CD_HOMELESS_ERROR  	"yevshell: cd: HOME not set\n"
-# define EXIT_NUMERIC_ERROR 	"yevshell: exit: %s: numeric argument\
+# define INVALID_COMMAND 			"yevshell: %s: No such file or directory\n"
+# define FORK_ERROR 				"yevshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR		"yevshell: pwd: No pwd exists\n"
+# define ARG_MUCH_ERROR  			"yevshell: %s: too many arguments\n"
+# define CD_INVALID_PATH 			"yevshell: cd: %s: No such file or \
+									directory\n"
+# define CD_HOMELESS_ERROR  		"yevshell: cd: HOME not set\n"
+# define EXIT_NUMERIC_ERROR 		"yevshell: exit: %s: numeric argument\
 										 required\n"
+# define FILE_EXECUTE_NO_PERMISSION	"yevshell: %s: Permission denied\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -49,8 +50,6 @@
 # define POST_PROMPT "$ "
 
 // Utility-------------------------------------------------
-char	*ft_get_path(char *cmd);
-char	*ft_space_bef(char *str);
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
@@ -62,6 +61,7 @@ int		ft_is_del_or_red(char *str);
 char	**ft_split_quot_ex(char const *s, char c);
 int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
+char	*ft_strip(char *extra, char *core);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -103,7 +103,7 @@ int		ft_token_cmds(char *arg[], int i, char ***envp);
 int		ft_check_special(char *inp);
 int		ft_special_cmd(char **tokens, int *pos, char ***envp);
 int		ft_builtin_exit(char **tokens, int *pos);
-int		ft_builtin_env(int *pos, char ***envp);
+int		ft_builtin_env(char **tokens, int *pos, char ***envp);
 int		ft_builtin_pwd(char **tokens, int *pos);
 int		ft_builtin_cd(char **tokens, int *pos, char ***envp);
 int		ft_builtin_export(char **tokens, int *pos, char ***envp);
@@ -114,6 +114,7 @@ int		ft_builtin_history(char **tokens, int *pos);
 int		ft_check_abs_cmds(char **token, int pos);
 int		ft_absolute_cmd(char **token, int *pos, char ***envp);
 char	*ft_str_add(char *s1, char *s2);
+char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(char **arg, int *pos, char ***envp);
 char	**ft_prepare_argv(char **arg, int *pos);
 

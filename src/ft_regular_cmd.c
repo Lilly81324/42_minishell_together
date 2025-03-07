@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:50:39 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 15:18:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 17:26:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	ft_regular_cmd(char **token, int *pos, char ***envp)
 	pid_t	pid;
 	char	**argv;
 
-	path = ft_get_path(token[*pos]);
+	path = ft_get_path(token[*pos], envp);
 	if (path == NULL)
 	{
-		printf(INVALID_COMMAND);
-		return (1);
+		printf(INVALID_COMMAND, token[*pos]);
+		return (127);
 	}
 	argv = ft_prepare_argv(token, pos);
 	pid = fork();

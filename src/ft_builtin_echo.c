@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:46:57 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 17:28:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 16:40:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@
 // Returns 0 if no
 static int	ft_handle_n_flag(char *token, int *pos)
 {
+	int	i;
+
+	i = 1;
 	if (ft_is_del_or_red(token) == 0)
 	{
-		if (token[0] == '-' && token[1] == 'n'\
-				&& token[2] == '\0')
+		if (token[0] != '-')
+			return (0);
+		while (token[i] == 'n')
+			i++;
+		if (token[i] == '\0')
 		{
 			(*pos)++;
 			return (1);
