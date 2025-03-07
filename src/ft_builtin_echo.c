@@ -26,7 +26,7 @@ static int	ft_handle_n_flag(char *token, int *pos)
 			return (0);
 		while (token[i] == 'n')
 			i++;
-		if (token[i] == '\0')
+		if (token[i] == '\0' && token[i - 1] == 'n')
 		{
 			(*pos)++;
 			return (1);
