@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/07 19:01:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:29:03 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
+// for S_IRUSR, S_IWUSR modes for open
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
@@ -54,7 +56,7 @@ void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
 void	ft_skip_spaces(int *i, char *str);
-int		ft_cooler_open(char *filename);
+int		ft_cooler_open(char *filename, int flags, mode_t mode);
 int		ft_is_delimiter(char *str);
 int		ft_is_redirector(char *str);
 int		ft_is_del_or_red(char *str);

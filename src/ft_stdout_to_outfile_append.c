@@ -42,7 +42,8 @@ int	ft_stdout_to_outfile_append(char *filename)
 
 	if (ft_check_file(filename) != 0)
 		return (-1);
-	outfile = open(filename, O_CREAT | O_TRUNC | O_WRONLY | O_APPEND);
+	outfile = ft_cooler_open(filename, O_CREAT | O_TRUNC | O_WRONLY | \
+					O_APPEND, S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (outfile < 0)
 	{
 		perror("Error opening outfile");
