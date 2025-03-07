@@ -22,7 +22,7 @@ int	ft_builtin_pwd(char **tokens, int *pos)
 	if (pwd == NULL)
 	{
 		printf(PWD_NONEXISTENT_ERROR);
-		return (1000);
+		return (1);
 	}
 	printf("%s\n", pwd);
 	ft_null(&pwd);
