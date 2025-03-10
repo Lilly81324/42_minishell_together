@@ -63,6 +63,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_strip.c \
 	ft_env_increase.c \
 	ft_token_substitution.c \
+	ft_str_insert.c \
+	ft_str_cut.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 17:55:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:22:52 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	st_substitution(char ***env, char ***tok, int pos, int index)
 	int		len;
 	char	*key;
 	char	*value;
+	char	*temp;
 
 	len = 0;
 	printf("Dollar Sign found in %s at index %i\n", (*tok)[pos], index);
@@ -34,11 +35,15 @@ static void	st_substitution(char ***env, char ***tok, int pos, int index)
 		ft_find_c((*tok)[pos][index + len], SPACES) == -1)
 		len++;
 	len--;
-	printf("String is %i characters long\n", len);
 	key = (char *)malloc((len + 1) * sizeof(char));
 	ft_strlcpy(key, &((*tok)[pos][index + 1]), len + 1);
 	value = ft_get_env(*env, key);
-	printf("Value of [%s] is [%s]\n", key, value);
+	ft_str_cut(&((*tok)[pos]), index, len + 1);
+	printf("Cut to perfection: [%s]\n", (*tok)[pos]);
+	temp = ft_str_insert((*tok)[pos], value, index);
+	free((*tok)[pos]);
+	(*tok)[pos] = temp;
+	printf("Finale: [%s]\n", (*tok)[pos]);
 	ft_null(&key);
 }
 

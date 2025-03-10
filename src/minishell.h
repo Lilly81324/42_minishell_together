@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 17:52:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/10 19:10:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,9 @@ void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int	value);
 // Error Functions
 int		ft_too_many_args(char *str);
+// String Manipulation
+char	*ft_str_insert(char *src, char *goal, int pos);
+int		ft_str_cut(char **src, int pos, int cutlen);
 
 // Programm------------------------------------------------
 int		ft_loop(char ***envp);
