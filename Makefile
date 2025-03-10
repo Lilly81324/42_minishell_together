@@ -61,6 +61,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_too_many_args.c \
 	ft_builtin_exit.c \
 	ft_strip.c \
+	ft_env_increase.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

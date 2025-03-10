@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/07 19:29:03 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:58:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,22 @@
 # define SHELL_NAME "yevshell"
 
 // Error messages
-# define INVALID_COMMAND 			"yevshell: %s: No such file or directory\n"
-# define FORK_ERROR 				"yevshell: Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR		"yevshell: pwd: No pwd exists\n"
-# define ARG_MUCH_ERROR  			"yevshell: %s: too many arguments\n"
-# define CD_INVALID_PATH 			"yevshell: cd: %s: No such file or \
-									directory\n"
-# define CD_HOMELESS_ERROR  		"yevshell: cd: HOME not set\n"
-# define EXIT_NUMERIC_ERROR 		"yevshell: exit: %s: numeric argument\
-										 required\n"
-# define FILE_EXECUTE_NO_PERMISSION	"yevshell: %s: Permission denied\n"
+# define INVALID_COMMAND 			\
+"yevshell: %s: No such file or directory\n"
+# define FORK_ERROR 				\
+"yevshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR		\
+"yevshell: pwd: No pwd exists\n"
+# define ARG_MUCH_ERROR  			\
+"yevshell: %s: too many arguments\n"
+# define CD_INVALID_PATH 			\
+"yevshell: cd: %s: No such file or directory\n"
+# define CD_HOMELESS_ERROR  		\
+"yevshell: cd: HOME not set\n"
+# define EXIT_NUMERIC_ERROR 		\
+"yevshell: exit: %s: numeric argument required\n"
+# define FILE_EXECUTE_NO_PERMISSION	\
+"yevshell: %s: Permission denied\n"
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -80,6 +86,7 @@ char	**ft_copy_env(char **envp);
 void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
+void	ft_env_increase(char ***envp, char *target, int	value);
 // Error Functions
 int		ft_too_many_args(char *str);
 

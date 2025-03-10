@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 16:46:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/10 16:02:50 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,24 @@
 // Creates new string consisting of current working directory (cwd)
 // like this: <cwd>/<target> and then tries to navigate there
 // such as: "../same_dir" or "new_dir" or "../../../../../home"
-// Uses 2d array of tokens divided
+// Adds <cwd> + '/' + <target> and navigates there
 static int	ft_rel_directory(char *target)
 {
 	char	*cwd;
-	int		len_cwd;
-	int		len_goal;
+	char	*temp;
 	char	*res;
+	int		status;
 
 	cwd = getcwd(NULL, 0);
-	len_cwd = ft_strlen(cwd);
-	if (cwd[0] == '/' && cwd[1] == '\0')
-		len_cwd--;
-	len_goal = ft_strlen(target);
-	res = (char *)malloc((len_cwd + len_goal + 2) * sizeof(char));
-	res[len_cwd + len_goal + 1] = '\0';
-	len_goal++;
-	while (--len_goal > 0)
-		res[len_cwd + len_goal] = target[len_goal - 1];
-	res[len_cwd + len_goal] = '/';
-	len_cwd++;
-	while (--len_cwd > 0)
-		res[len_cwd - 1] = cwd[len_cwd -1];
-	len_goal = chdir(res);
+	temp = ft_str_add(cwd, "/");
+	res = ft_str_add(temp, target);
+	status = chdir(res);
 	ft_null(&cwd);
+	ft_null(&temp);
 	ft_null(&res);
-	return (len_goal);
+	return (status);
 }
+
 
 // Prepares the key-value pair for the envp to update with
 // returns that value
