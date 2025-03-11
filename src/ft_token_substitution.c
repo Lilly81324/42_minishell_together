@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 19:22:52 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:40:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	st_toggle(int *x)
 		*x = 0;
 }
 
+//echo "lel $PWD lol"
 // replace string <*tok[pos] with one where the current argument is insterted
 static void	st_substitution(char ***env, char ***tok, int pos, int index)
 {
@@ -30,7 +31,6 @@ static void	st_substitution(char ***env, char ***tok, int pos, int index)
 	char	*temp;
 
 	len = 0;
-	printf("Dollar Sign found in %s at index %i\n", (*tok)[pos], index);
 	while ((*tok)[pos][index + len] != '\0' && \
 		ft_find_c((*tok)[pos][index + len], SPACES) == -1)
 		len++;
@@ -39,11 +39,9 @@ static void	st_substitution(char ***env, char ***tok, int pos, int index)
 	ft_strlcpy(key, &((*tok)[pos][index + 1]), len + 1);
 	value = ft_get_env(*env, key);
 	ft_str_cut(&((*tok)[pos]), index, len + 1);
-	printf("Cut to perfection: [%s]\n", (*tok)[pos]);
 	temp = ft_str_insert((*tok)[pos], value, index);
 	free((*tok)[pos]);
 	(*tok)[pos] = temp;
-	printf("Finale: [%s]\n", (*tok)[pos]);
 	ft_null(&key);
 }
 

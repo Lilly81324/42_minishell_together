@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:42:24 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 19:09:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 16:35:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_str_cut(char **src, int pos, int cutlen)
 	i--;
 	while ((*src)[++i + cutlen] != '\0')
 		new[i] = (*src)[i + cutlen];
+	new[i] = '\0';
 	free(*src);
 	*src = new;
 	return (0);
