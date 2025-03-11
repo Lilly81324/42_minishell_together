@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 17:49:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:11:04 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	**ft_copy_env(char **envp);
 void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
-void	ft_env_increase(char ***envp, char *target, int	value);
+void	ft_env_increase(char ***envp, char *target, int value);
 // Error Functions
 int		ft_too_many_args(char *str);
 // String Manipulation
@@ -100,10 +100,10 @@ int		ft_loop(char ***envp);
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, char ***envp);
 // Tokenize input
+void	ft_string_substitution(char **env, char **str);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
-void	ft_token_substitution(char **env, char **str);
 // Executing the input
 int		ft_handle_input_loop(char **tokens, int *std, char ***envp);
 int		ft_pipe_setup(char **tokens, int pos);

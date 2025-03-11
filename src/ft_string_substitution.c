@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_token_substitution.c                            :+:      :+:    :+:   */
+/*   ft_string_substitution.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 18:03:07 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:12:01 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ static void	st_substitution(char **env, char **str, int index)
 	char	*temp;
 
 	len = 0;
-	while ((*str)[index + len + 1] != '\0' && (ft_isalnum((*str)[index + len + 1]) != 0 || \
+	while ((*str)[index + len + 1] != '\0' && \
+			(ft_isalnum((*str)[index + len + 1]) != 0 || \
 			(*str)[index + len + 1] == '_'))
 		len++;
 	key = (char *)malloc((len + 1) * sizeof(char));
@@ -53,7 +54,7 @@ static void	st_substitution(char **env, char **str, int index)
 
 // First time when an empty Argument is given, an invalid read happens
 // replaces "abc $ARG" to "abc value"
-void	ft_token_substitution(char **env, char **str)
+void	ft_string_substitution(char **env, char **str)
 {
 	int	i;
 	int	loops;

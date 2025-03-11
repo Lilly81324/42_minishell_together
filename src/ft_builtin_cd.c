@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 16:02:50 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:08:31 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	ft_rel_directory(char *target)
 	ft_null(&res);
 	return (status);
 }
-
 
 // Prepares the key-value pair for the envp to update with
 // returns that value

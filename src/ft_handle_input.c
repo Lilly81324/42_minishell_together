@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 17:01:01 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:10:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ int	ft_handle_input(char **inp, char ***envp)
 	int		status;
 	int		std[3];
 
-	ft_token_substitution(*envp, inp);
+	ft_string_substitution(*envp, inp);
 	tokens = ft_tokenization(*inp);
 	if (tokens == NULL)
 		return (1);
-	// ft_token_substitution(envp, &tokens);
 	// ft_print_tokens(tokens);
 	ft_std_dup(std);
 	status = ft_handle_input_loop(tokens, std, envp);
@@ -38,8 +37,3 @@ int	ft_handle_input(char **inp, char ***envp)
 	ft_nullb(&tokens);
 	return (status);
 }
-
-// sets up tokenization of input
-// makes copy of fds from before the commands
-// then runs the loop for each chunk
-// after that resets file descriptors and returns exit status of chunk

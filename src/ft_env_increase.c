@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:19:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 16:58:17 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:10:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	st_atoi(const char *nptr)
 // Increases the value of enviroment variable <target> by <value>
 // or sets it to "<target>=0" if not valid custom atoi value
 // uses custom atoi with rules as seen in function above
-void	ft_env_increase(char ***envp, char *target, int	value)
+void	ft_env_increase(char ***envp, char *target, int value)
 {
 	int		current;
 	char	*new;

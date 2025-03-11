@@ -62,7 +62,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_exit.c \
 	ft_strip.c \
 	ft_env_increase.c \
-	ft_token_substitution.c \
+	ft_string_substitution.c \
 	ft_str_insert.c \
 	ft_str_cut.c \
 )
