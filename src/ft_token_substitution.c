@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 16:40:15 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:03:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ static void	st_toggle(int *x)
 		*x = 0;
 }
 
-//echo "lel $PWD lol"
-// replace string <*tok[pos] with one where the current argument is insterted
-static void	st_substitution(char ***env, char ***tok, int pos, int index)
+// Replaces string <*str> with one where an argument is insterted
+// "This is pwd:$PWD" -> "This is pwd:/home/sikunne"
+// counts how long the Argument Name is (ends at \0 or ![a-z,A-Z,0-9,_])
+// Creates a key consisting of that Argument without '$' to get the value
+// Then cuts out that key with '$' from the string 
+// If value was found for key then insert it by reallocation
+static void	st_substitution(char **env, char **str, int index)
 {
 	int		len;
 	char	*key;
@@ -31,40 +35,44 @@ static void	st_substitution(char ***env, char ***tok, int pos, int index)
 	char	*temp;
 
 	len = 0;
-	while ((*tok)[pos][index + len] != '\0' && \
-		ft_find_c((*tok)[pos][index + len], SPACES) == -1)
+	while ((*str)[index + len + 1] != '\0' && (ft_isalnum((*str)[index + len + 1]) != 0 || \
+			(*str)[index + len + 1] == '_'))
 		len++;
-	len--;
 	key = (char *)malloc((len + 1) * sizeof(char));
-	ft_strlcpy(key, &((*tok)[pos][index + 1]), len + 1);
-	value = ft_get_env(*env, key);
-	ft_str_cut(&((*tok)[pos]), index, len + 1);
-	temp = ft_str_insert((*tok)[pos], value, index);
-	free((*tok)[pos]);
-	(*tok)[pos] = temp;
+	ft_strlcpy(key, &((*str)[index + 1]), len + 1);
+	value = ft_get_env(env, key);
+	ft_str_cut(str, index, len + 1);
+	if (value != NULL)
+	{
+		temp = ft_str_insert((*str), value, index);
+		free(*str);
+		(*str) = temp;
+	}
 	ft_null(&key);
 }
 
+// First time when an empty Argument is given, an invalid read happens
 // replaces "abc $ARG" to "abc value"
-void	ft_token_substitution(char ***env, char ***tok)
+void	ft_token_substitution(char **env, char **str)
 {
 	int	i;
-	int	j;
+	int	loops;
 	int	quoted;
 
-	if (*tok == NULL || (*tok)[0] == NULL)
+	if (str == NULL || *str == NULL)
 		return ;
-	i = -1;
-	while ((*tok)[++i] != NULL)
+	quoted = 0;
+	loops = 0;
+	while (loops < MAX_SUBSTITUTIONS)
 	{
-		j = -1;
-		quoted = 0;
-		while ((*tok)[i][++j] != '\0')
+		i = -1;
+		while ((*str)[++i] != '\0')
 		{
-			if ((*tok)[i][j] == '\'')
+			if ((*str)[i] == '\'')
 				st_toggle(&quoted);
-			if ((*tok)[i][j] == '$' && quoted == 0)
-				st_substitution(env, tok, i, j);
+			if ((*str)[i] == '$' && quoted == 0)
+				st_substitution(env, str, i);
 		}
+		loops++;
 	}
 }

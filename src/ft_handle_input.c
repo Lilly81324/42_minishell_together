@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 17:53:02 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 17:01:01 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,17 @@
 // 1000-1255 for stop whole programm
 // handles a whole input string, breaks it down into chunks
 // and then does all chunks in a specific order
-int	ft_handle_input(char *inp, char ***envp)
+int	ft_handle_input(char **inp, char ***envp)
 {
 	char	**tokens;
 	int		status;
 	int		std[3];
 
-	tokens = ft_tokenization(inp);
+	ft_token_substitution(*envp, inp);
+	tokens = ft_tokenization(*inp);
 	if (tokens == NULL)
 		return (1);
-	ft_token_substitution(envp, &tokens);
+	// ft_token_substitution(envp, &tokens);
 	// ft_print_tokens(tokens);
 	ft_std_dup(std);
 	status = ft_handle_input_loop(tokens, std, envp);

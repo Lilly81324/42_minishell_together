@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 19:10:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 17:49:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
 # define SPECIALS "><;|"
+# define MAX_SUBSTITUTIONS 10
 
 // Used for showing the prompt before readline like this:
 // <PROMPT><PWD><POST_PROMPT>
@@ -97,12 +98,12 @@ int		ft_str_cut(char **src, int pos, int cutlen);
 int		ft_loop(char ***envp);
 // Input getting
 char	*ft_make_prompt(char ***envp);
-int		ft_handle_input(char *inp, char ***envp);
+int		ft_handle_input(char **inp, char ***envp);
 // Tokenize input
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
-void	ft_token_substitution(char ***env, char ***tok);
+void	ft_token_substitution(char **env, char **str);
 // Executing the input
 int		ft_handle_input_loop(char **tokens, int *std, char ***envp);
 int		ft_pipe_setup(char **tokens, int pos);
