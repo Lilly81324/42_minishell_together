@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 17:25:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/11 18:40:04 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,9 @@ int	main(int argc, char **argv, char **envp)
 
 // TODO:
 // Signaling
-// Exit Codes
+// Exit Codes by using struct everywhere, and setting value in waitpid
 // maybe remove handling of semicolon
 // <<
-// PATH Argument substitution
 // Exit code substitution
 // Ctrl+C
 // Ctrl+D
@@ -40,4 +39,5 @@ int	main(int argc, char **argv, char **envp)
 // quotes are wrongy included in the output of some things, such as echo
 // make "export " print out alphabetically
 // SHLVL cannot be exported to non-number -> 0 instead
-// SHLVL is always 1 smaller than given
+// SHLVL is always 1 smaller than given in export
+// Tokens and arguments can be given as <"abc"> but should be used as <abc>
