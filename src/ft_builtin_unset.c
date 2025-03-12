@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:52:20 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 16:19:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:07:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ int	ft_builtin_unset(t_shell *shl, int *pos)
 	int	i;
 
 	(*pos)++;
+	shl->exit_code = 0;
 	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
-		return (-1);
+	{
+		shl->exit_code = 0;
+		return (0);
+	}
 	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
 	{
 		i = -1;
@@ -39,5 +43,5 @@ int	ft_builtin_unset(t_shell *shl, int *pos)
 		}
 		(*pos)++;
 	}
-	return (-1);
+	return (0);
 }

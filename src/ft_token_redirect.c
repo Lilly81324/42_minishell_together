@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:24:50 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 15:52:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:13:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	ft_token_redirect(char **tok, int i)
 		if (ft_is_redirector(tok[i]) == 1)
 		{
 			status = ft_redirection(tok, i);
-			if (status != -1)
+			if (status > 0)
 				return (status);
 			i += 2;
 		}
 		else
 			i++;
 	}
-	return (-1);
+	return (0);
 }
 
 // CAn currently not handle pipes, even though the condition is there

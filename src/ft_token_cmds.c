@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 16:28:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:12:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	ft_token_cmds(t_shell *shl, int i)
 				status = ft_absolute_cmd(shl, &i);
 			else
 				status = ft_regular_cmd(shl, &i);
-			if (status != -1)
-				return (status);
+			return (status);
 		}
 	}
-	return (-1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 16:13:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 18:25:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ int	ft_special_cmd(t_shell *shl, int *pos)
 		return (ft_builtin_export(shl, pos));
 	else if (ft_strncmp(&(shl->tok[*pos][i]), "unset", 5) == 0)
 		return (ft_builtin_unset(shl, pos));
-	else if (ft_strncmp(&(shl->tok[*pos][i]), "echo", 4) == 0)
-		return (ft_builtin_echo(shl, pos));
 	else if (ft_strncmp(&(shl->tok[*pos][i]), "history", 7) == 0)
 		return (ft_builtin_history(shl, pos));
-	(*pos)++;
-	return (-1);
+	else
+		return (ft_builtin_echo(shl, pos));
 }

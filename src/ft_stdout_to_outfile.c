@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:14:22 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/07 19:31:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:17:28 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,19 @@ int	ft_stdout_to_outfile(char *filename)
 	int	outfile;
 
 	if (ft_check_file(filename) != 0)
-		return (-1);
+		return (1);
 	outfile = ft_cooler_open(filename, O_CREAT | O_TRUNC | O_WRONLY, \
 							S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (outfile < 0)
 	{
 		perror("Error opening outfile");
-		return (-1);
+		return (1);
 	}
 	if (dup2(outfile, STDOUT_FILENO) < 0)
 	{
 		perror("Error redirecting stdout to outfile");
 		close(outfile);
-		return (-1);
+		return (1);
 	}
 	close(outfile);
 	return (0);

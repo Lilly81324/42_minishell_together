@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 16:56:38 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 16:20:51 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:09:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ int	ft_builtin_history(t_shell *shl, int *pos)
 	HIST_ENTRY	**hist;
 	int			i;
 
+	shl->exit_code = 0;
 	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 0)
-		return (ft_too_many_args("history"));
+	{
+		shl->exit_code = ERNUM_HISTORY_ARGC;
+		return (ft_too_many_args("history", 0));
+	}
 	hist = history_list();
 	i = -1;
 	if (hist == NULL)
-		return (-1);
+		return (0);
 	while (hist[++i] != NULL)
 	{
 		ft_write_string("  ");
@@ -33,5 +37,5 @@ int	ft_builtin_history(t_shell *shl, int *pos)
 		ft_write_string("\n");
 	}
 	(*pos)++;
-	return (-1);
+	return (0);
 }

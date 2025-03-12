@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 17:24:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 18:54:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*st_prepare_path(char **token, int pos)
 }
 
 // handles error
-// returns the error code or -1 if it works
+// returns the error code or 0 if it works
 static int	st_check_acces(char *path, char *cmd)
 {
 	int	exists;
@@ -43,15 +43,15 @@ static int	st_check_acces(char *path, char *cmd)
 	if (exists != 0)
 	{
 		printf(INVALID_COMMAND, cmd);
-		return (127);
+		return (ERNUM_CMD_NOTEXIST);
 	}
 	acces = access(path, X_OK);
 	if (acces != 0)
 	{
 		printf(FILE_EXECUTE_NO_PERMISSION, cmd);
-		return (127);
+		return (ERNUM_CMD_PERM);
 	}
-	return (-1);
+	return (0);
 }
 
 // For running absolute commands like /usr/local/bin/norminette or ./minishell
@@ -65,13 +65,14 @@ int	ft_absolute_cmd(t_shell *shl, int *pos)
 
 	path = st_prepare_path(shl->tok, *pos);
 	status = st_check_acces(path, shl->tok[*pos]);
-	if (status != -1)
+	if (status != 0)
 	{
 		ft_null(&path);
-		return (status);
+		shl->exit_code = status;
+		return (0);
 	}
 	argv = ft_prepare_argv(shl->tok, pos);
-	ft_run_cmd(path, argv, *shl->env, &status);
+	status = ft_run_cmd(shl, path, argv);
 	ft_nullc(&argv);
 	ft_null(&path);
 	len = 0;

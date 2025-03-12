@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 17:25:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:20:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@
 "yevshell: exit: %s: numeric argument required\n"
 # define FILE_EXECUTE_NO_PERMISSION	\
 "yevshell: %s: Permission denied\n"
+# define EXPORT_INVALID				\
+"yevshell: export: %s: not a valid identifier\n"
+
+# define ERNUM_CMD_NOTEXIST	127
+# define ERNUM_CMD_PERM		126
+# define ERNUM_CD_HOMELESS	1
+# define ERNUM_CD_HOMEWRONG	1
+# define ERNUM_CD_ARGC		1
+# define ERNUM_CD_PATHWRONG	1
+# define ERNUM_EXIT_NUMERIC	2
+# define ERNUM_EXIT_ARGC	1
+# define ERNUM_PWD_NOTEXIST	1
+# define ERNUM_EXPORT_INVAL	1
+# define ERNUM_HISTORY_ARGC	1
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -94,7 +108,7 @@ char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
 // Error Functions
-int		ft_too_many_args(char *str);
+int		ft_too_many_args(char *str, int exit);
 // String Manipulation
 char	*ft_str_insert(char *src, char *goal, int pos);
 int		ft_str_cut(char **src, int pos, int cutlen);
@@ -132,7 +146,7 @@ int		ft_builtin_history(t_shell *shl, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
 int		ft_absolute_cmd(t_shell *shl, int *pos);
-int		ft_run_cmd(char *path, char **argv, char **envp, int *status);
+int		ft_run_cmd(t_shell *shl, char *path, char **argv);
 char	*ft_str_add(char *s1, char *s2);
 char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(t_shell *shl, int *pos);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 16:23:00 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:12:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	ft_handle_chunks(t_shell *shl, int *i)
 	int	status;
 
 	status = ft_token_redirect(shl->tok, *i);
-	if (status > -1)
+	if (status > 0)
 		return (status);
 	status = ft_token_cmds(shl, *i);
-	if (status > -1)
+	if (status > 0)
 		return (status);
 	while (ft_is_delimiter(shl->tok[*i]) != 1)
 		(*i)++;
-	return (-1);
+	return (0);
 }
