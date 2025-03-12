@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/07 17:21:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 16:37:17 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,17 @@ static int	ft_print_env(char ***envp)
 // handles the "export" builtin, which sets and adds certain
 // key=value pairs in the envp
 // export PATH=/usr/bin
-int	ft_builtin_export(char **tokens, int *pos, char ***envp)
+int	ft_builtin_export(t_shell *shl, int *pos)
 {
 	(*pos)++;
-	if (ft_is_del_or_red(tokens[*pos]) == 1)
-		return (ft_print_env(envp));
-	while (ft_is_del_or_red(tokens[*pos]) == 0)
+	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
+		return (ft_print_env(shl->env));
+	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
 	{
-		if (ft_check_key(tokens[*pos]) == 1)
-			ft_change_env(envp, tokens[*pos]);
+		if (ft_check_key(shl->tok[*pos]) == 1)
+			ft_change_env(shl->env, shl->tok[*pos]);
 		(*pos)++;
 	}
 	return (-1);
 }// exporting without arguments gives back strings in alpabetical order
+// exporting a non valid identifier like ?=abc should throw error

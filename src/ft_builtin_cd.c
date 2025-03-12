@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 18:08:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 16:17:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,30 @@ static int	ft_blank_cd(char ***envp)
 
 // changes current directory to either an absolute or relative path
 // as defined by the token after <tokens[*pos]>
-int	ft_builtin_cd(char **tokens, int *pos, char ***envp)
+int	ft_builtin_cd(t_shell *shl, int *pos)
 {
 	int		status;
 	char	*new_cwd;
 
 	(*pos)++;
-	if (ft_is_del_or_red(tokens[*pos]) == 1)
-		return (ft_blank_cd(envp));
-	if (ft_is_del_or_red(tokens[(*pos) + 1]) == 0)
+	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
+		return (ft_blank_cd(shl->env));
+	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 0)
 		return (ft_too_many_args("cd"));
-	if (tokens[*pos][0] == '/')
-		status = chdir(tokens[*pos]);
+	if (shl->tok[*pos][0] == '/')
+		status = chdir(shl->tok[*pos]);
 	else
-		status = ft_rel_directory(tokens[*pos]);
+		status = ft_rel_directory(shl->tok[*pos]);
 	if (status == 0)
 		status = -1;
 	else
 	{
-		printf(CD_INVALID_PATH, tokens[*pos]);
+		printf(CD_INVALID_PATH, shl->tok[*pos]);
 		status = 1;
 	}
 	(*pos)++;
 	new_cwd = ft_new_envp_pwd();
-	ft_change_env(envp, new_cwd);
+	ft_change_env(shl->env, new_cwd);
 	ft_null(&new_cwd);
 	return (status);
 }

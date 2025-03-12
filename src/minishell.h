@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 18:11:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 17:25:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <limits.h>
+// # include <limits.h>
 // for S_IRUSR, S_IWUSR modes for open
 # include <sys/stat.h>
 # include <readline/readline.h>
@@ -48,15 +48,20 @@
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
 # define SPECIALS "><;|"
+// Used to define how many times argument substitution is called on same string
 # define MAX_SUBSTITUTIONS 10
 
 // Used for showing the prompt before readline like this:
 // <PROMPT><PWD><POST_PROMPT>
-// example:
-// PROMPT="lilshell:"	POST_PROMPT=">"
-// lilshell:/home/sikunne>
 # define PROMPT "[yevshell]>"
 # define POST_PROMPT "$ "
+
+typedef struct	s_shell
+{
+	char	**tok;
+	char	***env;
+	int		exit_code;
+}	t_shell;
 
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);
@@ -98,38 +103,39 @@ int		ft_str_cut(char **src, int pos, int cutlen);
 int		ft_loop(char ***envp);
 // Input getting
 char	*ft_make_prompt(char ***envp);
-int		ft_handle_input(char **inp, char ***envp);
+int		ft_handle_input(char **inp, t_shell *shl);
 // Tokenize input
-void	ft_string_substitution(char **env, char **str);
+void	ft_string_substitution(t_shell *shl, char **str);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 // Executing the input
-int		ft_handle_input_loop(char **tokens, int *std, char ***envp);
+int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_pipe_setup(char **tokens, int pos);
-int		ft_handle_chunks(char *arg[], int *ri, char ***envp);
+int		ft_handle_chunks(t_shell *shl, int *i);
 // Redirecting
-int		ft_token_redirect(char *arg[], int i);
+int		ft_token_redirect(char **tok, int i);
 int		ft_redirection(char **argv, int pos);
 // Commands
-int		ft_token_cmds(char *arg[], int i, char ***envp);
+int		ft_token_cmds(t_shell *shl, int i);
 // Builtin command
 int		ft_check_special(char *inp);
-int		ft_special_cmd(char **tokens, int *pos, char ***envp);
-int		ft_builtin_exit(char **tokens, int *pos);
-int		ft_builtin_env(char **tokens, int *pos, char ***envp);
-int		ft_builtin_pwd(char **tokens, int *pos);
-int		ft_builtin_cd(char **tokens, int *pos, char ***envp);
-int		ft_builtin_export(char **tokens, int *pos, char ***envp);
-int		ft_builtin_unset(char **tokens, int *pos, char ***envp);
-int		ft_builtin_echo(char **tokens, int *pos);
-int		ft_builtin_history(char **tokens, int *pos);
+int		ft_special_cmd(t_shell *shl, int *pos);
+int		ft_builtin_exit(t_shell *shl, int *pos);
+int		ft_builtin_env(t_shell *shl, int *pos);
+int		ft_builtin_pwd(t_shell *shl, int *pos);
+int		ft_builtin_cd(t_shell *shl, int *pos);
+int		ft_builtin_export(t_shell *shl, int *pos);
+int		ft_builtin_unset(t_shell *shl, int *pos);
+int		ft_builtin_echo(t_shell *shl, int *pos);
+int		ft_builtin_history(t_shell *shl, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
-int		ft_absolute_cmd(char **token, int *pos, char ***envp);
+int		ft_absolute_cmd(t_shell *shl, int *pos);
+int		ft_run_cmd(char *path, char **argv, char **envp, int *status);
 char	*ft_str_add(char *s1, char *s2);
 char	*ft_get_path(char *cmd, char ***envp);
-int		ft_regular_cmd(char **arg, int *pos, char ***envp);
+int		ft_regular_cmd(t_shell *shl, int *pos);
 char	**ft_prepare_argv(char **arg, int *pos);
 
 // Builtins such as cd, unset or export run in parent process

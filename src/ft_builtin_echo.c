@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:46:57 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/07 16:40:51 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 16:20:32 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,22 @@ static int	ft_handle_n_flag(char *token, int *pos)
 // second, print first token without space
 // then print all the tokens with a space before until delim or redir
 // then return -1
-int	ft_builtin_echo(char **tokens, int *pos)
+int	ft_builtin_echo(t_shell *shl, int *pos)
 {
 	int	n_flag;
 
 	n_flag = 0;
 	(*pos)++;
-	n_flag = ft_handle_n_flag(tokens[*pos], pos);
-	if (ft_is_del_or_red(tokens[*pos]) == 0)
+	n_flag = ft_handle_n_flag(shl->tok[*pos], pos);
+	if (ft_is_del_or_red(shl->tok[*pos]) == 0)
 	{
-		ft_write_string(tokens[*pos]);
+		ft_write_string(shl->tok[*pos]);
 		(*pos)++;
 	}
-	while (ft_is_del_or_red(tokens[*pos]) == 0)
+	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
 	{
 		write(STDOUT_FILENO, " ", sizeof(char));
-		ft_write_string(tokens[*pos]);
+		ft_write_string(shl->tok[*pos]);
 		(*pos)++;
 	}
 	if (n_flag == 0)

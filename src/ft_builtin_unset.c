@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:52:20 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 18:17:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 16:19:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@
 // arguments has to be valid key
 // if 1 argument is not valid key, return, continue
 // if it is a valid key, then remove that key adn return, continue
-int	ft_builtin_unset(char **tokens, int *pos, char ***envp)
+int	ft_builtin_unset(t_shell *shl, int *pos)
 {
 	int	i;
 
 	(*pos)++;
-	if (ft_is_del_or_red(tokens[*pos]) == 1)
+	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
 		return (-1);
-	while (ft_is_del_or_red(tokens[*pos]) == 0)
+	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
 	{
 		i = -1;
-		while ((*envp)[++i] != NULL)
+		while ((*shl->env)[++i] != NULL)
 		{
-			if (ft_strncmp((*envp)[i], tokens[*pos], \
-				ft_strlen(tokens[*pos])) == 0 && \
-				(*envp)[i][ft_strlen(tokens[*pos])] == '=')
+			if (ft_strncmp((*shl->env)[i], shl->tok[*pos], \
+				ft_strlen(shl->tok[*pos])) == 0 && \
+				(*shl->env)[i][ft_strlen(shl->tok[*pos])] == '=')
 			{
-				ft_remove_env(envp, tokens[*pos]);
+				ft_remove_env(shl->env, shl->tok[*pos]);
 				break ;
 			}
 		}
