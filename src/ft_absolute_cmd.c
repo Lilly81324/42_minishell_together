@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 18:54:13 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:38:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,6 @@ static char	*st_prepare_path(char **token, int pos)
 	return (path);
 }
 
-// handles error
-// returns the error code or 0 if it works
-static int	st_check_acces(char *path, char *cmd)
-{
-	int	exists;
-	int	acces;
-
-	acces = -1;
-	exists = access(path, F_OK);
-	if (exists != 0)
-	{
-		printf(INVALID_COMMAND, cmd);
-		return (ERNUM_CMD_NOTEXIST);
-	}
-	acces = access(path, X_OK);
-	if (acces != 0)
-	{
-		printf(FILE_EXECUTE_NO_PERMISSION, cmd);
-		return (ERNUM_CMD_PERM);
-	}
-	return (0);
-}
-
 // For running absolute commands like /usr/local/bin/norminette or ./minishell
 // Waits for process to be done before giving back control
 int	ft_absolute_cmd(t_shell *shl, int *pos)
@@ -64,13 +41,13 @@ int	ft_absolute_cmd(t_shell *shl, int *pos)
 	char	**argv;
 
 	path = st_prepare_path(shl->tok, *pos);
-	status = st_check_acces(path, shl->tok[*pos]);
+	status = ft_check_acces(path, shl->tok[*pos]);
 	if (status != 0)
 	{
 		ft_null(&path);
 		shl->exit_code = status;
 		return (0);
-	}
+	}//
 	argv = ft_prepare_argv(shl->tok, pos);
 	status = ft_run_cmd(shl, path, argv);
 	ft_nullc(&argv);

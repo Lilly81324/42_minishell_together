@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:10:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:29:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ int	ft_builtin_cd(t_shell *shl, int *pos)
 	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
 		return (ft_blank_cd(shl));
 	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 0)
-		return (ft_too_many_args("cd", ERNUM_CD_ARGC));
+	{
+		shl->exit_code = ERNUM_CD_ARGC;
+		return (ft_too_many_args("cd", 1));
+	}
 	if (shl->tok[*pos][0] == '/')
 		status = chdir(shl->tok[*pos]);
 	else

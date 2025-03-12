@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:12:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:44:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // Moves through all elements, ignoring everything that is a redirector
 // Moves until it finds NULL or a non-redirector/command
 // If it finds command then check wether its builtin
-// then run the command
+// then runs the command
 int	ft_token_cmds(t_shell *shl, int i)
 {
 	int	status;

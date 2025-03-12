@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:20:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:38:38 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define ERNUM_PWD_NOTEXIST	1
 # define ERNUM_EXPORT_INVAL	1
 # define ERNUM_HISTORY_ARGC	1
+# define ERNUM_ENV_ARGC		1
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -146,6 +147,7 @@ int		ft_builtin_history(t_shell *shl, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
 int		ft_absolute_cmd(t_shell *shl, int *pos);
+int		ft_check_access(char *path, char *cmd);
 int		ft_run_cmd(t_shell *shl, char *path, char **argv);
 char	*ft_str_add(char *s1, char *s2);
 char	*ft_get_path(char *cmd, char ***envp);

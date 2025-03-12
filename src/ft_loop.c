@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:26:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:44:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_loop(char ***envp)
 		ft_null(&input);
 		if (status >= 2)
 		{
-			printf("Ending with exit code: %i\n", shl.exit_code);
+			// printf("Ending with exit code: %i\n", shl.exit_code);
 			clear_history();
 			ft_nullb(envp);
 			return (shl.exit_code);

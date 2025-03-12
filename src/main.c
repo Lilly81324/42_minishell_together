@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:17:05 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:42:04 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,4 @@ int	main(int argc, char **argv, char **envp)
 // Tokens and arguments can be given as <"abc"> but should be used as <abc>
 // if we have Signals for stopping current line then maybe we can use status=0
 // 	as default
-// 0 - continue running
-// 1 - stop current chunk, move on to next
-// 2 - stop programm
-// regular command doesnt have check for File Permissions, only existence
-//    compared to absolute command which does both
+// Errors should be printed in stderr isntead of stdout
