@@ -6,47 +6,52 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:38:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:26:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+// For write
 # include <unistd.h>
-# include <fcntl.h>
+// For printf
 # include <stdio.h>
+// For malloc
 # include <stdlib.h>
-// # include <limits.h>
-// for S_IRUSR, S_IWUSR modes for open
+// For opening files
+# include <fcntl.h>
+// For S_IRUSR, S_IWUSR modes for open
 # include <sys/stat.h>
+// For readline
 # include <readline/readline.h>
+// For history
 # include <readline/history.h>
+// For waitpid
 # include <sys/wait.h>
 # include "../libft/libft.h"
 
-# define SHELL_NAME "yevshell"
-
 // Error messages
-# define INVALID_COMMAND 			\
-"yevshell: %s: No such file or directory\n"
-# define FORK_ERROR 				\
-"yevshell: Error creating fork\n"
-# define PWD_NONEXISTENT_ERROR		\
-"yevshell: pwd: No pwd exists\n"
-# define ARG_MUCH_ERROR  			\
-"yevshell: %s: too many arguments\n"
-# define CD_INVALID_PATH 			\
-"yevshell: cd: %s: No such file or directory\n"
-# define CD_HOMELESS_ERROR  		\
-"yevshell: cd: HOME not set\n"
-# define EXIT_NUMERIC_ERROR 		\
-"yevshell: exit: %s: numeric argument required\n"
-# define FILE_EXECUTE_NO_PERMISSION	\
-"yevshell: %s: Permission denied\n"
-# define EXPORT_INVALID				\
-"yevshell: export: %s: not a valid identifier\n"
+// 		Redirection
+# define REDIR_INVAL_PIPE "Invalid read end fd for pipe given\n"
+# define REDIR_PIPE_TO_INP "Error redirecting stdin to read end of pipe\n"
+# define REDIR_OUT_TO_PIPE "Error redirecting stdout to write end of pipe\n"
+# define REDIR_INVAL_INFILE "Error opening infile\n"
+# define REDIR_INF_TO_INP "Error redirecting stdin to infile\n"
+# define REDIR_INVAL_OUTF "Error opening outfile\n"
+# define REDIR_OUT_TO_OUTF "Error redirecting stdout to outfile\n"
+//		Commands
+# define INVALID_COMMAND "lelshell: %s: No such file or directory\n"
+# define FORK_ERROR "lelshell: Error creating fork\n"
+# define PWD_NONEXISTENT_ERROR "lelshell: pwd: No pwd exists\n"
+# define ARG_MUCH_ERROR "lelshell: %s: too many arguments\n"
+# define CD_INVALID_PATH "lelshell: cd: %s: No such file or directory\n"
+# define CD_HOMELESS_ERROR "lelshell: cd: HOME not set\n"
+# define EXIT_NUMERIC_ERROR "lelshell: exit: %s: numeric argument required\n"
+# define FILE_EXECUTE_NO_PERMISSION	"lelshell: %s: Permission denied\n"
+# define EXPORT_INVALID	"lelshell: export: %s: not a valid identifier\n"
 
+// Error return values
 # define ERNUM_CMD_NOTEXIST	127
 # define ERNUM_CMD_PERM		126
 # define ERNUM_CD_HOMELESS	1
@@ -68,7 +73,7 @@
 
 // Used for showing the prompt before readline like this:
 // <PROMPT><PWD><POST_PROMPT>
-# define PROMPT "[yevshell]>"
+# define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
 typedef struct	s_shell
@@ -110,6 +115,7 @@ void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
 // Error Functions
 int		ft_too_many_args(char *str, int exit);
+void	ft_perror(char *input, char *arg1, char *arg2);
 // String Manipulation
 char	*ft_str_insert(char *src, char *goal, int pos);
 int		ft_str_cut(char **src, int pos, int cutlen);
@@ -153,21 +159,5 @@ char	*ft_str_add(char *s1, char *s2);
 char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(t_shell *shl, int *pos);
 char	**ft_prepare_argv(char **arg, int *pos);
-
-// Builtins such as cd, unset or export run in parent process
-// otherwise every other command runs as child
-
-// Every chunk like redirection has different amount of blocks it needs,
-// The current position needst to be increased accordingly
-
-// I used continue instead of return, are we allowed to use that?
-
-// env -> remove a rule, add a rule
-
-// what if every chunk is run as child process, 
-// and then the execve call is run as a child of that?
-
-// tokens given
-// check if next delimiter 
 
 #endif

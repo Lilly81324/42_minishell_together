@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:29:22 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:28:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ static int	ft_blank_cd(t_shell *shl)
 	home = ft_get_env(*shl->env, "HOME");
 	if (!home)
 	{
-		printf(CD_HOMELESS_ERROR);
+		ft_perror(CD_HOMELESS_ERROR, NULL, NULL);
 		shl->exit_code = ERNUM_CD_HOMELESS;
 		return (0);
 	}
 	status = chdir(home);
 	if (status == -1)
 	{
-		printf(CD_INVALID_PATH, home);
+		ft_perror(CD_INVALID_PATH, home, NULL);
 		shl->exit_code = ERNUM_CD_HOMEWRONG;
 		return (0);
 	}
@@ -111,7 +111,7 @@ int	ft_builtin_cd(t_shell *shl, int *pos)
 		status = ft_rel_directory(shl->tok[*pos]);
 	if (status != 0)
 	{
-		printf(CD_INVALID_PATH, shl->tok[*pos]);
+		ft_perror(CD_INVALID_PATH, shl->tok[*pos], NULL);
 		shl->exit_code = ERNUM_CD_PATHWRONG;
 		return (0);
 	}

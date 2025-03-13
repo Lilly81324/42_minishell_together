@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:10:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:08:39 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,21 @@ int	ft_builtin_exit(t_shell *shl, int *pos)
 
 	(*pos)++;
 	shl->exit_code = 0;
-	if (shl->tok[*pos] == NULL)
-	{
-		printf("exit\n");
+	ft_perror("exit\n", NULL, NULL);
+	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
 		return (2);
-	}
 	status = st_exit_atoi(shl->tok[*pos]);
 	if (status < 0)
 	{
-		printf("exit\n");
-		printf(EXIT_NUMERIC_ERROR, shl->tok[*pos]);
+		ft_perror(EXIT_NUMERIC_ERROR, shl->tok[*pos], NULL);
 		shl->exit_code = ERNUM_EXIT_NUMERIC;
 		return (2);
 	}
-	if (shl->tok[(*pos) + 1] == NULL)
+	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 1)
 	{
-		printf("exit\n");
 		shl->exit_code = status;
 		return (2);
 	}
-	printf("exit\n");
 	shl->exit_code = ERNUM_EXIT_ARGC;
 	return (ft_too_many_args("exit", 0));
 }

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 17:42:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 16:29:35 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static int	st_exit_code_subst(t_shell *shl, char **str, int index)
 		return (-1);
 	ft_str_cut(str, index, 2);
 	value = shl->exit_code;
-	if (value == -1)
-		value = 0;
 	goal = ft_itoa(value);
 	new = ft_str_insert(*str, goal, index);
 	ft_null(str);
@@ -76,8 +74,8 @@ static void	st_substitution(char **env, char **str, int index)
 	ft_null(&key);
 }
 
-// First time when an empty Argument is given, an invalid read happens
-// replaces "abc $ARG" to "abc value"
+// Substitutes Variables in the <*str> with the repsective values
+// from <*shl->envp> by reallocating the string <*str>
 void	ft_string_substitution(t_shell *shl, char **str)
 {
 	int	i;

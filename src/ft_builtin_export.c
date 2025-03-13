@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:05:51 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:02:02 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_check_key(char *str)
 		return (0);
 	if (i <= 0 || str[i] != '=')
 	{
-		printf(EXPORT_INVALID, str);
+		ft_perror(EXPORT_INVALID, str, NULL);
 		return (0);
 	}
 	return (1);

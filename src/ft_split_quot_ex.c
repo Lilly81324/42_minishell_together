@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:40:45 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/18 17:23:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:11:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	move_until(char const *s, int i, char opt)
 		i++;
 	if (s[i] == '\0')
 	{
-		perror("Error, quotation mark not closed properly");
+		ft_perror("Error, quotation mark not closed properly", NULL, NULL);
 		return (-1);
 	}
 	i++;
@@ -143,7 +143,7 @@ char	**ft_split_quot_ex(char const *s, char c)
 			count++;
 		}
 		free(result);
-		perror("Error splitting input");
+		ft_perror("Error splitting input", NULL, NULL);
 		return (NULL);
 	}
 	return (result);

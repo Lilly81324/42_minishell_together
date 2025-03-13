@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:13:26 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:17:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:14:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_stdin_to_infile(char *filename)
 							S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (infile < 0)
 	{
-		perror("Error opening infile");
+		ft_perror(REDIR_INVAL_INFILE, NULL, NULL);
 		return (1);
 	}
 	if (dup2(infile, STDIN_FILENO) < 0)
 	{
-		perror("Error redirecting stdin to infile");
+		ft_perror(REDIR_INF_TO_INP, NULL, NULL);
 		close(infile);
 		return (1);
 	}

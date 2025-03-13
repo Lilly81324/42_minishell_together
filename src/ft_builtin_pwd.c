@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:25:52 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:10:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:09:36 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_builtin_pwd(t_shell *shl, int *pos)
 	(*pos)++;
 	if (pwd == NULL)
 	{
-		printf(PWD_NONEXISTENT_ERROR);
+		ft_perror(PWD_NONEXISTENT_ERROR, NULL, NULL);
 		shl->exit_code = ERNUM_PWD_NOTEXIST;
 		return (0);
 	}

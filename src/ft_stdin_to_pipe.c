@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:14:02 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 16:02:29 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:15:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	ft_stdin_to_pipe(int r_end)
 {
 	if (r_end == -1)
 	{
-		perror("Error with read end of pipe");
+		ft_perror(REDIR_INVAL_PIPE, NULL, NULL);
 		return (-1);
 	}
 	if (dup2(r_end, STDIN_FILENO) < 0)
 	{
-		perror("Error redirecting stdin to read end of pipe");
+		ft_perror(REDIR_PIPE_TO_INP, NULL, NULL);
 		close(r_end);
 		return (-1);
 	}

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:14:17 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 18:05:00 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:10:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_run_cmd(t_shell *shl, char *path, char **argv)
 	pid = fork();
 	if (pid < 0)
 	{
-		printf(FORK_ERROR);
+		ft_perror(FORK_ERROR, NULL, NULL);
 		return (1);
 	}
 	if (pid == 0)
