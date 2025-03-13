@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 16:29:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:33:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_string_substitution(t_shell *shl, char **str)
 			if ((*str)[i] == '\'')
 				st_toggle(&quoted);
 			if (st_exit_code_subst(shl, str, i) == 0)
-				continue;
+				continue ;
 			if ((*str)[i] == '$' && quoted == 0)
 				st_substitution(*shl->env, str, i);
 		}

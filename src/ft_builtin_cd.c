@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:28:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:39:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,17 @@ static int	ft_blank_cd(t_shell *shl)
 	return (0);
 }
 
+// needed more lines again
+static void	st_cleanup(t_shell *shl, int *pos)
+{
+	char	*new_cwd;
+
+	new_cwd = ft_new_envp_pwd();
+	ft_change_env(shl->env, new_cwd);
+	ft_null(&new_cwd);
+	(*pos)++;
+}
+
 // changes current directory to either an absolute or relative path
 // as defined by the token after <tokens[*pos]>
 int	ft_builtin_cd(t_shell *shl, int *pos)
@@ -115,9 +126,6 @@ int	ft_builtin_cd(t_shell *shl, int *pos)
 		shl->exit_code = ERNUM_CD_PATHWRONG;
 		return (0);
 	}
-	(*pos)++;
-	new_cwd = ft_new_envp_pwd();
-	ft_change_env(shl->env, new_cwd);
-	ft_null(&new_cwd);
+	st_cleanup(shl, pos);
 	return (0);
 }

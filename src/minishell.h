@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:26:13 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:32:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 # define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
-typedef struct	s_shell
+typedef struct s_shell
 {
 	char	**tok;
 	char	***env;
@@ -92,7 +92,6 @@ int		ft_cooler_open(char *filename, int flags, mode_t mode);
 int		ft_is_delimiter(char *str);
 int		ft_is_redirector(char *str);
 int		ft_is_del_or_red(char *str);
-char	**ft_split_quot_ex(char const *s, char c);
 int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);

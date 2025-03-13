@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:04:39 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:30:30 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ int	main(int argc, char **argv, char **envp)
 
 // TODO:
 // Signaling
-// Exit Codes by using struct everywhere, and setting value in waitpid
 // maybe remove handling of semicolon
 // <<
-// Exit code substitution
 // Ctrl+C
 // Ctrl+D
 // Ctrl+'\'

@@ -42,7 +42,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_env.c \
 	ft_make_prompt.c \
 	ft_builtin_pwd.c \
-	ft_split_quot_ex.c \
 	ft_builtin_cd.c \
 	ft_find_c.c \
 	ft_env_functions.c \
