@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:47:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:26:54 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/10 18:40:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@ static int	st_get_len(char *s1)
 	len = 0;
 	if (s1 == NULL)
 		return (0);
-	else
-	{
-		while (s1[len] != '\0')
-			len++;
-	}
+	while (s1[len] != '\0')
+		len++;
 	return (len);
 }
 

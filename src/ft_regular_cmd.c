@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:50:39 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 15:18:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:39:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,30 @@ static void	ft_cleanup(char **token, char ***argv, char **path, int *pos)
 
 // Takes string for command with arguments and execves it
 // ex: "echo -n lel" as input string
-int	ft_regular_cmd(char **token, int *pos, char ***envp)
+int	ft_regular_cmd(t_shell *shl, int *pos)
 {
 	char	*path;
-	pid_t	pid;
 	char	**argv;
+	int		status;
 
-	path = ft_get_path(token[*pos]);
+	path = ft_get_path(shl->tok[*pos], shl->env);
 	if (path == NULL)
 	{
-		printf(INVALID_COMMAND);
-		return (1);
+		printf(INVALID_COMMAND, shl->tok[*pos]);
+		shl->exit_code = ERNUM_CMD_NOTEXIST;
+		return (0);
 	}
-	argv = ft_prepare_argv(token, pos);
-	pid = fork();
-	if (pid < 0)
+	status = ft_check_acces(path, shl->tok[*pos]);
+	if (status != 0)
 	{
-		printf(FORK_ERROR);
-		return (1);
+		ft_null(&path);
+		shl->exit_code = status;
+		return (0);
 	}
-	if (pid == 0)
-		execve(path, argv, *envp);
-	waitpid(pid, NULL, 0);
-	ft_cleanup(token, &argv, &path, pos);
-	return (-1);
+	argv = ft_prepare_argv(shl->tok, pos);
+	if (argv == NULL)
+		return (2);
+	status = ft_run_cmd(shl, path, argv);
+	ft_cleanup(shl->tok, &argv, &path, pos);
+	return (status);
 }

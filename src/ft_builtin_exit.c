@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 18:16:41 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:10:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,29 +58,32 @@ static int	st_exit_atoi(char *nptr)
 // numeric argument -> exits with x%256
 // nonnumeric argument -> error, exits with 2
 // too many arguments -> error, too many args exits with 1
-int	ft_builtin_exit(char **tokens, int *pos)
+int	ft_builtin_exit(t_shell *shl, int *pos)
 {
 	int	status;
 
 	(*pos)++;
-	if (tokens[*pos] == NULL)
+	shl->exit_code = 0;
+	if (shl->tok[*pos] == NULL)
 	{
 		printf("exit\n");
-		return (1000);
+		return (2);
 	}
-	status = st_exit_atoi(tokens[*pos]);
+	status = st_exit_atoi(shl->tok[*pos]);
 	if (status < 0)
 	{
 		printf("exit\n");
-		printf(EXIT_NUMERIC_ERROR, tokens[*pos]);
-		return (1002);
+		printf(EXIT_NUMERIC_ERROR, shl->tok[*pos]);
+		shl->exit_code = ERNUM_EXIT_NUMERIC;
+		return (2);
 	}
-	if (tokens[(*pos) + 1] == NULL)
+	if (shl->tok[(*pos) + 1] == NULL)
 	{
 		printf("exit\n");
-		return (status + 1000);
+		shl->exit_code = status;
+		return (2);
 	}
 	printf("exit\n");
-	ft_too_many_args("exit");
-	return (1001);
+	shl->exit_code = ERNUM_EXIT_ARGC;
+	return (ft_too_many_args("exit", 0));
 }

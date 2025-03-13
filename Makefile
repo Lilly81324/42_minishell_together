@@ -11,7 +11,6 @@ OBJ_DIR = ./obj/
 SRC_FILES = $(addprefix $(SRC_DIR), \
 	main.c \
 	ft_get_path.c \
-	ft_space_bef.c \
 	ft_loop.c \
 	ft_handle_input.c \
 	ft_null.c \
@@ -61,6 +60,13 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_str_add.c \
 	ft_too_many_args.c \
 	ft_builtin_exit.c \
+	ft_strip.c \
+	ft_env_increase.c \
+	ft_string_substitution.c \
+	ft_str_insert.c \
+	ft_str_cut.c \
+	ft_run_cmd.c \
+	ft_check_access.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

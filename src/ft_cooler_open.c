@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 18:11:23 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/17 15:12:12 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/07 19:27:28 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // normal open didnt work for theese
 // otherwise behaves just like open
 // returns an fd that is either -1 or > 0, which needs to be closed
-int	ft_cooler_open(char *filename)
+int	ft_cooler_open(char *filename, int flags, mode_t mode)
 {
 	int		i;
 	char	*copy;
@@ -24,9 +24,9 @@ int	ft_cooler_open(char *filename)
 
 	i = 2;
 	if (filename[0] == '/')
-		fd = open(filename, O_RDWR);
+		fd = open(filename, flags, mode);
 	else if (filename[0] == '.' && filename[1] == '/')
-		fd = open(filename, O_RDWR);
+		fd = open(filename, flags, mode);
 	else
 	{
 		copy = (char *)malloc((ft_strlen(filename) + 3) * sizeof(char));
@@ -38,7 +38,7 @@ int	ft_cooler_open(char *filename)
 			i++;
 		}
 		copy[i] = '\0';
-		fd = open(copy, O_RDWR);
+		fd = open(copy, flags, mode);
 		free(copy);
 	}
 	return (fd);

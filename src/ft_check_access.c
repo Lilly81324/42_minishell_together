@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_builtin_env.c                                   :+:      :+:    :+:   */
+/*   ft_check_access.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 17:53:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:32:45 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/12 19:37:47 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/12 19:39:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// prints env variable
-int	ft_builtin_env(t_shell *shl, int *pos)
+// handles error cases and prints them
+// returns the error code or 0 if it works
+int	ft_check_access(char *path, char *cmd)
 {
-	int	i;
+	int	exists;
+	int	acces;
 
-	i = -1;
-	shl->exit_code = 0;
-	if (ft_is_del_or_red(shl->tok[*pos + 1]) == 0)
+	acces = -1;
+	exists = access(path, F_OK);
+	if (exists != 0)
 	{
-		shl->exit_code = ERNUM_ENV_ARGC;
-		return (ft_too_many_args("env", 0));
+		printf(INVALID_COMMAND, cmd);
+		return (ERNUM_CMD_NOTEXIST);
 	}
-	while ((*shl->env)[++i] != NULL)
-		printf("%s\n", (*shl->env)[i]);
-	(*pos)++;
+	acces = access(path, X_OK);
+	if (acces != 0)
+	{
+		printf(FILE_EXECUTE_NO_PERMISSION, cmd);
+		return (ERNUM_CMD_PERM);
+	}
 	return (0);
 }

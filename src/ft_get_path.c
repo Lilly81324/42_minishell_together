@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:23:06 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/03 18:11:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 18:22:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*ft_make_name(char *path, char *name)
 	char	*full_path;
 
 	full_path = (char *)malloc((ft_strlen(path) + ft_strlen(name) \
-				+ 2) * sizeof(char));
+								+ 2) * sizeof(char));
 	ft_strlcpy(full_path, path, ft_strlen(path) + 1);
 	ft_strlcpy(full_path + ft_strlen(full_path), "/", 2);
 	ft_strlcpy(full_path + ft_strlen(full_path), name, ft_strlen(name) + 1);
@@ -38,20 +38,20 @@ static char	*ft_check_access(char **paths, char *name)
 	int		acces;
 	char	*full_path;
 
-	i = 0;
-	exists = -1;
-	acces = -1;
-	while (paths[i] != NULL)
+	i = -1;
+	while (paths[++i] != NULL)
 	{
+		exists = -1;
+		acces = -1;
 		full_path = ft_make_name(paths[i], name);
-		if (exists == -1)
-			exists = access(full_path, F_OK);
-		acces = access(full_path, X_OK);
-		if (exists == 0 && acces == 0)
-			return (full_path);
-		free(full_path);
-		full_path = NULL;
-		i++;
+		exists = access(full_path, F_OK);
+		if (exists == 0)
+		{
+			acces = access(full_path, X_OK);
+			if (acces == 0)
+				return (full_path);
+		}
+		ft_null(&full_path);
 	}
 	if (exists != 0)
 		return (NULL);
@@ -63,15 +63,24 @@ static char	*ft_check_access(char **paths, char *name)
 // Tries to find the path of the binary  of the given command
 // from the enviroment pointer (PATHS) and returns
 // the path with the file, so /usr/bin/ls
-char	*ft_get_path(char *cmd)
+char	*ft_get_path(char *cmd, char ***envp)
 {
+	char	*env_path;
 	char	**paths;
 	char	*path;
 
 	if (cmd == NULL || cmd[0] == '\0')
 		return (NULL);
-	cmd = ft_space_bef(cmd);
-	paths = ft_split(getenv("PATH"), ':');
+	cmd = ft_strip(SPACES, cmd);
+	if (cmd == NULL)
+		return (NULL);
+	env_path = ft_get_env(*envp, "PATH");
+	paths = ft_split(env_path, ':');
+	if (paths == NULL)
+	{
+		ft_null(&cmd);
+		return (NULL);
+	}
 	path = ft_check_access(paths, cmd);
 	ft_null(&cmd);
 	ft_nullb(&paths);

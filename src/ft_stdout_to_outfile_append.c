@@ -12,29 +12,6 @@
 
 #include "minishell.h"
 
-// creates a file via touch wherever the name places it
-static void	ft_touch_file(char *name)
-{
-	char	*path;
-	char	*argv[3];
-	pid_t	pid;
-
-	path = ft_get_path("touch");
-	argv[0] = "touch";
-	argv[1] = name;
-	argv[2] = NULL;
-	pid = fork();
-	if (pid < 0)
-	{
-		perror("Error creating fork\n");
-		return ;
-	}
-	if (pid == 0)
-		execve(path, argv, NULL);
-	free(path);
-	waitpid(pid, NULL, 0);
-}
-
 // Creates file to write to
 // if it doesnt exist, make it
 // if no permission to write to file return -1
@@ -42,16 +19,16 @@ static void	ft_touch_file(char *name)
 // nominally return 0
 static int	ft_check_file(char *name)
 {
-	int		exists;
 	int		acces;
+	int		exist;
 
-	exists = access(name, F_OK);
-	if (exists != 0)
-		ft_touch_file(name);
+	exist = access(name, F_OK);
+	if (exist != 0)
+		return (0);
 	acces = access(name, W_OK);
 	if (acces == 0)
 		return (0);
-	perror("No Permission to open outfile");
+	printf(FILE_EXECUTE_NO_PERMISSION, name);
 	return (-1);
 }
 
@@ -64,18 +41,19 @@ int	ft_stdout_to_outfile_append(char *filename)
 	int	outfile;
 
 	if (ft_check_file(filename) != 0)
-		return (-1);
-	outfile = open(filename, O_WRONLY | O_APPEND);
+		return (1);
+	outfile = ft_cooler_open(filename, O_CREAT | O_TRUNC | O_WRONLY | \
+					O_APPEND, S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (outfile < 0)
 	{
 		perror("Error opening outfile");
-		return (-1);
+		return (1);
 	}
 	if (dup2(outfile, STDOUT_FILENO) < 0)
 	{
 		perror("Error redirecting stdout to outfile");
 		close(outfile);
-		return (-1);
+		return (1);
 	}
 	close(outfile);
 	return (0);

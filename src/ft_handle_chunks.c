@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 14:41:42 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/12 19:43:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 // first runs redirection for all tokens
 // then runs commands for all tokens
 // then skips to end of chunk
-// return values:
-// -1 for continue doing the line
-// 0-255 for stop the current the line
-// 1000-1255 for stop whole programm
-int	ft_handle_chunks(char *arg[], int *i, char ***envp)
+// Return value meaning: 
+// 0 - continue running
+// 1 - stop current chunk, move on to next
+// 2 - stop programm
+int	ft_handle_chunks(t_shell *shl, int *i)
 {
 	int	status;
 
-	status = ft_token_redirect(arg, *i);
-	if (status > -1)
+	status = ft_token_redirect(shl->tok, *i);
+	if (status > 0)
 		return (status);
-	status = ft_token_cmds(arg, *i, envp);
-	if (status > -1)
+	status = ft_token_cmds(shl, *i);
+	if (status > 0)
 		return (status);
-	while (ft_is_delimiter(arg[*i]) != 1)
+	while (ft_is_delimiter(shl->tok[*i]) != 1)
 		(*i)++;
-	return (-1);
+	return (0);
 }
