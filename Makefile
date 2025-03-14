@@ -67,6 +67,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_run_cmd.c \
 	ft_check_access.c \
 	ft_perror.c \
+	ft_builtin_export_blank.c \
+	ft_update_last_arg.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

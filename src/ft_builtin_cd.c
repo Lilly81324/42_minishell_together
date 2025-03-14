@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:39:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 15:23:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ static void	st_cleanup(t_shell *shl, int *pos)
 int	ft_builtin_cd(t_shell *shl, int *pos)
 {
 	int		status;
-	char	*new_cwd;
 
 	shl->exit_code = 0;
 	(*pos)++;

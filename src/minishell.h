@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:32:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 17:07:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ int		ft_builtin_env(t_shell *shl, int *pos);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
 int		ft_builtin_cd(t_shell *shl, int *pos);
 int		ft_builtin_export(t_shell *shl, int *pos);
+void	ft_builtin_export_blank(char **envp);
 int		ft_builtin_unset(t_shell *shl, int *pos);
 int		ft_builtin_echo(t_shell *shl, int *pos);
 int		ft_builtin_history(t_shell *shl, int *pos);
@@ -158,5 +159,6 @@ char	*ft_str_add(char *s1, char *s2);
 char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(t_shell *shl, int *pos);
 char	**ft_prepare_argv(char **arg, int *pos);
+void	ft_update_last_arg(t_shell *shl, char *arg);
 
 #endif
