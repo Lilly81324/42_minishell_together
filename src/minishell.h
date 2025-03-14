@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 19:11:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 19:27:38 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,8 @@ int		ft_redirection(char **argv, int pos);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i);
 // Builtin command
-int		ft_check_special(char *inp);
-int		ft_special_cmd(t_shell *shl, int *pos);
+int		ft_builtin_check(char *inp);
+int		ft_builtin_cmd(t_shell *shl, int *pos);
 int		ft_builtin_exit(t_shell *shl, int *pos);
 int		ft_builtin_env(t_shell *shl, int *pos);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
