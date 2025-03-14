@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:38:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 16:35:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	ft_absolute_cmd(t_shell *shl, int *pos)
 	char	**argv;
 
 	path = st_prepare_path(shl->tok, *pos);
-	status = ft_check_acces(path, shl->tok[*pos]);
+	status = ft_check_access(path, shl->tok[*pos]);
 	if (status != 0)
 	{
 		ft_null(&path);
 		shl->exit_code = status;
 		return (0);
-	}//
+	}
 	argv = ft_prepare_argv(shl->tok, pos);
 	status = ft_run_cmd(shl, path, argv);
 	ft_nullc(&argv);

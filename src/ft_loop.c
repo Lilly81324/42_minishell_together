@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:44:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:35:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ int	ft_loop(char ***envp)
 		input = readline(prompt);
 		ft_null(&prompt);
 		add_history(input);
-		if (input == NULL) //Ctrl+D -> should exit
-			return (0);
 		status = ft_handle_input(&input, &shl);
 		ft_null(&input);
 		if (status >= 2)
 		{
-			// printf("Ending with exit code: %i\n", shl.exit_code);
 			clear_history();
 			ft_nullb(envp);
 			return (shl.exit_code);

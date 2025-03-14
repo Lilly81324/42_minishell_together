@@ -28,7 +28,7 @@ static int	ft_check_file(char *name)
 	acces = access(name, W_OK);
 	if (acces == 0)
 		return (0);
-	printf(FILE_EXECUTE_NO_PERMISSION, name);
+	ft_perror(FILE_EXECUTE_NO_PERMISSION, name, NULL);
 	return (-1);
 }
 
@@ -46,12 +46,12 @@ int	ft_stdout_to_outfile_append(char *filename)
 					O_APPEND, S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (outfile < 0)
 	{
-		perror("Error opening outfile");
+		ft_perror(REDIR_INVAL_OUTF, NULL, NULL);
 		return (1);
 	}
 	if (dup2(outfile, STDOUT_FILENO) < 0)
 	{
-		perror("Error redirecting stdout to outfile");
+		ft_perror(REDIR_OUT_TO_OUTF, NULL, NULL);
 		close(outfile);
 		return (1);
 	}

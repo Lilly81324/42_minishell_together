@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:12:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 14:31:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 17:19:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	ft_stdout_to_pipe(void)
 
 	if (pipe(pipe_one) == -1)
 	{
-		perror("Error creating pipe\n");
+		ft_perror(REDIR_INVAL_PIPE, NULL, NULL);
 		return (-1);
 	}
 	if (dup2(pipe_one[1], STDOUT_FILENO) < 0)
 	{
-		perror("Error redirecting stdout to write end of pipe\n");
+		ft_perror(REDIR_OUT_TO_PIPE, NULL, NULL);
 		close(pipe_one[0]);
 		close(pipe_one[1]);
 		return (-1);

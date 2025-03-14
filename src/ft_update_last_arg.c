@@ -1,36 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_access.c                                  :+:      :+:    :+:   */
+/*   ft_update_last_arg.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/12 19:37:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 16:59:28 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/14 16:56:49 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/14 17:07:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// handles error cases and prints them
-// returns the error code or 0 if it works
-int	ft_check_access(char *path, char *cmd)
+void	ft_update_last_arg(t_shell *shl, char *arg)
 {
-	int	exists;
-	int	acces;
+	char	*last_arg;
 
-	acces = -1;
-	exists = access(path, F_OK);
-	if (exists != 0)
-	{
-		ft_perror(INVALID_COMMAND, cmd, NULL);
-		return (ERNUM_CMD_NOTEXIST);
-	}
-	acces = access(path, X_OK);
-	if (acces != 0)
-	{
-		ft_perror(FILE_EXECUTE_NO_PERMISSION, cmd, NULL);
-		return (ERNUM_CMD_PERM);
-	}
-	return (0);
+	last_arg = ft_str_add("_=", arg);
+	ft_change_env(shl->env, last_arg);
+	ft_null(&last_arg);
 }

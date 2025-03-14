@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:23:06 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 18:22:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/13 16:34:40 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*ft_make_name(char *path, char *name)
 // returns either the full path+command as string
 // or NULL if error
 // gives out error codes for file not found and/or no permission to execute
-static char	*ft_check_access(char **paths, char *name)
+static char	*st_check_access(char **paths, char *name)
 {
 	int		i;
 	int		exists;
@@ -81,7 +81,7 @@ char	*ft_get_path(char *cmd, char ***envp)
 		ft_null(&cmd);
 		return (NULL);
 	}
-	path = ft_check_access(paths, cmd);
+	path = st_check_access(paths, cmd);
 	ft_null(&cmd);
 	ft_nullb(&paths);
 	return (path);

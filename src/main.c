@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:42:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 17:12:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,17 @@ int	main(int argc, char **argv, char **envp)
 
 // TODO:
 // Signaling
-// Exit Codes by using struct everywhere, and setting value in waitpid
 // maybe remove handling of semicolon
 // <<
-// Exit code substitution
 // Ctrl+C
 // Ctrl+D
 // Ctrl+'\'
 // tokenization should be run on arguments for regular commands
 // quotes are wrongy included in the output of some things, such as echo
-// make "export " print out alphabetically
+// _ env variable needs to be updated by builtins
 // SHLVL cannot be exported to non-number -> 0 instead
 // SHLVL is always 1 smaller than given in export
 // Tokens and arguments can be given as <"abc"> but should be used as <abc>
 // if we have Signals for stopping current line then maybe we can use status=0
 // 	as default
-// Errors should be printed in stderr isntead of stdout
+// Cannot redirect specific outputs to files (2>stderr.txt) (2>/dev/null)
