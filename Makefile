@@ -17,9 +17,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_nullb.c \
 	ft_nullc.c \
 	ft_prepare_argv.c \
-	ft_special_cmd.c \
+	ft_builtin_cmd.c \
 	ft_regular_cmd.c \
-	ft_check_special.c \
+	ft_builtin_check.c \
 	ft_skip_spaces.c \
 	ft_handle_chunks.c \
 	ft_is_delimiter.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_special.c                                 :+:      :+:    :+:   */
+/*   ft_builtin_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 18:08:21 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/28 16:53:23 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 19:27:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_text_check(char *hay, const char *needle, int len, int pos)
 }
 
 // returns 1 if special command or 0 if regular
-int	ft_check_special(char *inp)
+int	ft_builtin_check(char *inp)
 {
 	int	i;
 

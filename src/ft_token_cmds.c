@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:44:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 19:27:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	ft_token_cmds(t_shell *shl, int i)
 			i += 2;
 		else
 		{
-			if (ft_check_special(shl->tok[i]) == 1)
-				status = ft_special_cmd(shl, &i);
+			if (ft_builtin_check(shl->tok[i]) == 1)
+				status = ft_builtin_cmd(shl, &i);
 			else if (ft_check_abs_cmds(shl->tok, i) == 1)
 				status = ft_absolute_cmd(shl, &i);
 			else

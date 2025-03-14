@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_special_cmd.c                                   :+:      :+:    :+:   */
+/*   ft_builtin_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 19:10:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 19:32:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	st_update_last_arg(t_shell *shl, int pos)
 // runs builtin commands like exit, cd, unset
 // returns 0-255 if programm should close with that code
 // returns -1 if programm should continue
-int	ft_special_cmd(t_shell *shl, int *pos)
+int	ft_builtin_cmd(t_shell *shl, int *pos)
 {
 	int	i;
-	int status;
+	int	status;
 
 	i = 0;
 	ft_skip_spaces(&i, shl->tok[*pos]);
