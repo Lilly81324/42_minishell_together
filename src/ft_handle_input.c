@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:34:57 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 19:12:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_handle_input(char **inp, t_shell *shl)
 	shl->tok = ft_tokenization(*inp);
 	if (shl->tok == NULL)
 	{
-		printf("NULL Input detected");
+		ft_perror(NULL_INPUT, NULL, NULL);
 		return (1);
 	}
 	// ft_print_tokens(tokens);

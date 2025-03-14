@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 17:07:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/14 19:11:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@
 # define EXIT_NUMERIC_ERROR "lelshell: exit: %s: numeric argument required\n"
 # define FILE_EXECUTE_NO_PERMISSION	"lelshell: %s: Permission denied\n"
 # define EXPORT_INVALID	"lelshell: export: %s: not a valid identifier\n"
+# define NULL_INPUT "lelshell: NULL input detected\n"
 
 // Error return values
 # define ERNUM_CMD_NOTEXIST	127
