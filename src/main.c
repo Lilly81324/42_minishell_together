@@ -6,11 +6,17 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/17 18:33:57 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/17 20:00:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void handle_sigint(int sig)
+{
+	(void)sig;
+	printf("Received SIGINT (Ctrl+C).\n");
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -18,6 +24,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	(void)argc;
+	signal(SIGINT, handle_sigint);
 	new_env = ft_copy_env(envp);
 	if (ft_get_env(new_env, "SHLVL") == NULL)
 		ft_change_env(&new_env, "SHLVL=0");
@@ -33,6 +40,9 @@ int	main(int argc, char **argv, char **envp)
 // Ctrl+C
 // Ctrl+D
 // Ctrl+'\'
+// When running ./ and then echo $? for the first time there 
+// is an uninitialised valgrind error from ft_string_substitution-> 
+// st_exit_code_subst-> ft_itoa-> ft_st_get_len
 // tokenization should be run on arguments for regular commands
 // quotes are wrongy included in the output of some things, such as echo
 // school bash exports SHLVL to a vlaue always one smaller, ours doesnt

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/17 18:10:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:50:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # include <readline/history.h>
 // For waitpid
 # include <sys/wait.h>
+// For Signals
+# include <signal.h>
+
 # include "../libft/libft.h"
 
 // Error messages
