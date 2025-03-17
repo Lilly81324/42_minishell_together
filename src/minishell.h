@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 19:27:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:10:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ int		ft_builtin_env(t_shell *shl, int *pos);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
 int		ft_builtin_cd(t_shell *shl, int *pos);
 int		ft_builtin_export(t_shell *shl, int *pos);
+int		ft_atoi_shlvl(char *s);
 void	ft_builtin_export_blank(char **envp);
 int		ft_builtin_unset(t_shell *shl, int *pos);
 int		ft_builtin_echo(t_shell *shl, int *pos);

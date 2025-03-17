@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-INCLUDES = -lreadline
+INCLUDES = -lreadline -lhistory
 
 LIBFT_DIR = ./libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
@@ -69,6 +69,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_perror.c \
 	ft_builtin_export_blank.c \
 	ft_update_last_arg.c \
+	ft_atoi_shlvl.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
@@ -86,7 +87,7 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 
 # Compile the programm like this
 $(NAME): $(OBJ_FILES) $(LIBFT_LIB) $(OBJ_MAIN)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ_FILES) $(OBJ_MAIN) $(LIBFT_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ_FILES) $(INCLUDES) $(OBJ_MAIN) $(LIBFT_LIB) -o $(NAME)
 
 # Compile the libft
 $(LIBFT_LIB):
