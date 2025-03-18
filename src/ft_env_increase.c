@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:19:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/11 18:10:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:59:08 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ void	ft_env_increase(char ***envp, char *target, int value)
 	current = st_atoi(ft_get_env(*envp, target));
 	if (current == -1)
 	{
-		new = ft_str_add(target, "=0");
+		new = ft_strjoin(target, "=0");
 		ft_change_env(envp, new);
 		ft_null(&new);
 		return ;
 	}
 	current += value;
 	new = ft_itoa(current);
-	temp = ft_str_add(target, "=");
-	result = ft_str_add(temp, new);
+	temp = ft_strjoin(target, "=");
+	result = ft_strjoin(temp, new);
 	ft_change_env(envp, result);
 	ft_null(&new);
 	ft_null(&temp);

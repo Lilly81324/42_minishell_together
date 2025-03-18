@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 19:27:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:58:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # include <readline/history.h>
 // For waitpid
 # include <sys/wait.h>
+// For Signals
+# include <signal.h>
+
 # include "../libft/libft.h"
 
 // Error messages
@@ -41,6 +44,7 @@
 # define REDIR_INVAL_OUTF "Error opening outfile\n"
 # define REDIR_OUT_TO_OUTF "Error redirecting stdout to outfile\n"
 //		Commands
+# define ARGC_START "lelshell: Too many arguments for lelshell\n"
 # define INVALID_COMMAND "lelshell: %s: No such file or directory\n"
 # define FORK_ERROR "lelshell: Error creating fork\n"
 # define PWD_NONEXISTENT_ERROR "lelshell: pwd: No pwd exists\n"
@@ -53,6 +57,7 @@
 # define NULL_INPUT "lelshell: NULL input detected\n"
 
 // Error return values
+# define ERNUM_START_ARGC	1
 # define ERNUM_CMD_NOTEXIST	127
 # define ERNUM_CMD_PERM		126
 # define ERNUM_CD_HOMELESS	1
@@ -147,6 +152,7 @@ int		ft_builtin_env(t_shell *shl, int *pos);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
 int		ft_builtin_cd(t_shell *shl, int *pos);
 int		ft_builtin_export(t_shell *shl, int *pos);
+int		ft_atoi_shlvl(char *s);
 void	ft_builtin_export_blank(char **envp);
 int		ft_builtin_unset(t_shell *shl, int *pos);
 int		ft_builtin_echo(t_shell *shl, int *pos);
@@ -156,7 +162,6 @@ int		ft_check_abs_cmds(char **token, int pos);
 int		ft_absolute_cmd(t_shell *shl, int *pos);
 int		ft_check_access(char *path, char *cmd);
 int		ft_run_cmd(t_shell *shl, char *path, char **argv);
-char	*ft_str_add(char *s1, char *s2);
 char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(t_shell *shl, int *pos);
 char	**ft_prepare_argv(char **arg, int *pos);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 16:45:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:48:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	ft_check_key(char *str)
 // handles the "export" builtin, which sets and adds certain
 // key=value pairs in the envp
 // export PATH=/usr/bin
+// Auto corrects SHLVL to valid integer
 int	ft_builtin_export(t_shell *shl, int *pos)
 {
 	(*pos)++;
