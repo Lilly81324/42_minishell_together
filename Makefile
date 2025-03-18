@@ -56,7 +56,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_absolute_cmd.c \
 	ft_check_abs_cmds.c \
 	ft_std_close.c \
-	ft_str_add.c \
 	ft_too_many_args.c \
 	ft_builtin_exit.c \
 	ft_strip.c \
@@ -69,7 +68,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_perror.c \
 	ft_builtin_export_blank.c \
 	ft_update_last_arg.c \
-	ft_atoi_shlvl.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

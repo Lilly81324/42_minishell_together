@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/04 15:41:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:49:40 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void	ft_add_to_env(char ***ptr, char *pair)
 void	ft_change_env(char ***envp, char *pair)
 {
 	int		pos;
-	char	*new;
 
 	pos = 0;
 	while ((*envp)[pos] != NULL)
@@ -51,8 +50,7 @@ void	ft_change_env(char ***envp, char *pair)
 		return ;
 	}
 	free((*envp)[pos]);
-	new = ft_strdup(pair);
-	(*envp)[pos] = new;
+	(*envp)[pos] = ft_strdup(pair);
 	return ;
 }
 

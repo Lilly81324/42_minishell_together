@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 15:23:14 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:56:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static int	ft_rel_directory(char *target)
 	int		status;
 
 	cwd = getcwd(NULL, 0);
-	temp = ft_str_add(cwd, "/");
-	res = ft_str_add(temp, target);
+	temp = ft_strjoin(cwd, "/");
+	res = ft_strjoin(temp, target);
 	status = chdir(res);
 	ft_null(&cwd);
 	ft_null(&temp);

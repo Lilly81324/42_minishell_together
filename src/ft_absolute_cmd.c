@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 16:35:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:56:02 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*st_prepare_path(char **token, int pos)
 	if (token[pos][0] == '.' && token[pos][1] == '/')
 	{
 		pwd = getcwd(NULL, 0);
-		path = ft_str_add(pwd, &(token[pos][1]));
+		path = ft_strjoin(pwd, &(token[pos][1]));
 	}
 	else
 		path = ft_strdup(token[pos]);

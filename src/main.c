@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/17 20:00:27 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:46:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	(void)argc;
+	if (argc > 1)
+	{
+		printf(ARGC_START);
+		return (ERNUM_START_ARGC);
+	}
 	signal(SIGINT, handle_sigint);
 	new_env = ft_copy_env(envp);
 	if (ft_get_env(new_env, "SHLVL") == NULL)
