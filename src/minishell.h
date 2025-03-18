@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 17:46:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 19:33:17 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@
 # define ERNUM_ENV_ARGC		1
 
 // For shlvl increasing at start
-#define MAX_SHLVL 999
+# define MAX_SHLVL 999
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"

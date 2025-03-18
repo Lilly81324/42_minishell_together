@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:36:03 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 19:31:19 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 19:46:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@ static int	st_skip_signs(char *s, int *i)
 // smaller then 2147483648
 // may have whitespaces before the sign/earliest number
 // and may have whitespaces after the last number, but no more other chars
+// NOT DONE!!!!
+// Valid positive number 0-INT_MAX with positive sing 	->	itself
+// Initial sign doesnt matter
+// Only the final result matters
 static int	st_atoi_shlvl(char *s)
 {
-	int				i;
-	int				fac;
-	unsigned int	result;
+	int	i;
+	int	fac;
+	int	result;
 
 	i = 0;
 	result = 0;
@@ -48,7 +52,8 @@ static int	st_atoi_shlvl(char *s)
 		return (0);
 	while (ft_isdigit((int)s[i]) != 0)
 	{
-		result = (result * 10) + (s[i] - '0');
+		result = (result * 10) + (fac * (s[i] - '0'));
+		printf("new result = %i\n", result);
 		i++;
 	}
 	ft_skip_spaces(&i, s);
@@ -56,10 +61,8 @@ static int	st_atoi_shlvl(char *s)
 		return (0);
 	if (result < 0)
 		return (-1);
-	if (result >= 0 && fac == 1)
+	if (result >= 0)
 		return ((int)result);
-	if (fac != 1)
-		return (-1);
 	return (0);
 }
 
