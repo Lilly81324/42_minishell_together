@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:33:09 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:21:18 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,28 @@ static void	st_toggle(int *x)
 // replaces the argument at index with exit code, should the format be right
 // Reallocates <*str> by cutting at <index> and inserting <shl->exit_code>
 static int	st_exit_code_subst(t_shell *shl, char **str, int index)
+{
+	char	*new;
+	int		value;
+	char	*goal;
+
+	if ((*str)[index] != '$')
+		return (-1);
+	if ((*str)[index + 1] != '?')
+		return (-1);
+	ft_str_cut(str, index, 2);
+	value = shl->exit_code;
+	goal = ft_itoa(value);
+	new = ft_str_insert(*str, goal, index);
+	ft_null(str);
+	ft_null(&goal);
+	*str = new;
+	return (0);
+}
+
+// replaces the argument at index with exit code, should the format be right
+// Reallocates <*str> by cutting at <index> and inserting <shl->exit_code>
+static int	st_pid_subst(t_shell *shl, char **str, int index)
 {
 	char	*new;
 	int		value;
@@ -94,6 +116,8 @@ void	ft_string_substitution(t_shell *shl, char **str)
 			if ((*str)[i] == '\'')
 				st_toggle(&quoted);
 			if (st_exit_code_subst(shl, str, i) == 0)
+				continue ;
+			if (st_pid_subst(shl, str, i) == 0)
 				continue ;
 			if ((*str)[i] == '$' && quoted == 0)
 				st_substitution(*shl->env, str, i);
