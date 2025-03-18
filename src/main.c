@@ -6,13 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 16:46:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/18 17:08:29 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void handle_sigint(int sig)
+void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("Received SIGINT (Ctrl+C).\n");
