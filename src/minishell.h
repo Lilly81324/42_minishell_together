@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 16:58:54 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:28:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@
 # define REDIR_INVAL_OUTF "Error opening outfile\n"
 # define REDIR_OUT_TO_OUTF "Error redirecting stdout to outfile\n"
 //		Commands
+# define ERR_SHLVL_MAX \
+"lelshell: warning: shell level (%s) too high, resetting to 1\n"
 # define ARGC_START "lelshell: Too many arguments for lelshell\n"
 # define INVALID_COMMAND "lelshell: %s: No such file or directory\n"
 # define FORK_ERROR "lelshell: Error creating fork\n"
@@ -70,6 +72,9 @@
 # define ERNUM_EXPORT_INVAL	1
 # define ERNUM_HISTORY_ARGC	1
 # define ERNUM_ENV_ARGC		1
+
+// For shlvl increasing at start
+# define MAX_SHLVL 999
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
@@ -126,12 +131,14 @@ char	*ft_str_insert(char *src, char *goal, int pos);
 int		ft_str_cut(char **src, int pos, int cutlen);
 
 // Programm------------------------------------------------
+void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
 // Input getting
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
 // Tokenize input
 void	ft_string_substitution(t_shell *shl, char **str);
+char	*ft_get_pid_str(void);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
@@ -152,7 +159,6 @@ int		ft_builtin_env(t_shell *shl, int *pos);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
 int		ft_builtin_cd(t_shell *shl, int *pos);
 int		ft_builtin_export(t_shell *shl, int *pos);
-int		ft_atoi_shlvl(char *s);
 void	ft_builtin_export_blank(char **envp);
 int		ft_builtin_unset(t_shell *shl, int *pos);
 int		ft_builtin_echo(t_shell *shl, int *pos);
