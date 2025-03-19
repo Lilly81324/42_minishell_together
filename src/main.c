@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 17:50:13 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:37:05 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,6 @@ void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("Received SIGINT (Ctrl+C).\n");
-}
-
-static void	st_pid(void)
-{
-	int		fd;
-	char	buf[100];
-	size_t	readd;
-
-	fd = open("/proc/self/stat", O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error opening procselfstat\n");
-		return ;
-	}
-	readd = read(fd, buf, sizeof(buf) -1);
-	close(fd);
-	if (readd <= 0)
-	{
-		printf("Couldnt read from procselstat\n");
-		return ;
-	}
-	printf("Content: [%s]\n", buf);
-	printf("real pid: %d\n", getpid());
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -54,7 +31,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	signal(SIGINT, handle_sigint);
 	new_env = ft_copy_env(envp);
-	st_pid();
 	ft_initial_shlvl(&new_env);
 	return (ft_loop(&new_env));
 }

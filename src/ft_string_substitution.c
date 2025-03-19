@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 17:21:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:44:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ static int	st_exit_code_subst(t_shell *shl, char **str, int index)
 
 // replaces the argument at index with exit code, should the format be right
 // Reallocates <*str> by cutting at <index> and inserting <shl->exit_code>
-static int	st_pid_subst(t_shell *shl, char **str, int index)
+static int	st_pid_subst(char **str, int index)
 {
 	char	*new;
-	int		value;
-	char	*goal;
+	char	*pid;
 
 	if ((*str)[index] != '$')
 		return (-1);
-	if ((*str)[index + 1] != '?')
+	if ((*str)[index + 1] != '$')
 		return (-1);
 	ft_str_cut(str, index, 2);
-	value = shl->exit_code;
-	goal = ft_itoa(value);
-	new = ft_str_insert(*str, goal, index);
+	pid = ft_get_pid_str();
+	if (pid == NULL)
+		return (0);
+	new = ft_str_insert(*str, pid, index);
 	ft_null(str);
-	ft_null(&goal);
+	ft_null(&pid);
 	*str = new;
 	return (0);
 }
@@ -71,7 +71,7 @@ static int	st_pid_subst(t_shell *shl, char **str, int index)
 // Creates a key consisting of that Argument without '$' to get the value
 // Then cuts out that key with '$' from the string 
 // If value was found for key then insert it by reallocation
-static void	st_substitution(char **env, char **str, int index)
+static void	st_reg_subst(char **env, char **str, int index)
 {
 	int		len;
 	char	*key;
@@ -117,10 +117,10 @@ void	ft_string_substitution(t_shell *shl, char **str)
 				st_toggle(&quoted);
 			if (st_exit_code_subst(shl, str, i) == 0)
 				continue ;
-			if (st_pid_subst(shl, str, i) == 0)
+			if (st_pid_subst(str, i) == 0)
 				continue ;
 			if ((*str)[i] == '$' && quoted == 0)
-				st_substitution(*shl->env, str, i);
+				st_reg_subst(*shl->env, str, i);
 		}
 		loops++;
 	}

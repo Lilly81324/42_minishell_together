@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 19:33:17 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:28:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
 // Tokenize input
 void	ft_string_substitution(t_shell *shl, char **str);
+char	*ft_get_pid_str(void);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
@@ -158,7 +159,6 @@ int		ft_builtin_env(t_shell *shl, int *pos);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
 int		ft_builtin_cd(t_shell *shl, int *pos);
 int		ft_builtin_export(t_shell *shl, int *pos);
-int		ft_atoi_shlvl(char *s);
 void	ft_builtin_export_blank(char **envp);
 int		ft_builtin_unset(t_shell *shl, int *pos);
 int		ft_builtin_echo(t_shell *shl, int *pos);
