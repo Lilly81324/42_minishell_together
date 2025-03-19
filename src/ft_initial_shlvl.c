@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:36:03 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 19:46:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:14:17 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ static int	st_skip_signs(char *s, int *i)
 	return (fac);
 }
 
-// Turns initially given value for SHLVL to integer and returns it
-// String may have one plus sign and then has to have a number
-// smaller then 2147483648
-// may have whitespaces before the sign/earliest number
-// and may have whitespaces after the last number, but no more other chars
-// NOT DONE!!!!
-// Valid positive number 0-INT_MAX with positive sing 	->	itself
-// Initial sign doesnt matter
-// Only the final result matters
+// Turns initially given value for SHLVL (string <s>) to integer
+// returns, based on that integer, the new SHLVL as integer
+// May have whitespaces, then may have one plus or minus sign
+// Then hast to have digits forming a valid number
+// may be followed by whitespaces
+// then has to be at end of string
+// Any string miconfiguration returns a 1
+// A negative <result> returns 0
+// Otherwise give back the <result> increased by 1
 static int	st_atoi_shlvl(char *s)
 {
 	int	i;
@@ -49,23 +49,19 @@ static int	st_atoi_shlvl(char *s)
 	ft_skip_spaces(&i, s);
 	fac = st_skip_signs(s, &i);
 	if (ft_isdigit((int)s[i]) == 0)
-		return (0);
-	while (ft_isdigit((int)s[i]) != 0)
-	{
+		return (1);
+	i--;
+	while (ft_isdigit((int)s[++i]) != 0)
 		result = (result * 10) + (fac * (s[i] - '0'));
-		printf("new result = %i\n", result);
-		i++;
-	}
+	result++;
 	ft_skip_spaces(&i, s);
 	if (s[i] != '\0')
-		return (0);
+		return (1);
 	if (result < 0)
-		return (-1);
-	if (result >= 0)
-		return ((int)result);
-	return (0);
+		return (0);
+	else
+		return (result);
 }
-
 
 // Sets shlvl of new envp
 // to 1 if max_shlvl reached or no SHLVL found
@@ -80,14 +76,11 @@ void	ft_initial_shlvl(char ***new_env)
 		return ;
 	}
 	shlvl = st_atoi_shlvl(ft_get_env(*new_env, "SHLVL"));
-	printf("Current shlvl is %i\n", shlvl);
-	if (shlvl > MAX_SHLVL - 1)
+	if (shlvl > MAX_SHLVL)
 	{
-		printf("Final SHLVL=%i\n", 1);
 		ft_perror(ERR_SHLVL_MAX, ft_itoa(shlvl), NULL);
 		ft_change_env(new_env, "SHLVL=1");
 		return ;
 	}
-	printf("Final SHLVL=%i\n", shlvl + 1);
 	ft_env_increase(new_env, "SHLVL", 1);
 }
