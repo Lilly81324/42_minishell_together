@@ -1,45 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_input.c                                  :+:      :+:    :+:   */
+/*   ft_redirect_heredocs.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/19 18:22:04 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/19 18:06:34 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/19 18:29:06 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// handles the whole input string 
-// substitutes arguments, then breaks input into tokens
-// Then calls a loop for every chunk of tokens
-// Return value meaning: 
-// 0 - continue running
-// 1 - stop current chunk, move on to next
-// 2 - stop programm
-int	ft_handle_input(char **inp, t_shell *shl)
-{
-	int		status;
-	int		std[3];
-
-	ft_string_substitution(shl, inp);
-	shl->tok = ft_tokenization(*inp);
-	if (shl->tok == NULL)
-	{
-		ft_perror(NULL_INPUT, NULL, NULL);
-		return (1);
-	}
-	// ft_print_tokens(tokens);
-	ft_std_dup(std);
-	ft_redirect_heredocs(shl);
-	status = ft_handle_input_loop(shl, std);
-	ft_std_reset(std);
-	ft_std_close(std);
-	ft_nullb(&shl->tok);
-	return (status);
-}
 // HEREDOCS should be handled here
 // After tokenization make a special bit of code
 // There we check how many HEREDOCS there are.
@@ -57,3 +29,35 @@ int	ft_handle_input(char **inp, t_shell *shl)
 // If error encountered and heredoc_pos isnt the last element,
 // close the rest of the pipes that were unused
 // Then, before back to loop, free linked list and set it in shl to NULL
+
+// Called after input was tonized and subsitituted
+// but before any commands run
+void	ft_redirect_heredocs(t_shell *shl)
+{
+	int		i;
+	int		count;
+	char	*buf;
+
+	i = -1;
+	count = 0;
+	while (shl->tok[++i] != NULL)
+	{
+		if (ft_strncmp(shl->tok[i], "<<", 3) == 0)
+		{
+			printf("HEREDOC marker found at token %i [%s]\n", i, shl->tok[i]);
+			printf("End marker : %s\n", shl->tok[i + 1]);
+			count++;
+		}
+	}
+	while (count > 0)
+	{
+		buf = readline("heredoc > ");
+		while (ft_strncmp(buf, "EOF", 4) != 0)
+		{
+			ft_null(&buf);
+			buf = readline("heredoc > ");
+		}
+		ft_null(&buf);
+		count--;
+	}
+}

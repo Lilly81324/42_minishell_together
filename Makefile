@@ -70,6 +70,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_update_last_arg.c \
 	ft_initial_shlvl.c \
 	ft_get_pid_str.c \
+	ft_redirect_heredocs.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
@@ -91,7 +92,7 @@ $(NAME): $(OBJ_FILES) $(LIBFT_LIB) $(OBJ_MAIN)
 
 # Compile the libft
 $(LIBFT_LIB):
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) bonus
 
 # Make directory for object files
 $(OBJ_DIR):
