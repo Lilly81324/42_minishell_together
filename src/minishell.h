@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/19 18:20:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 17:52:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,19 @@
 # define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
+typedef struct s_lst
+{
+	int				data;
+	struct s_lst	*next;
+}	t_lst;
+
 typedef struct s_shell
 {
-	char	**tok;
-	char	***env;
-	int		exit_code;
+	char		**tok;
+	char		***env;
+	int			exit_code;
+	t_lst		*start;
+	int			heredoc_pos;
 }	t_shell;
 
 // Utility-------------------------------------------------
@@ -115,6 +123,7 @@ void	ft_std_dup(int *std);
 void	ft_std_reset(int *std);
 void	ft_std_close(int *std);
 int		ft_stdout_to_outfile_append(char *filename);
+int		ft_stdin_to_heredoc(t_shell *shl);
 // Debugging
 void	ft_print_tokens(char **tokens);
 // Enviroment Functions
@@ -148,8 +157,11 @@ int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(t_shell *shl, int *i);
 // Redirecting
-int		ft_token_redirect(char **tok, int i);
-int		ft_redirection(char **argv, int pos);
+int		ft_token_redirect(t_shell *shl, int i);
+int		ft_redirection(t_shell *shl, int pos);
+// Heredoc list
+t_lst	*ft_hdlst_new(int fd);
+void	ft_hdlst_add(t_lst **lst, int fd);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i);
 // Builtin command

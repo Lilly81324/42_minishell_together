@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:48:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:43:07 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 17:49:52 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_handle_chunks(t_shell *shl, int *i)
 {
 	int	status;
 
-	status = ft_token_redirect(shl->tok, *i);
+	status = ft_token_redirect(shl, *i);
 	if (status > 0)
 		return (status);
 	status = ft_token_cmds(shl, *i);

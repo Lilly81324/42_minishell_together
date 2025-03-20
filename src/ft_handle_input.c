@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/19 18:22:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 18:01:03 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_handle_input(char **inp, t_shell *shl)
 	status = ft_handle_input_loop(shl, std);
 	ft_std_reset(std);
 	ft_std_close(std);
+	// ft_hdlst_clear()
 	ft_nullb(&shl->tok);
 	return (status);
 }

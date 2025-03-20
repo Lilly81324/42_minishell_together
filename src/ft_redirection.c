@@ -6,18 +6,20 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 17:52:10 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:18:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 17:39:07 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // handles redirections and increases the position accordingly
-int	ft_redirection(char **tok, int pos)
+int	ft_redirection(t_shell *shl, int pos)
 {
-	int	status;
+	int		status;
+	char	**tok;
 
 	status = 0;
+	tok = shl->tok;
 	if (tok[pos][0] == '>' && tok[pos][1] == '\0')
 		status = ft_stdout_to_outfile(tok[pos + 1]);
 	else if (tok[pos][0] == '<' && tok[pos][1] == '\0')
@@ -25,5 +27,8 @@ int	ft_redirection(char **tok, int pos)
 	else if (tok[pos][0] == '>' && tok[pos][1] == '>' \
 			&& tok[pos][2] == '\0')
 		status = ft_stdout_to_outfile_append(tok[pos + 1]);
+	else if (tok[pos][0] == '<' && tok[pos][1] == '<' \
+			&& tok[pos][2] == '\0')
+		status = ft_stdin_to_heredoc(shl);
 	return (status);
 }

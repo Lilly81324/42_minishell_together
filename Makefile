@@ -71,6 +71,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_initial_shlvl.c \
 	ft_get_pid_str.c \
 	ft_redirect_heredocs.c \
+	ft_hdlst_add.c \
+	ft_hdlst_new.c \
+	ft_stdin_to_heredoc.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
@@ -116,7 +119,7 @@ show:
 
 # Basic execution
 run: $(NAME)
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full --track-fds=all ./$(NAME)
 
 # Norminette
 norm:

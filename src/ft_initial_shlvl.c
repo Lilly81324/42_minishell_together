@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 17:36:03 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/19 17:14:17 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 17:54:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ static int	st_atoi_shlvl(char *s)
 // or increases it by 1
 void	ft_initial_shlvl(char ***new_env)
 {
-	int	shlvl;
+	int		shlvl;
+	char	*new;
+	char	*temp;
 
 	if (ft_get_env(*new_env, "SHLVL") == NULL)
 	{
@@ -82,5 +84,9 @@ void	ft_initial_shlvl(char ***new_env)
 		ft_change_env(new_env, "SHLVL=1");
 		return ;
 	}
-	ft_env_increase(new_env, "SHLVL", 1);
+	temp = ft_itoa(shlvl);
+	new = ft_strjoin("SHLVL=", temp);
+	ft_change_env(new_env, new);
+	ft_null(&temp);
+	ft_null(&new);
 }

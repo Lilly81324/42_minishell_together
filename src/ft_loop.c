@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:35:27 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 17:52:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ int	ft_loop(char ***envp)
 
 	shl.env = envp;
 	shl.exit_code = 0;
+	shl.start = NULL;
 	while (1)
 	{
 		shl.tok = NULL;
+		shl.heredoc_pos = 0;
 		prompt = ft_make_prompt(envp);
 		input = readline(prompt);
 		ft_null(&prompt);
