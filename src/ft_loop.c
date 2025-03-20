@@ -6,11 +6,20 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 17:52:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 18:18:35 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	st_cleanup(char ***envp)
+{
+	clear_history();
+	ft_nullb(envp);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
+}
 
 // Central loop called when input is given
 int	ft_loop(char ***envp)
@@ -35,8 +44,7 @@ int	ft_loop(char ***envp)
 		ft_null(&input);
 		if (status >= 2)
 		{
-			clear_history();
-			ft_nullb(envp);
+			st_cleanup(envp);
 			return (shl.exit_code);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 17:52:51 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 18:13:08 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ int		ft_redirection(t_shell *shl, int pos);
 // Heredoc list
 t_lst	*ft_hdlst_new(int fd);
 void	ft_hdlst_add(t_lst **lst, int fd);
+void	ft_hdlst_clear(t_lst *lst);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i);
 // Builtin command
