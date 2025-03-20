@@ -70,7 +70,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_update_last_arg.c \
 	ft_initial_shlvl.c \
 	ft_get_pid_str.c \
-	ft_redirect_heredocs.c \
+	ft_heredoc_prepare.c \
 	ft_hdlst_add.c \
 	ft_hdlst_new.c \
 	ft_stdin_to_heredoc.c \

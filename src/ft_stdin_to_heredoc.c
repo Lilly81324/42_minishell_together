@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 16:28:00 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 17:50:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 18:55:54 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_stdin_to_heredoc(t_shell *shl)
 
 	i = 0;
 	r_end = st_index_linked_list(shl);
-	if (r_end == -1)
+	if (r_end == -2)
 	{
-		ft_perror("lelshell: Count of given and asked Heredocs diverge\n", NULL, NULL);
+		ft_perror(HERDOC_DIV, NULL, NULL);
 		return (1);
 	}
 	if (dup2(r_end, STDIN_FILENO) < 0)

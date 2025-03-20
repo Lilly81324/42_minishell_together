@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 18:13:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/20 18:41:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # define FILE_EXECUTE_NO_PERMISSION	"lelshell: %s: Permission denied\n"
 # define EXPORT_INVALID	"lelshell: export: %s: not a valid identifier\n"
 # define NULL_INPUT "lelshell: NULL input detected\n"
+# define HERDOC_DIV "lelshell: Count of given and asked Heredocs diverge\n"
 
 // Error return values
 # define ERNUM_START_ARGC	1
@@ -152,7 +153,7 @@ int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 // Executing the input
-void	ft_redirect_heredocs(t_shell *shl);
+void	ft_heredoc_prepare(t_shell *shl);
 int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(t_shell *shl, int *i);
