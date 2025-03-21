@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 18:41:00 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/21 18:06:41 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@
 # define ERNUM_EXPORT_INVAL	1
 # define ERNUM_HISTORY_ARGC	1
 # define ERNUM_ENV_ARGC		1
+# define ERNUM_HRDOC_CTRLC	130
 
 // For shlvl increasing at start
 # define MAX_SHLVL 999
@@ -103,6 +104,8 @@ typedef struct s_shell
 	int			heredoc_pos;
 }	t_shell;
 
+extern volatile sig_atomic_t g_signal;
+
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
@@ -115,6 +118,7 @@ int		ft_is_del_or_red(char *str);
 int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);
+int		ft_b_strcmp(char *s1, char *s2);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -153,7 +157,7 @@ int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 // Executing the input
-void	ft_heredoc_prepare(t_shell *shl);
+int		ft_heredoc_prepare(t_shell *shl);
 int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(t_shell *shl, int *i);
