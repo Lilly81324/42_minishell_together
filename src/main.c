@@ -6,15 +6,17 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/19 17:37:05 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/21 19:24:08 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+volatile sig_atomic_t	g_signal = 0;
+
 void	handle_sigint(int sig)
 {
-	(void)sig;
+	g_signal = sig;
 	printf("Received SIGINT (Ctrl+C).\n");
 }
 

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/19 17:28:54 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/21 19:24:37 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # define FILE_EXECUTE_NO_PERMISSION	"lelshell: %s: Permission denied\n"
 # define EXPORT_INVALID	"lelshell: export: %s: not a valid identifier\n"
 # define NULL_INPUT "lelshell: NULL input detected\n"
+# define HERDOC_DIV "lelshell: Count of given and asked Heredocs diverge\n"
 
 // Error return values
 # define ERNUM_START_ARGC	1
@@ -72,6 +73,7 @@
 # define ERNUM_EXPORT_INVAL	1
 # define ERNUM_HISTORY_ARGC	1
 # define ERNUM_ENV_ARGC		1
+# define ERNUM_HRDOC_CTRLC	130
 
 // For shlvl increasing at start
 # define MAX_SHLVL 999
@@ -87,12 +89,22 @@
 # define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
+typedef struct s_lst
+{
+	int				data;
+	struct s_lst	*next;
+}	t_lst;
+
 typedef struct s_shell
 {
-	char	**tok;
-	char	***env;
-	int		exit_code;
+	char		**tok;
+	char		***env;
+	int			exit_code;
+	t_lst		*start;
+	int			heredoc_pos;
 }	t_shell;
+
+extern volatile sig_atomic_t	g_signal;
 
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);
@@ -106,6 +118,7 @@ int		ft_is_del_or_red(char *str);
 int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);
+int		ft_b_strcmp(char *s1, char *s2);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -115,6 +128,7 @@ void	ft_std_dup(int *std);
 void	ft_std_reset(int *std);
 void	ft_std_close(int *std);
 int		ft_stdout_to_outfile_append(char *filename);
+int		ft_stdin_to_heredoc(t_shell *shl);
 // Debugging
 void	ft_print_tokens(char **tokens);
 // Enviroment Functions
@@ -143,12 +157,17 @@ int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 // Executing the input
+int		ft_heredoc_prepare(t_shell *shl);
 int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(t_shell *shl, int *i);
 // Redirecting
-int		ft_token_redirect(char **tok, int i);
-int		ft_redirection(char **argv, int pos);
+int		ft_token_redirect(t_shell *shl, int i);
+int		ft_redirection(t_shell *shl, int pos);
+// Heredoc list
+t_lst	*ft_hdlst_new(int fd);
+void	ft_hdlst_add(t_lst **lst, int fd);
+void	ft_hdlst_clear(t_lst *lst);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i);
 // Builtin command

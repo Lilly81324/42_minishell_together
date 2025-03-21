@@ -70,6 +70,12 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_update_last_arg.c \
 	ft_initial_shlvl.c \
 	ft_get_pid_str.c \
+	ft_heredoc_prepare.c \
+	ft_hdlst_add.c \
+	ft_hdlst_new.c \
+	ft_stdin_to_heredoc.c \
+	ft_hdlst_clear.c \
+	ft_b_strcmp.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
@@ -91,7 +97,7 @@ $(NAME): $(OBJ_FILES) $(LIBFT_LIB) $(OBJ_MAIN)
 
 # Compile the libft
 $(LIBFT_LIB):
-	make -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR) bonus
 
 # Make directory for object files
 $(OBJ_DIR):
@@ -115,11 +121,11 @@ show:
 
 # Basic execution
 run: $(NAME)
-	valgrind --leak-check=full ./$(NAME)
+	valgrind --leak-check=full --track-fds=all ./$(NAME)
 
 # Norminette
 norm:
-	norminette | grep -v OK!
+	norminette | grep -v OK! | grep -v Global
 
 # Redo programm
 re: fclean all

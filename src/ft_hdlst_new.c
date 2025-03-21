@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdin_to_pipe.c                                 :+:      :+:    :+:   */
+/*   ft_hdlst_new.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 15:14:02 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 18:19:06 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/20 14:12:36 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/20 18:29:38 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// redirects STDIN to the read end of a pipe
-// returns 0
-// returns -1 if error
-int	ft_stdin_to_pipe(int r_end)
+// Make a new node and return its adress
+// Fills the node with <fd>
+// if allocation error NULL is returned
+t_lst	*ft_hdlst_new(int fd)
 {
-	if (r_end == -1)
-	{
-		ft_perror(REDIR_INVAL_PIPE, NULL, NULL);
-		return (-1);
-	}
-	if (dup2(r_end, STDIN_FILENO) < 0)
-	{
-		ft_perror(REDIR_PIPE_TO_INP, NULL, NULL);
-		close(r_end);
-		return (-1);
-	}
-	close(r_end);
-	return (0);
+	t_lst	*new;
+
+	new = (t_lst *)malloc(sizeof(t_lst));
+	if (new == NULL)
+		return (NULL);
+	new->data = fd;
+	new->next = NULL;
+	return (new);
 }
