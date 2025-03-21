@@ -6,19 +6,19 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:06:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/21 19:00:54 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/21 19:22:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Returns 2 if Ctrl+C SIGINT was sent
+// Signal Handling for Ctrl+C SIGINT
+// Returns 1 if Ctrl+C SIGINT was sent
 // sets sets exit code and frees the given strings
 static int	st_sig_check(t_shell *shl, char **n_buf, char **t_buf)
 {
 	if (g_signal == SIGINT)
 	{
-		printf("CTRL+C received in heredoc!!!\n");
 		ft_null(n_buf);
 		ft_null(t_buf);
 		g_signal = 0;
@@ -67,35 +67,35 @@ static int	st_add_to_heredoc(t_shell *shl, char **new_buf, char **total_buf)
 	return (0);
 }
 
-// Runs for <count> amount of times, getting an input until EOF
-// is inputted, puts input into pipe and marks pipes fd for later
-static int	st_get_heredoc_inp(t_shell *shl, int count)
+// Ran for each Heredoc that needs to be initialized
+// Gets input for heredoc and turns it into one long string
+// Then substitutes Arguments in that string
+// Then puts string into pipe and adds a node in shl->start
+// returns 0 if ended nominally
+// returns 1 if Ctrl+c was called and line should be stopped
+static int	st_get_heredoc_inp(t_shell *shl, char *stop)
 {
 	char	*new_buf;
 	char	*total_buf;
 	int		status;
 
-	count++;
 	status = 0;
-	while (--count > 0)
+	new_buf = NULL;
+	total_buf = NULL;
+	new_buf = readline("heredoc > ");
+	if (ft_b_strcmp(new_buf, stop) == 0)
 	{
-		new_buf = NULL;
-		total_buf = NULL;
-		new_buf = readline("heredoc > ");
-		if (ft_b_strcmp(new_buf, "EOF") == 0)
-		{
-			ft_null(&new_buf);
-			st_string_to_lst(shl, NULL);
-			continue ;
-		}
-		while (ft_b_strcmp(new_buf, "EOF") != 0 && status == 0)
-			status = st_add_to_heredoc(shl, &new_buf, &total_buf);
-		ft_string_substitution(shl, &total_buf);
-		st_string_to_lst(shl, total_buf);
-		ft_null(&total_buf);
 		ft_null(&new_buf);
+		st_string_to_lst(shl, NULL);
+		return (0);
 	}
-	return (0);
+	while (ft_b_strcmp(new_buf, stop) != 0 && status == 0)
+		status = st_add_to_heredoc(shl, &new_buf, &total_buf);
+	ft_string_substitution(shl, &total_buf);
+	st_string_to_lst(shl, total_buf);
+	ft_null(&total_buf);
+	ft_null(&new_buf);
+	return (status);
 }
 
 // Called after input was tokenized and subsitituted
@@ -104,17 +104,23 @@ static int	st_get_heredoc_inp(t_shell *shl, int count)
 int	ft_heredoc_prepare(t_shell *shl)
 {
 	int		i;
-	int		count;
+	int		status;
 
 	i = -1;
 	shl->start = NULL;
-	count = 0;
+	status = 0;
 	while (shl->tok[++i] != NULL)
 	{
+		if (ft_b_strcmp(shl->tok[i], "<<") == 0 && \
+			ft_is_del_or_red(shl->tok[i + 1]) == 1)
+		{
+			ft_perror("yevshell: HEREDOC not given delimiter", NULL, NULL);
+			return (1);
+		}
 		if (ft_b_strcmp(shl->tok[i], "<<") == 0)
-			count++;
+			status = st_get_heredoc_inp(shl, shl->tok[i + 1]);
+		if (status != 0)
+			return (status);
 	}
-	if (count == 0)
-		return (0);
-	return (st_get_heredoc_inp(shl, count));
+	return (0);
 }
