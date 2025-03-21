@@ -125,7 +125,7 @@ run: $(NAME)
 
 # Norminette
 norm:
-	norminette | grep -v OK!
+	norminette | grep -v OK! | grep -v Global
 
 # Redo programm
 re: fclean all
