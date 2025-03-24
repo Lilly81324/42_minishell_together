@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_abs_cmds.c                                :+:      :+:    :+:   */
+/*   ft_is_directory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 15:18:14 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 15:36:29 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/24 15:27:21 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/24 17:05:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// returns 1 if absolute command like /usr/bin/echo
-// or ./a.out
-// or 0 if not
-int	ft_check_abs_cmds(char **token, int pos)
+int	ft_is_directory(char *path)
 {
-	if (token[pos] == NULL)
-		return (0);
-	if (token[pos][0] == '/')
+	DIR	*dir;
+
+	dir = opendir(path);
+	if (dir != NULL)
+	{
+		closedir(dir);
 		return (1);
-	if (ft_strncmp(token[pos], "./", 2) == 0)
-		return (1);
+	}
 	return (0);
 }

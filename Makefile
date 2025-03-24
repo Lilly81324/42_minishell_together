@@ -76,6 +76,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_stdin_to_heredoc.c \
 	ft_hdlst_clear.c \
 	ft_b_strcmp.c \
+	ft_is_directory.c \
+	ft_strip_tokens.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

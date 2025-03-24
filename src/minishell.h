@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/21 19:24:37 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/24 17:05:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # include <sys/wait.h>
 // For Signals
 # include <signal.h>
+// For checking if file is directory
+# include <dirent.h>
 
 # include "../libft/libft.h"
 
@@ -48,6 +50,7 @@
 "lelshell: warning: shell level (%s) too high, resetting to 1\n"
 # define ARGC_START "lelshell: Too many arguments for lelshell\n"
 # define INVALID_COMMAND "lelshell: %s: No such file or directory\n"
+# define CMD_IS_DIR "lelshell: %s: Is a directory\n"
 # define FORK_ERROR "lelshell: Error creating fork\n"
 # define PWD_NONEXISTENT_ERROR "lelshell: pwd: No pwd exists\n"
 # define ARG_MUCH_ERROR "lelshell: %s: too many arguments\n"
@@ -61,6 +64,7 @@
 
 // Error return values
 # define ERNUM_START_ARGC	1
+# define ERNUM_CMD_IS_DIR	126
 # define ERNUM_CMD_NOTEXIST	127
 # define ERNUM_CMD_PERM		126
 # define ERNUM_CD_HOMELESS	1
@@ -156,6 +160,7 @@ char	*ft_get_pid_str(void);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
+void	ft_strip_tokens(char **tok);
 // Executing the input
 int		ft_heredoc_prepare(t_shell *shl);
 int		ft_handle_input_loop(t_shell *shl, int *std);
@@ -170,6 +175,7 @@ void	ft_hdlst_add(t_lst **lst, int fd);
 void	ft_hdlst_clear(t_lst *lst);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i);
+int		ft_is_directory(char *path);
 // Builtin command
 int		ft_builtin_check(char *inp);
 int		ft_builtin_cmd(t_shell *shl, int *pos);
