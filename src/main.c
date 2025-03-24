@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 15:37:53 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/24 17:12:53 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ int	main(int argc, char **argv, char **envp)
 // Ctrl+C
 // Ctrl+D
 // Ctrl+'\'
-// tokenization should be run on arguments for regular commands
-// Tokens and arguments can be given as <"abc"> but should be used as <abc>
 // if we have Signals for stopping current line then maybe we can use status=0
 // 	as default
 // Cannot redirect specific outputs to files (2>stderr.txt) (2>/dev/null)
