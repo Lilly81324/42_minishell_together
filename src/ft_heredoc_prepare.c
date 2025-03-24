@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:06:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/21 19:22:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/21 19:42:30 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	ft_heredoc_prepare(t_shell *shl)
 		if (ft_b_strcmp(shl->tok[i], "<<") == 0 && \
 			ft_is_del_or_red(shl->tok[i + 1]) == 1)
 		{
-			ft_perror("yevshell: HEREDOC not given delimiter", NULL, NULL);
+			ft_perror("yevshell: HEREDOC not given delimiter\n", NULL, NULL);
 			return (1);
 		}
 		if (ft_b_strcmp(shl->tok[i], "<<") == 0)

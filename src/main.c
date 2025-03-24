@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/21 19:24:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/24 15:37:53 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,10 @@ int	main(int argc, char **argv, char **envp)
 // TODO:
 // Signaling
 // maybe remove handling of semicolon
-// <<
 // Ctrl+C
 // Ctrl+D
 // Ctrl+'\'
-// When running ./ and then echo $? for the first time there 
-// is an uninitialised valgrind error from ft_string_substitution-> 
-// st_exit_code_subst-> ft_itoa-> ft_st_get_len
 // tokenization should be run on arguments for regular commands
-// quotes are wrongy included in the output of some things, such as echo
-// school bash exports SHLVL to a vlaue always one smaller, ours doesnt
 // Tokens and arguments can be given as <"abc"> but should be used as <abc>
 // if we have Signals for stopping current line then maybe we can use status=0
 // 	as default
