@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 15:34:01 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/24 17:05:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 // For Signals
 # include <signal.h>
 // For checking if file is directory
-#include <dirent.h>
+# include <dirent.h>
 
 # include "../libft/libft.h"
 
@@ -160,6 +160,7 @@ char	*ft_get_pid_str(void);
 int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
+void	ft_strip_tokens(char **tok);
 // Executing the input
 int		ft_heredoc_prepare(t_shell *shl);
 int		ft_handle_input_loop(t_shell *shl, int *std);

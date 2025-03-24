@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 15:04:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/24 17:04:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	ft_handle_input(char **inp, t_shell *shl)
 		ft_perror(NULL_INPUT, NULL, NULL);
 		return (1);
 	}
-	// ft_print_tokens(tokens);
+	ft_strip_tokens(shl->tok);
+	// ft_print_tokens(shl->tok);
 	ft_std_dup(std);
 	status = ft_heredoc_prepare(shl);
 	if (status == 0)
