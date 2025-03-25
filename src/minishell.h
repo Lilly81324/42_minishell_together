@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 17:05:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:53:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,6 @@ typedef struct s_shell
 	int			heredoc_pos;
 }	t_shell;
 
-extern volatile sig_atomic_t	g_signal;
-
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
@@ -149,11 +147,21 @@ char	*ft_str_insert(char *src, char *goal, int pos);
 int		ft_str_cut(char **src, int pos, int cutlen);
 
 // Programm------------------------------------------------
+// Signals
+void	ft_sig_int(int sig);
+void	ft_sig_quit(int sig);
+void	ft_sig_int_heredoc(int sig);
+int		ft_sig_term(char *input);
+// Starting up
 void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
 // Input getting
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
+// HEREDOcs
+int		ft_heredoc_string(char **new_buf, char **total_buf);
+void	ft_heredoc_str_to_lst(t_shell *shl, char *s);
+int		ft_heredoc_prepare(t_shell *shl);
 // Tokenize input
 void	ft_string_substitution(t_shell *shl, char **str);
 char	*ft_get_pid_str(void);
@@ -162,7 +170,6 @@ void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 void	ft_strip_tokens(char **tok);
 // Executing the input
-int		ft_heredoc_prepare(t_shell *shl);
 int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(t_shell *shl, int *i);
