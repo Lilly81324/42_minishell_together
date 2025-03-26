@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 15:47:58 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 17:04:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/25 19:00:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	ft_strip_tokens(char **tok)
 	int	i;
 
 	i = -1;
+	if (tok == NULL)
+		return ;
 	while (tok[++i] != NULL)
 		st_strip_string(&(tok[i]));
 }
