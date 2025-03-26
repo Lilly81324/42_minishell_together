@@ -60,7 +60,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_exit.c \
 	ft_strip.c \
 	ft_env_increase.c \
-	ft_string_substitution.c \
+	ft_subst_string.c \
 	ft_str_insert.c \
 	ft_str_cut.c \
 	ft_run_cmd.c \
@@ -84,6 +84,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_heredoc_string.c \
 	ft_heredoc_str_to_lst.c \
 	ft_sig_term.c \
+	ft_subst_excode.c \
+	ft_subst_pid.c \
+	ft_subst_reg.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

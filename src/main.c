@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/25 19:01:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/26 18:40:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,5 @@ int	main(int argc, char **argv, char **envp)
 // HEREDOCs dont give a shit about Signals
 // Can redir and delims be counted as delims for HEredocs?
 // Just Heredocs with no commands are valid and should do nothing
+// Prompt is dispalyed on stdout, which means it gets redriected too
+// can we just disaply it on the terminal?

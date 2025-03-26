@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:06:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/25 18:54:18 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/26 17:51:05 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	st_get_heredoc_inp(t_shell *shl, char *stop)
 	}
 	while (ft_b_strcmp(new_buf, stop) != 0 && status == 0)
 		status = ft_heredoc_string(&new_buf, &total_buf);
-	ft_string_substitution(shl, &total_buf);
+	ft_subst_string(shl, &total_buf);
 	ft_heredoc_str_to_lst(shl, total_buf);
 	ft_null(&total_buf);
 	ft_null(&new_buf);
