@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 16:41:10 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 15:46:50 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:43:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@ void	ft_print_tokens(char **tokens)
 	i = -1;
 	if (tokens == NULL)
 	{
-		printf("NULL Tokens\n");
+		ft_write_string("NULL Tokens\n");
 		return ;
 	}
 	if (*tokens == NULL)
 	{
-		printf("Empty Tokens\n");
+		ft_write_string("Empty Tokens\n");
 		return ;
 	}
 	while (tokens[++i] != NULL)
-		printf("{%s}\n", tokens[i]);
+	{
+		ft_write_string("{");
+		ft_write_string(tokens[i]);
+		ft_write_string("]\n");
+	}
 }

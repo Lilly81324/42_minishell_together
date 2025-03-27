@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:13:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/25 18:25:12 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:43:40 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	ft_sig_int_heredoc(int sig)
 {
 	(void)sig;
-	printf("\nyay its working\n");
+	ft_write_string("\nyay its working\n");
 	write(STDOUT_FILENO, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();

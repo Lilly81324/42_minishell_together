@@ -87,6 +87,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_subst_excode.c \
 	ft_subst_pid.c \
 	ft_subst_reg.c \
+	ft_my_readline.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

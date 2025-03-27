@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 18:40:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:44:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	if (argc > 1)
 	{
-		printf(ARGC_START);
+		ft_perror(ARGC_START, NULL, NULL);
 		return (ERNUM_START_ARGC);
 	}
 	signal(SIGINT, ft_sig_int);

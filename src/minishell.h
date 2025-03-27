@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 18:39:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 18:07:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ int		ft_sig_term(char *input);
 // Starting up
 void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
+char	*ft_my_readline(char **prompt);
 // Input getting
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
