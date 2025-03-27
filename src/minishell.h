@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/27 18:07:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 19:08:04 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # include <signal.h>
 // For checking if file is directory
 # include <dirent.h>
+// For ioctl to make SIGINT signal
+#include <sys/ioctl.h>
 
 # include "../libft/libft.h"
 
