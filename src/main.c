@@ -6,11 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/27 18:10:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:53:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+volatile sig_atomic_t g_sig = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -31,7 +33,8 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // TODO:
+// valgrind error on first Ctrl+C use
+// unclosed quote encountered when just pressing Enter with no input
 // maybe remove handling of semicolon
-// HEREDOCs dont give a shit about Signals
 // Can redir and delims be counted as delims for HEredocs?
 // Just Heredocs with no commands are valid and should do nothing

@@ -6,11 +6,27 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/27 18:15:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 16:59:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	st_get_input(char ***envp, char **input)
+{
+	char	*prompt;
+
+	prompt = ft_make_prompt(envp);
+	*input = ft_my_readline(prompt);
+	ft_null(&prompt);
+	if (g_sig == SIGINT)
+	{
+		g_sig = 0;
+		ft_null(input);
+		return (1);
+	}
+	return (0);
+}
 
 static void	st_cleanup(char ***envp)
 {
@@ -24,20 +40,21 @@ static void	st_cleanup(char ***envp)
 // Central loop called when input is given
 int	ft_loop(char ***envp)
 {
-	char	*prompt;
 	char	*input;
 	int		status;
 	t_shell	shl;
 
 	shl.env = envp;
 	shl.exit_code = 0;
+	rl_catch_signals = 0;
 	while (1)
 	{
 		shl.tok = NULL;
 		shl.heredoc_pos = 0;
 		shl.start = NULL;
-		prompt = ft_make_prompt(envp);
-		input = ft_my_readline(&prompt);
+		input = NULL;
+		if (st_get_input(envp, &input) == 1)
+			continue ;
 		add_history(input);
 		status = ft_handle_input(&input, &shl);
 		ft_null(&input);

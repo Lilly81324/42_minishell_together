@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/27 19:08:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:19:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ typedef struct s_shell
 	int			heredoc_pos;
 }	t_shell;
 
+extern volatile sig_atomic_t g_sig;
+
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
@@ -158,14 +160,15 @@ int		ft_sig_term(char *input);
 // Starting up
 void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
-char	*ft_my_readline(char **prompt);
+char	*ft_my_readline(char *prompt);
 // Input getting
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
 // HEREDOcs
-int		ft_heredoc_string(char **new_buf, char **total_buf);
+int		ft_heredoc_string(t_shell *shl, char **new_buf, char **total_buf);
 void	ft_heredoc_str_to_lst(t_shell *shl, char *s);
 int		ft_heredoc_prepare(t_shell *shl);
+int		ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf);
 // Tokenize input
 void	ft_subst_string(t_shell *shl, char **str);
 int		ft_subst_excode(t_shell *shl, char **str, int index);
