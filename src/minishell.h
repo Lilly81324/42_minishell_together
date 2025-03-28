@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 17:58:50 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:32:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@
 # define ERNUM_EXPORT_INVAL	1
 # define ERNUM_HISTORY_ARGC	1
 # define ERNUM_ENV_ARGC		1
-# define ERNUM_HRDOC_CTRLC	130
+# define ERNUM_CTRLC		130
 
 // For shlvl increasing at start
 # define MAX_SHLVL 999

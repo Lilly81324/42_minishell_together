@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 17:58:09 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:31:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,4 @@ int	main(int argc, char **argv, char **envp)
 
 // TODO:
 // valgrind error on first Ctrl+C use
-// unclosed quote encountered when just pressing Enter with no input
 // maybe remove handling of semicolon
-// Can redir and delims be counted as delims for HEredocs?
-// Just Heredocs with no commands are valid and should do nothing

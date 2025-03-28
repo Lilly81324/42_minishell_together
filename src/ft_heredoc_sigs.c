@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:09:48 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 17:58:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:32:06 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static int	st_heredoc_sigint_check(t_shell *shl)
 {
 	if (g_sig != SIGINT)
 		return (0);
+	shl->exit_code = ERNUM_CTRLC;
 	g_sig = 0;
-	shl->exit_code = ERNUM_HRDOC_CTRLC;
 	return (1);
 }
 

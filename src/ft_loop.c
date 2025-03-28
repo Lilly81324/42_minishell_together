@@ -6,13 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 16:59:27 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:32:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	st_get_input(char ***envp, char **input)
+static int	st_get_input(t_shell *shl, char ***envp, char **input)
 {
 	char	*prompt;
 
@@ -22,6 +22,7 @@ static int	st_get_input(char ***envp, char **input)
 	if (g_sig == SIGINT)
 	{
 		g_sig = 0;
+		shl->exit_code = ERNUM_CTRLC;
 		ft_null(input);
 		return (1);
 	}
@@ -53,7 +54,7 @@ int	ft_loop(char ***envp)
 		shl.heredoc_pos = 0;
 		shl.start = NULL;
 		input = NULL;
-		if (st_get_input(envp, &input) == 1)
+		if (st_get_input(&shl, envp, &input) == 1)
 			continue ;
 		add_history(input);
 		status = ft_handle_input(&input, &shl);

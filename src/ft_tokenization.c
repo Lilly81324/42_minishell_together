@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:40:45 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 18:34:30 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:09:23 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	**ft_tokenization(char *s)
 	if (s == NULL)
 		return (NULL);
 	count = ft_token_count(s);
-	if (count < 1)
+	if (count < 0)
 	{
 		ft_perror(QUOTE_UNCLOSED, NULL, NULL);
 		return (NULL);

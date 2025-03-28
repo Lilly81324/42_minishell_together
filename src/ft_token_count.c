@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:35:33 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 16:21:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:31:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ int	ft_token_count(char *s)
 
 	i = 0;
 	strings = 0;
+	ft_skip_spaces(&i, s);
+	if (s[i] == '\0')
+		return (0);
+	i = 0;
 	while (s[i] != '\0')
 	{
 		ft_skip_spaces(&i, s);
