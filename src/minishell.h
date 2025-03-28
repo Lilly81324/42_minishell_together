@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 17:19:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:58:50 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 // For checking if file is directory
 # include <dirent.h>
 // For ioctl to make SIGINT signal
-#include <sys/ioctl.h>
+# include <sys/ioctl.h>
 
 # include "../libft/libft.h"
 
@@ -111,7 +111,7 @@ typedef struct s_shell
 	int			heredoc_pos;
 }	t_shell;
 
-extern volatile sig_atomic_t g_sig;
+extern volatile sig_atomic_t	g_sig;
 
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);

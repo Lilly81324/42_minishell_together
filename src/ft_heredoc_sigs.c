@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 17:09:48 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 17:16:29 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:58:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	st_heredoc_sigint_check(t_shell *shl)
 
 int	ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf)
 {
-	int status;
+	int	status;
 
 	status = 0;
 	if (st_heredoc_sigint_check(shl) != 0)

@@ -6,13 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 17:53:15 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:58:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t g_sig = 0;
+volatile sig_atomic_t	g_sig = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
