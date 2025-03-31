@@ -80,13 +80,14 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_strip_tokens.c \
 	ft_sig_int.c \
 	ft_sig_quit.c \
-	ft_sig_int_heredoc.c \
 	ft_heredoc_string.c \
 	ft_heredoc_str_to_lst.c \
 	ft_sig_term.c \
 	ft_subst_excode.c \
 	ft_subst_pid.c \
 	ft_subst_reg.c \
+	ft_my_readline.c \
+	ft_heredoc_sigs.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

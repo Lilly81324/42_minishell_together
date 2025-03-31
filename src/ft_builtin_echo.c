@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:46:57 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:09:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:40:47 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	ft_builtin_echo(t_shell *shl, int *pos)
 		(*pos)++;
 	}
 	if (n_flag == 0)
-		printf("\n");
+		ft_write_string("\n");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 16:25:52 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 17:09:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:45:29 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	ft_builtin_pwd(t_shell *shl, int *pos)
 		shl->exit_code = ERNUM_PWD_NOTEXIST;
 		return (0);
 	}
-	printf("%s\n", pwd);
+	ft_write_string(pwd);
+	ft_write_string("\n");
 	ft_null(&pwd);
 	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
 		(*pos)++;

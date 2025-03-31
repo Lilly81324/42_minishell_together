@@ -6,27 +6,11 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 18:06:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 17:51:05 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:19:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// Signal Handling for Ctrl+C SIGINT
-// Returns 1 if Ctrl+C SIGINT was sent
-// sets sets exit code and frees the given strings
-// static int	st_sig_check(t_shell *shl, char **n_buf, char **t_buf)
-// {
-// 	if (g_signal == SIGINT)
-// 	{
-// 		ft_null(n_buf);
-// 		ft_null(t_buf);
-// 		g_signal = 0;
-// 		shl->exit_code = ERNUM_HRDOC_CTRLC;
-// 		return (1);
-// 	}
-// 	return (0);
-// }
 
 // Ran for each Heredoc that needs to be initialized
 // Gets input for heredoc and turns it into one long string
@@ -43,8 +27,9 @@ static int	st_get_heredoc_inp(t_shell *shl, char *stop)
 	status = 0;
 	total_buf = NULL;
 	new_buf = readline("heredoc > ");
-	if (ft_sig_term(new_buf) == 1)
-		return (2);
+	status = ft_heredoc_sigs(shl, &new_buf, &total_buf);
+	if (status != 0)
+		return (status);
 	if (ft_b_strcmp(new_buf, stop) == 0)
 	{
 		ft_null(&new_buf);
@@ -52,7 +37,7 @@ static int	st_get_heredoc_inp(t_shell *shl, char *stop)
 		return (0);
 	}
 	while (ft_b_strcmp(new_buf, stop) != 0 && status == 0)
-		status = ft_heredoc_string(&new_buf, &total_buf);
+		status = ft_heredoc_string(shl, &new_buf, &total_buf);
 	ft_subst_string(shl, &total_buf);
 	ft_heredoc_str_to_lst(shl, total_buf);
 	ft_null(&total_buf);
@@ -71,7 +56,6 @@ int	ft_heredoc_prepare(t_shell *shl)
 	i = -1;
 	shl->start = NULL;
 	status = 0;
-	signal(SIGINT, ft_sig_int_heredoc);
 	while (shl->tok[++i] != NULL)
 	{
 		if (ft_b_strcmp(shl->tok[i], "<<") != 0)

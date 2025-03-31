@@ -6,11 +6,13 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 18:40:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:31:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+volatile sig_atomic_t	g_sig = 0;
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -20,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	if (argc > 1)
 	{
-		printf(ARGC_START);
+		ft_perror(ARGC_START, NULL, NULL);
 		return (ERNUM_START_ARGC);
 	}
 	signal(SIGINT, ft_sig_int);
@@ -31,9 +33,5 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // TODO:
+// valgrind error on first Ctrl+C use
 // maybe remove handling of semicolon
-// HEREDOCs dont give a shit about Signals
-// Can redir and delims be counted as delims for HEredocs?
-// Just Heredocs with no commands are valid and should do nothing
-// Prompt is dispalyed on stdout, which means it gets redriected too
-// can we just disaply it on the terminal?

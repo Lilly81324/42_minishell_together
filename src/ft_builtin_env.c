@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 17:53:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/12 19:32:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/27 17:45:01 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	ft_builtin_env(t_shell *shl, int *pos)
 		return (ft_too_many_args("env", 0));
 	}
 	while ((*shl->env)[++i] != NULL)
-		printf("%s\n", (*shl->env)[i]);
+	{
+		ft_write_string((*shl->env)[i]);
+		ft_write_string("\n");
+	}
 	(*pos)++;
 	return (0);
 }

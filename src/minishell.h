@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 18:39:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 18:32:20 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # include <signal.h>
 // For checking if file is directory
 # include <dirent.h>
+// For ioctl to make SIGINT signal
+# include <sys/ioctl.h>
 
 # include "../libft/libft.h"
 
@@ -78,7 +80,7 @@
 # define ERNUM_EXPORT_INVAL	1
 # define ERNUM_HISTORY_ARGC	1
 # define ERNUM_ENV_ARGC		1
-# define ERNUM_HRDOC_CTRLC	130
+# define ERNUM_CTRLC		130
 
 // For shlvl increasing at start
 # define MAX_SHLVL 999
@@ -108,6 +110,8 @@ typedef struct s_shell
 	t_lst		*start;
 	int			heredoc_pos;
 }	t_shell;
+
+extern volatile sig_atomic_t	g_sig;
 
 // Utility-------------------------------------------------
 void	ft_null(char **ptr);
@@ -156,13 +160,15 @@ int		ft_sig_term(char *input);
 // Starting up
 void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
+char	*ft_my_readline(char *prompt);
 // Input getting
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
 // HEREDOcs
-int		ft_heredoc_string(char **new_buf, char **total_buf);
+int		ft_heredoc_string(t_shell *shl, char **new_buf, char **total_buf);
 void	ft_heredoc_str_to_lst(t_shell *shl, char *s);
 int		ft_heredoc_prepare(t_shell *shl);
+int		ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf);
 // Tokenize input
 void	ft_subst_string(t_shell *shl, char **str);
 int		ft_subst_excode(t_shell *shl, char **str, int index);

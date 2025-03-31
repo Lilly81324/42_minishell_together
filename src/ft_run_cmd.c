@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:14:17 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 17:08:39 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/28 17:51:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_run_cmd(t_shell *shl, char *path, char **argv)
 	int		temp;
 	int		i;
 
+	signal(SIGINT, ft_sig_quit);
 	pid = fork();
 	if (pid < 0)
 	{
@@ -30,6 +31,7 @@ int	ft_run_cmd(t_shell *shl, char *path, char **argv)
 	if (pid == 0)
 		execve(path, argv, *shl->env);
 	waitpid(pid, &temp, 0);
+	signal(SIGINT, ft_sig_int);
 	i = 0;
 	while (argv[i] != NULL)
 		i++;
