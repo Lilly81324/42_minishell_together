@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 18:32:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/31 18:22:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,17 @@
 # define REDIR_INVAL_PIPE "Invalid read end fd for pipe given\n"
 # define REDIR_PIPE_TO_INP "Error redirecting stdin to read end of pipe\n"
 # define REDIR_OUT_TO_PIPE "Error redirecting stdout to write end of pipe\n"
-# define REDIR_INVAL_INFILE "Error opening infile\n"
+# define REDIR_INVAL_INFILE "lelshell: No such file or directory\n"
 # define REDIR_INF_TO_INP "Error redirecting stdin to infile\n"
 # define REDIR_INVAL_OUTF "Error opening outfile\n"
 # define REDIR_OUT_TO_OUTF "Error redirecting stdout to outfile\n"
 //		Commands
+# define NO_SUCH_FILE "lelshell: %s: No such file or directory\n"
 # define ERR_SHLVL_MAX \
 "lelshell: warning: shell level (%s) too high, resetting to 1\n"
 # define QUOTE_UNCLOSED "lelshell: Error, unquoted quote unclosed\n"
 # define ARGC_START "lelshell: Too many arguments for lelshell\n"
-# define INVALID_COMMAND "lelshell: %s: No such file or directory\n"
+# define INVALID_COMMAND "lelshell: %s: command not found\n"
 # define CMD_IS_DIR "lelshell: %s: Is a directory\n"
 # define FORK_ERROR "lelshell: Error creating fork\n"
 # define PWD_NONEXISTENT_ERROR "lelshell: pwd: No pwd exists\n"
@@ -129,7 +130,7 @@ int		ft_b_strcmp(char *s1, char *s2);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
-int		ft_stdin_to_infile(char *filename);
+int		ft_stdin_to_infile( char *filename);
 int		ft_stdin_to_pipe(int r_end);
 void	ft_std_dup(int *std);
 void	ft_std_reset(int *std);
