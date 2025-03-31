@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 19:37:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/24 15:34:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/31 18:23:48 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	ft_check_access(char *path, char *cmd)
 	exists = access(path, F_OK);
 	if (exists != 0)
 	{
-		ft_perror(INVALID_COMMAND, cmd, NULL);
+		if (ft_check_abs_cmds(&cmd, 0) == 0)
+			ft_perror(INVALID_COMMAND, cmd, NULL);
+		else
+			ft_perror(NO_SUCH_FILE, cmd, NULL);
 		return (ERNUM_CMD_NOTEXIST);
 	}
 	if (ft_is_directory(path) == 1)

@@ -6,11 +6,27 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 18:23:40 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/03/31 16:33:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// 0 => dont expand		1 => expand
+// Returns 0 if at dollar sign with spacer after or not expandable
+// returns 1 if $ and then valid char
+static int	st_after_dollar(char *str, int i)
+{
+	if (ft_find_c(str[i + 1], SPACES) != -1)
+		return (0);
+	if (str[i + 1] == '\0')
+		return (0);
+	if (str[i + 1] == '\"')
+		return (0);
+	if (str[i + 1] == '\'')
+		return (0);
+	return (1);
+}
 
 // returns 0 if no substitution took place or 1 if it did
 // uses quot to track which quotes are active currently
@@ -23,6 +39,8 @@ static int	st_on_char(t_shell *shl, char **str, int *i, int *quot)
 	else if ((*str)[*i] == '\"' && quot[0] == 0)
 		quot[1] = !(quot[1]);
 	if ((*str)[*i] != '$' || quot[0] == 1)
+		return (0);
+	if (st_after_dollar(*str, *i) == 0)
 		return (0);
 	(*i)--;
 	if (ft_subst_excode(shl, str, (*i) + 1) == 0)

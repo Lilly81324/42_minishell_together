@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sig_term.c                                      :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 18:51:57 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 17:00:18 by sikunne          ###   ########.fr       */
+/*   Created: 2025/03/31 18:01:52 by sikunne           #+#    #+#             */
+/*   Updated: 2025/03/31 18:04:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Returns 1 if given string is NULL
-int	ft_sig_term(char *input)
+int	main(int argc, char **argv)
 {
-	if (input != NULL)
-		return (0);
-	if (isatty(STDIN_FILENO) == 1)
-		ft_perror("exit\n", NULL, NULL);
-	return (1);
+	int	i;
+
+	i = -1;
+	while (++i < argc)
+		printf("--%s--\n", argv[i]);
+	return (0);
 }
