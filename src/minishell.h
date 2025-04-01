@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 18:22:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/01 18:19:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,12 @@ int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);
 int		ft_b_strcmp(char *s1, char *s2);
+void	ft_b_close(int *fd);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
 int		ft_stdin_to_infile( char *filename);
-int		ft_stdin_to_pipe(int r_end);
+int		ft_stdin_to_pipe(int *r_end);
 void	ft_std_dup(int *std);
 void	ft_std_reset(int *std);
 void	ft_std_close(int *std);

@@ -88,6 +88,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_subst_reg.c \
 	ft_my_readline.c \
 	ft_heredoc_sigs.c \
+	ft_b_close.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
