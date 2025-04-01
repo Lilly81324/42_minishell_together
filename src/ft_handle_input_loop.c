@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 18:30:46 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/01 19:07:39 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/01 19:16:01 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 // As well as returning that pipes r_end fd through <*fd>
 // Returns 0 if all nominal, continue
 // Returns -1 if error, stop current line
-static int	st_pipes(char **tok, int pos, int *fd)
+static int	st_pipes(t_shell *shl, int pos, int *fd)
 {
 	int	status;
 
@@ -28,17 +28,23 @@ static int	st_pipes(char **tok, int pos, int *fd)
 	if (pos != 0)
 		status = ft_stdin_to_pipe(fd);
 	if (status != 0)
-		return (status);
-	while (ft_is_delimiter(tok[pos]) == 0)
+	{
+		shl->exit_code = 1;
+		return (1);
+	}
+	while (ft_is_delimiter(shl->tok[pos]) == 0)
 		pos++;
-	if (ft_b_strcmp(tok[pos], "|") != 0)
+	if (ft_b_strcmp(shl->tok[pos], "|") != 0)
 	{
 		*fd = -1;
 		return (0);
 	}
 	*fd = ft_stdout_to_pipe();
 	if (*fd == -1)
-		return (-1);
+	{
+		shl->exit_code = 1;
+		return (1);
+	}
 	return (0);
 }
 
@@ -58,7 +64,7 @@ int	ft_handle_input_loop(t_shell *shl, int *std)
 	while (shl->tok[i] != NULL)
 	{
 		ft_std_reset(std);
-		status = st_pipes(shl->tok, i, &last_pipe);
+		status = st_pipes(shl, i, &last_pipe);
 		if (status != 0)
 			break ;
 		status = ft_handle_chunks(shl, &i);
