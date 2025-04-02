@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:38:18 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 16:03:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/02 23:18:31 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	st_pipe_check(char **tok)
 // pipe as last token -> no execution <-- CONTROVERSIAL
 int	ft_syntax_check(t_shell *shl)
 {
-	int	i;
 	int	status;
 
 	if (ft_b_strcmp(shl->tok[0], "|") == 0)

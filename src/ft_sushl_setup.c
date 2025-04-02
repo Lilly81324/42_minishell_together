@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:38:31 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 17:51:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/02 23:17:02 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_sushl	*ft_sushls_setup(t_shell *shl)
 	sub = (t_sushl *)malloc(sizeof(t_sushl));
 	if (sub == NULL)
 		return (NULL);
-	sub->env = ft_env_subshell(shl->env);
+	sub->env = &ft_env_subshell(shl->env);
 	sub->num = 0;
 	sub->next = NULL;
 	i = 0;

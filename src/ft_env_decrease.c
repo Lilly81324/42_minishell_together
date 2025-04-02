@@ -6,11 +6,41 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:24:18 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 16:24:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/02 23:15:15 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// Specialized atoi that works only for positive numbers
+// with at most one plus sign in front of the number
+// and nothing after the number
+// !!! has no overflow protection
+static int	st_atoi(const char *nptr)
+{
+	int	i;
+	int	res;
+
+	res = 0;
+	i = 0;
+	if (nptr == NULL)
+		return (-1);
+	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' \
+		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
+		i++;
+	if (nptr[i] == '+')
+		i++;
+	if (!(nptr[i] >= '0' && nptr[i] <= '9'))
+		return (-1);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		res = (res * 10) + (nptr[i] - '0');
+		i++;
+	}
+	if (nptr[i] != '\0')
+		return (-1);
+	return (res);
+}
 
 // Decreases the value of enviroment variable <target> by <value>
 // or sets it to "<target>=0" if not valid custom atoi value

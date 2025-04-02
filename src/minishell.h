@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 18:09:25 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/02 23:29:12 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@
 
 typedef struct s_sushl
 {
-	char				***env;
-	int					num;
-	struct s_sub_shl	*next;
+	char			***env;
+	int				num;
+	struct s_sushl	*next;
 }	t_sushl;
 
 typedef struct s_lst
@@ -158,7 +158,7 @@ char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
 void	ft_env_decrease(char ***envp, char *target, int value);
-char	***ft_env_subshell(char ***src);
+char	**ft_env_subshell(char ***src);
 // Error Functions
 int		ft_too_many_args(char *str, int exit);
 void	ft_perror(char *input, char *arg1, char *arg2);
@@ -199,12 +199,11 @@ int		ft_handle_chunks(t_shell *shl, int *std);
 int		ft_syntax_check(t_shell *shl);
 int		ft_check_singlechunk(char **tok);
 int		ft_singlechunk(t_shell *shl);
-int		ft_multichunk(t_shell *shl, int *std);
 t_sushl	*ft_sushls_setup(t_shell *shl);
 void	ft_sushl_lstadd(t_sushl *lst, char ***env, int num);
 void	ft_sushl_clear(t_sushl *lst);
 int		ft_pipes(t_shell *shl, int pos, int *fd);
-int		ft_subchunk(t_shell *shl, int pos, char ***envp);
+int		ft_subchunk(t_shell *shl, int *pos, char ***envp);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);
