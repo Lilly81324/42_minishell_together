@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/01 18:19:14 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/02 18:09:25 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # include "../libft/libft.h"
 
 // Error messages
+//		Syntax
+# define SYNTAX_REDIR "lelshell: syntax error near unexpected token `%s'\n"
 // 		Redirection
 # define REDIR_INVAL_PIPE "Invalid read end fd for pipe given\n"
 # define REDIR_PIPE_TO_INP "Error redirecting stdin to read end of pipe\n"
@@ -68,6 +70,7 @@
 
 // Error return values
 # define ERNUM_START_ARGC	1
+# define ERNUM_SYNTAX		2
 # define ERNUM_CMD_IS_DIR	126
 # define ERNUM_CMD_NOTEXIST	127
 # define ERNUM_CMD_PERM		126
@@ -97,6 +100,13 @@
 # define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
+typedef struct s_sushl
+{
+	char				***env;
+	int					num;
+	struct s_sub_shl	*next;
+}	t_sushl;
+
 typedef struct s_lst
 {
 	int				data;
@@ -110,6 +120,7 @@ typedef struct s_shell
 	int			exit_code;
 	t_lst		*start;
 	int			heredoc_pos;
+	int			subshl_pos;
 }	t_shell;
 
 extern volatile sig_atomic_t	g_sig;
@@ -146,6 +157,8 @@ void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
+void	ft_env_decrease(char ***envp, char *target, int value);
+char	***ft_env_subshell(char ***src);
 // Error Functions
 int		ft_too_many_args(char *str, int exit);
 void	ft_perror(char *input, char *arg1, char *arg2);
@@ -182,9 +195,16 @@ void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 void	ft_strip_tokens(char **tok);
 // Executing the input
-int		ft_handle_input_loop(t_shell *shl, int *std);
-int		ft_pipe_setup(char **tokens, int pos);
-int		ft_handle_chunks(t_shell *shl, int *i);
+int		ft_handle_chunks(t_shell *shl, int *std);
+int		ft_syntax_check(t_shell *shl);
+int		ft_check_singlechunk(char **tok);
+int		ft_singlechunk(t_shell *shl);
+int		ft_multichunk(t_shell *shl, int *std);
+t_sushl	*ft_sushls_setup(t_shell *shl);
+void	ft_sushl_lstadd(t_sushl *lst, char ***env, int num);
+void	ft_sushl_clear(t_sushl *lst);
+int		ft_pipes(t_shell *shl, int pos, int *fd);
+int		ft_subchunk(t_shell *shl, int pos, char ***envp);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);

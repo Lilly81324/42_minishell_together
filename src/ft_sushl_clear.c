@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_chunks.c                                 :+:      :+:    :+:   */
+/*   ft_sushl_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/28 18:30:46 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 16:12:29 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/02 17:56:45 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/02 17:59:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Runs for each chunk
-// reset std fds, check if current chunk takes pipe input,
-// then checks if new pipe needs to be made for current chunk
-// then handles contents of chunk
-int	ft_handle_chunks(t_shell *shl, int *std)
+// Frees linked list of subshells, starting with <lst>
+// Sets lst to NULL, though this probably works only locally
+void	ft_sushl_clear(t_sushl *lst)
 {
-	if (ft_syntax_check(shl) != 0)
-		return (0);
-	if (ft_check_singlechunk(shl->tok) == 1)
-		return (ft_singlechunk(shl));
-	return (ft_multichunk(shl, std));
+	t_sushl	*node;
+	t_sushl	*path;
+
+	if (lst == NULL)
+		return ;
+	node = lst;
+	while (node != NULL)
+	{
+		ft_nullb(node->env);
+		path = node->next;
+		free (node);
+		node = path;
+	}
+	lst = NULL;
 }

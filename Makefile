@@ -48,11 +48,9 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_export.c \
 	ft_builtin_unset.c \
 	ft_stdout_to_outfile_append.c \
-	ft_pipe_setup.c \
 	ft_builtin_echo.c \
 	ft_builtin_history.c \
 	ft_write_string.c \
-	ft_handle_input_loop.c \
 	ft_absolute_cmd.c \
 	ft_check_abs_cmds.c \
 	ft_std_close.c \
@@ -89,6 +87,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_my_readline.c \
 	ft_heredoc_sigs.c \
 	ft_b_close.c \
+	ft_env_decrease.c \
+	ft_env_subshell.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

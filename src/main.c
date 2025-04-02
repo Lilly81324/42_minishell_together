@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/01 18:31:40 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/02 14:51:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	main(int argc, char **argv, char **envp)
 // "error command | regular command" shold set exit code to 0, not 1
 // just running "|" should throw error
 // echo lel | cat ; echo lol | wc -l Running things before semicolon doesnt do them
+// Command chunks piped should always run, no matter the previous stuff
+// Command chunks with semicolon should stop at syntax error
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?
