@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:50:39 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:37:23 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 01:02:41 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,18 @@ int	ft_regular_cmd(t_shell *shl, int *pos, char ***env)
 	if (path == NULL)
 	{
 		ft_perror(INVALID_COMMAND, shl->tok[*pos], NULL);
-		shl->exit_code = ERNUM_CMD_NOTEXIST;
-		return (0);
+		return (ERNUM_CMD_NOTEXIST);
 	}
 	status = ft_check_access(path, shl->tok[*pos]);
 	if (status != 0)
 	{
 		ft_null(&path);
-		shl->exit_code = status;
-		return (0);
+		return (status);
 	}
 	argv = ft_prepare_argv(shl->tok, pos);
 	if (argv == NULL)
 		return (2);
-	status = ft_run_cmd(shl, path, argv, env);
+	status = ft_run_cmd(path, argv, env);
 	ft_cleanup(shl->tok, &argv, &path, pos);
 	return (status);
 }

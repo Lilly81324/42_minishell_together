@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:21:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 00:05:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ int	main(int argc, char **argv, char **envp)
 // valgrind error on first Ctrl+C use
 // maybe remove handling of semicolon
 // Remove custom shortcuts from non-interactive mode?
-// Pipes need to be ran in a subshell
-// Pipes need to run concurrently, this is what bash does, and it helps with 
-// piping big files that are too big for the pipe character buffer
 // Dont treat redirection as delimiters for commands "echo abc >out.txt def ghi"
 // should be echoing all of that, and regular commads should get all arguments
 // as well, "./prog arg1 >out.txt arg2" gets both args
-// In the spirit of concurrent pipes, running
-// "error command | regular command" shold set exit code to 0, not 1
 // change the thing in ft_builtin_cmd
+// Commands in multichunk shouldnt be setting exit_code and returning status
+// instead they should return status for putting it in exit code
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?

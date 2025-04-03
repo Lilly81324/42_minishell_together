@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 18:29:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 23:35:57 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	ft_handle_input(char **inp, t_shell *shl)
 	status = st_tokenizer(shl, inp);
 	if (status != 0)
 		return (status);
+	ft_null(inp);
 	ft_std_dup(std);
 	status = ft_heredoc_prepare(shl);
 	if (status == 0)

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 14:46:57 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/27 17:40:47 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 00:46:38 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	ft_builtin_echo(t_shell *shl, int *pos)
 	int	n_flag;
 
 	n_flag = 0;
-	shl->exit_code = 0;
 	(*pos)++;
 	n_flag = ft_handle_n_flag(shl->tok[*pos], pos);
 	if (ft_is_del_or_red(shl->tok[*pos]) == 0)

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 16:28:00 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 17:53:50 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 23:20:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static t_lst	*st_index_linked_list(t_shell *shl)
 int	ft_stdin_to_heredoc(t_shell *shl)
 {
 	t_lst	*node;
-	int		i;
 
-	i = 0;
 	node = st_index_linked_list(shl);
 	if (node == NULL)
 		return (0);

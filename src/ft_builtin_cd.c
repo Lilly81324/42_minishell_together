@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:24:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 01:00:53 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*ft_new_envp_pwd(void)
 // moves pwd to HOME from envp
 // prints out Error if no HOME
 // and another Error if invalid home to move to
-static int	ft_blank_cd(t_shell *shl, char ***env)
+static int	ft_blank_cd(char ***env)
 {
 	char	*home;
 	int		status;
@@ -73,15 +73,13 @@ static int	ft_blank_cd(t_shell *shl, char ***env)
 	if (!home)
 	{
 		ft_perror(CD_HOMELESS_ERROR, NULL, NULL);
-		shl->exit_code = ERNUM_CD_HOMELESS;
-		return (0);
+		return (ERNUM_CD_HOMELESS);
 	}
 	status = chdir(home);
 	if (status == -1)
 	{
 		ft_perror(CD_INVALID_PATH, home, NULL);
-		shl->exit_code = ERNUM_CD_HOMEWRONG;
-		return (0);
+		return (ERNUM_CD_HOMEWRONG);
 	}
 	new_cwd = ft_new_envp_pwd();
 	ft_change_env(env, new_cwd);
@@ -106,15 +104,11 @@ int	ft_builtin_cd(t_shell *shl, int *pos, char ***env)
 {
 	int		status;
 
-	shl->exit_code = 0;
 	(*pos)++;
 	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
-		return (ft_blank_cd(shl, env));
+		return (ft_blank_cd(env));
 	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 0)
-	{
-		shl->exit_code = ERNUM_CD_ARGC;
-		return (ft_too_many_args("cd", 1));
-	}
+		return (ft_too_many_args("cd", ERNUM_CD_ARGC));
 	if (shl->tok[*pos][0] == '/')
 		status = chdir(shl->tok[*pos]);
 	else
@@ -122,8 +116,7 @@ int	ft_builtin_cd(t_shell *shl, int *pos, char ***env)
 	if (status != 0)
 	{
 		ft_perror(CD_INVALID_PATH, shl->tok[*pos], NULL);
-		shl->exit_code = ERNUM_CD_PATHWRONG;
-		return (0);
+		return (ERNUM_CD_PATHWRONG);
 	}
 	st_cleanup(shl, pos);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:14:17 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:40:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 01:02:25 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Runs command at <path> with arguments <argv> and envp <*shl->env>
 // Gives back the exit code of programm into <status>
 // Returns 0 if execution nominal, or 1 if Error
-int	ft_run_cmd(t_shell *shl, char *path, char **argv, char ***env)
+int	ft_run_cmd(char *path, char **argv, char ***env)
 {
 	pid_t	pid;
 	int		temp;
@@ -37,6 +37,5 @@ int	ft_run_cmd(t_shell *shl, char *path, char **argv, char ***env)
 		i++;
 	i--;
 	ft_update_last_arg(argv[i], env);
-	shl->exit_code = WEXITSTATUS(temp);
-	return (0);
+	return (WEXITSTATUS(temp));
 }

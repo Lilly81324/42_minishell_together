@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:40:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 00:47:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	st_update_last_arg(t_shell *shl, int pos, char ***env)
 }
 
 // runs builtin commands like exit, cd, unset
-// returns 0-255 if programm should close with that code
-// returns -1 if programm should continue
-int	ft_builtin_cmd(t_shell *shl, int *pos, char ***env)
+// returns exit code of builtin command
+// sets <*ex> to 1 if program should close
+int	ft_builtin_cmd(t_shell *shl, int *pos, char ***env, int *ex)
 {
 	int	i;
 	int	status;
@@ -37,7 +37,7 @@ int	ft_builtin_cmd(t_shell *shl, int *pos, char ***env)
 	i = 0;
 	ft_skip_spaces(&i, shl->tok[*pos]);
 	if (ft_b_strcmp(&(shl->tok[*pos][i]), "exit") == 0)
-		status = ft_builtin_exit(shl, pos);
+		status = ft_builtin_exit(shl, pos, ex);
 	else if (ft_b_strcmp(&(shl->tok[*pos][i]), "env") == 0)
 		status = ft_builtin_env(shl, pos, env);
 	else if (ft_b_strcmp(&(shl->tok[*pos][i]), "pwd") == 0)

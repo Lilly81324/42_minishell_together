@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 18:38:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 23:35:39 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	ft_loop(char ***envp)
 			continue ;
 		add_history(input);
 		status = ft_handle_input(&input, &shl);
-		ft_null(&input);
 		if (status >= 2)
 		{
 			st_cleanup(envp);

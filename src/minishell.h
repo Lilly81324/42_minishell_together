@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 18:26:26 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 01:03:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,7 +196,7 @@ int		ft_count_pipes(char **tok, int pos);
 int		ft_singlechunk(t_shell *shl, int *pos);
 int		ft_multichunk(t_shell *shl, int *std, int *pos);
 int		ft_pipes(t_shell *shl, int pos, int *fd);
-int		ft_subchunk(t_shell *shl, int *pos, char ***envp);
+int		ft_subchunk(t_shell *shl, int *pos, char ***env, int *std, int lpipe);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);
@@ -205,12 +205,12 @@ t_lst	*ft_hdlst_new(int fd);
 void	ft_hdlst_add(t_lst **lst, int fd);
 void	ft_hdlst_clear(t_lst *lst);
 // Commands
-int		ft_token_cmds(t_shell *shl, int i, char ***envp);
+int		ft_token_cmds(t_shell *shl, int i, char ***envp, int *ex);
 int		ft_is_directory(char *path);
 // Builtin command
 int		ft_builtin_check(char *inp);
-int		ft_builtin_cmd(t_shell *shl, int *pos, char ***env);
-int		ft_builtin_exit(t_shell *shl, int *pos);
+int		ft_builtin_cmd(t_shell *shl, int *pos, char ***env, int *ex);
+int		ft_builtin_exit(t_shell *shl, int *pos, int *ex);
 int		ft_builtin_env(t_shell *shl, int *pos, char ***env);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
 int		ft_builtin_cd(t_shell *shl, int *pos, char ***env);
@@ -223,7 +223,7 @@ int		ft_builtin_history(t_shell *shl, int *pos);
 int		ft_check_abs_cmds(char **token, int pos);
 int		ft_absolute_cmd(t_shell *shl, int *pos, char ***env);
 int		ft_check_access(char *path, char *cmd);
-int		ft_run_cmd(t_shell *shl, char *path, char **argv, char ***env);
+int		ft_run_cmd(char *path, char **argv, char ***env);
 char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(t_shell *shl, int *pos, char ***env);
 char	**ft_prepare_argv(char **arg, int *pos);
