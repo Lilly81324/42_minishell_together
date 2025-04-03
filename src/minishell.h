@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:12:29 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:40:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ typedef struct s_shell
 {
 	char		**tok;
 	char		***env;
+	char		****subenv;
 	int			exit_code;
 	t_lst		*start;
 	int			heredoc_pos;
@@ -131,6 +132,7 @@ int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);
 int		ft_b_strcmp(char *s1, char *s2);
+void	ft_b_close(int *fd);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -187,7 +189,7 @@ void	ft_strip_tokens(char **tok);
 // Executing the input
 int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_syntax_check(t_shell *shl);
-int		ft_check_singlechunk(char **tok, int pos);
+int		ft_count_pipes(char **tok, int pos);
 int		ft_singlechunk(t_shell *shl, int *pos);
 int		ft_multichunk(t_shell *shl, int *std, int *pos);
 int		ft_pipes(t_shell *shl, int pos, int *fd);

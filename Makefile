@@ -87,11 +87,12 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_my_readline.c \
 	ft_heredoc_sigs.c \
 	ft_syntax_check.c \
-	ft_check_singlechunk.c \
+	ft_count_pipes.c \
 	ft_singlechunk.c \
 	ft_multichunk.c \
 	ft_pipes.c \
 	ft_subchunk.c \
+	ft_b_close.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_singlechunk.c                             :+:      :+:    :+:   */
+/*   ft_count_pipes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:24:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 15:59:05 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:35:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// maybe change to count_pipes, same use case here, but more later
-int	ft_check_singlechunk(char **tok, int pos)
+// counts how many pipes between <tok[pos]> and next delim
+int	ft_count_pipes(char **tok, int pos)
 {
 	int	i;
+	int	count;
 
 	i = -1;
+	count = 0;
 	while (ft_is_delimiter(tok[++i + pos]) == 0)
 	{
 		if (ft_b_strcmp(tok[i + pos], "|") == 0)
-			return (0);
+			count++;
 	}
-	return (1);
+	return (count);
 }

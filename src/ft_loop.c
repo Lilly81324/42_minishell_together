@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 18:32:11 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:40:35 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	ft_loop(char ***envp)
 		shl.tok = NULL;
 		shl.heredoc_pos = 0;
 		shl.start = NULL;
+		shl.subenv = NULL;
 		input = NULL;
 		if (st_get_input(&shl, envp, &input) == 1)
 			continue ;
