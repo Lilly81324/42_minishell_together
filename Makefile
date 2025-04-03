@@ -21,7 +21,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_regular_cmd.c \
 	ft_builtin_check.c \
 	ft_skip_spaces.c \
-	ft_handle_chunks.c \
 	ft_is_delimiter.c \
 	ft_is_redirector.c \
 	ft_is_del_or_red.c \
@@ -48,7 +47,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_export.c \
 	ft_builtin_unset.c \
 	ft_stdout_to_outfile_append.c \
-	ft_pipe_setup.c \
 	ft_builtin_echo.c \
 	ft_builtin_history.c \
 	ft_write_string.c \
@@ -92,6 +90,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_check_singlechunk.c \
 	ft_singlechunk.c \
 	ft_multichunk.c \
+	ft_pipes.c \
+	ft_subchunk.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

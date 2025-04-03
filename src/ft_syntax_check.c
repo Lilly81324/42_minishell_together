@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:38:18 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 23:18:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:14:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	ft_syntax_check(t_shell *shl)
 {
 	int	status;
 
+	status = 0;
 	if (ft_b_strcmp(shl->tok[0], "|") == 0)
 	{
 		ft_perror(SYNTAX_REDIR, shl->tok[0], NULL);

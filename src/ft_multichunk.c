@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:07:08 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:07:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:15:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ int	ft_multichunk(t_shell *shl, int *std, int *pos)
 	int			status;
 	int			last_pipe;
 
-	// For all piped chunks
 	i = 0;
 	status = 0;
 	last_pipe = -1;
 	while (ft_is_delimiter(shl->tok[i]) == 0)
 	{
-		// For each piped chunk:
+		// For each piped subchunk:
 		ft_std_reset(std);
 		status = ft_pipes(shl, i, &last_pipe);
 		if (status != 0)

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:05:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:12:29 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # include "../libft/libft.h"
 
 // Error messages
+// 		Syntax
+# define SYNTAX_REDIR "lelshell: syntax error near unexpected token `%s'\n"
 // 		Redirection
 # define REDIR_INVAL_PIPE "Invalid read end fd for pipe given\n"
 # define REDIR_PIPE_TO_INP "Error redirecting stdin to read end of pipe\n"
@@ -68,6 +70,7 @@
 
 // Error return values
 # define ERNUM_START_ARGC	1
+# define ERNUM_SYNTAX		2
 # define ERNUM_CMD_IS_DIR	126
 # define ERNUM_CMD_NOTEXIST	127
 # define ERNUM_CMD_PERM		126
@@ -187,8 +190,8 @@ int		ft_syntax_check(t_shell *shl);
 int		ft_check_singlechunk(char **tok, int pos);
 int		ft_singlechunk(t_shell *shl, int *pos);
 int		ft_multichunk(t_shell *shl, int *std, int *pos);
-int		ft_pipe_setup(char **tokens, int pos);
-int		ft_handle_chunks(t_shell *shl, int *i);
+int		ft_pipes(t_shell *shl, int pos, int *fd);
+int		ft_subchunk(t_shell *shl, int *pos, char ***envp);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);
