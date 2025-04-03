@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:51:40 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:26:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct s_shell
 {
 	char		**tok;
 	char		***env;
-	char		****subenv;
 	int			exit_code;
 	t_lst		*start;
 	int			heredoc_pos;

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 18:30:46 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:42:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:40:00 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_handle_input_loop(t_shell *shl, int *std)
 	while (shl->tok[i] != NULL && status == 0)
 	{// Run for every chunk
 		ft_std_reset(std);
-		shl->subenv = NULL;
 		if (ft_count_pipes(shl->tok, i) == 0)
 			status = ft_singlechunk(shl, &i);
 		else
