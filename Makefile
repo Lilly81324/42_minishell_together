@@ -93,6 +93,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_pipes.c \
 	ft_subchunk.c \
 	ft_b_close.c \
+	ft_env_decrease.c \
+	ft_env_subshell.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

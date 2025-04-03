@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:40:00 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:03:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ extern volatile sig_atomic_t	g_sig;
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
+void	ft_nulld(char ****ptr);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_cooler_open(char *filename, int flags, mode_t mode);
 int		ft_is_delimiter(char *str);
@@ -151,6 +152,8 @@ void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
+void	ft_env_decrease(char ***envp, char *target, int value);
+char	***ft_env_subshell(char ***src, int count);
 // Error Functions
 int		ft_too_many_args(char *str, int exit);
 void	ft_perror(char *input, char *arg1, char *arg2);
