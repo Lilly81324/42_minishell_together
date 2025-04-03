@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:48:00 by sikunne           #+#    #+#             */
-/*   Updated: 2025/02/26 15:14:53 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:37:01 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_is_delimiter(char *str)
 	if (str[0] == '|' && str[1] == '\0')
 		return (1);
 	if (str[0] == ';' && str[1] == '\0')
-		return (1);
+		return (0);
 	return (0);
 }

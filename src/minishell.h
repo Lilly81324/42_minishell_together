@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 18:22:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 15:36:50 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
-# define SPECIALS "><;|"
+# define SPECIALS "><|"
 // Used to define how many times argument substitution is called on same string
 # define MAX_SUBSTITUTIONS 10
 
