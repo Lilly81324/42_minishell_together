@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 18:26:36 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:21:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char **argv, char **envp)
 // as well, "./prog arg1 >out.txt arg2" gets both args
 // In the spirit of concurrent pipes, running
 // "error command | regular command" shold set exit code to 0, not 1
+// change the thing in ft_builtin_cmd
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 16:56:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:24:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ static char	*ft_new_envp_pwd(void)
 // moves pwd to HOME from envp
 // prints out Error if no HOME
 // and another Error if invalid home to move to
-static int	ft_blank_cd(t_shell *shl)
+static int	ft_blank_cd(t_shell *shl, char ***env)
 {
 	char	*home;
 	int		status;
 	char	*new_cwd;
 
-	home = ft_get_env(*shl->env, "HOME");
+	home = ft_get_env(*env, "HOME");
 	if (!home)
 	{
 		ft_perror(CD_HOMELESS_ERROR, NULL, NULL);
@@ -84,7 +84,7 @@ static int	ft_blank_cd(t_shell *shl)
 		return (0);
 	}
 	new_cwd = ft_new_envp_pwd();
-	ft_change_env(shl->env, new_cwd);
+	ft_change_env(env, new_cwd);
 	ft_null(&new_cwd);
 	return (0);
 }
@@ -102,14 +102,14 @@ static void	st_cleanup(t_shell *shl, int *pos)
 
 // changes current directory to either an absolute or relative path
 // as defined by the token after <tokens[*pos]>
-int	ft_builtin_cd(t_shell *shl, int *pos)
+int	ft_builtin_cd(t_shell *shl, int *pos, char ***env)
 {
 	int		status;
 
 	shl->exit_code = 0;
 	(*pos)++;
 	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
-		return (ft_blank_cd(shl));
+		return (ft_blank_cd(shl, env));
 	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 0)
 	{
 		shl->exit_code = ERNUM_CD_ARGC;

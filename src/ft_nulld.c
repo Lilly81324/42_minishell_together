@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 16:58:23 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:03:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:20:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_nulld(char ****ptr)
 			(*ptr)[i][j] = NULL;
 		}
 		free((*ptr)[i]);
-		ptr[i] = NULL;
+		(*ptr)[i] = NULL;
 	}
 	free(*ptr);
-	ptr = NULL;
+	(*ptr) = NULL;
 }

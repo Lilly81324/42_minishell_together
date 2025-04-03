@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:16:37 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:55:29 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 18:23:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,16 @@ char	***ft_env_subshell(char ***src, int count)
 	char	***target;
 	char	**temp;
 
-	i = 0;
+	i = -1;
 	target = (char ***)malloc((count + 1) * sizeof(char **));
 	if (target == NULL)
 		return (NULL);
-	printf("Making %i enviroments\n", count);
-	while (i < count)
+	while (++i < count)
 	{
-		printf("Setting env %i\n", i);
 		temp = ft_copy_env(*src);
 		ft_env_decrease(&temp, "SHLVL", -1);
 		target[i] = temp;
 	}
-	printf("Setting last env to NULL %i\n", count);
 	target[count] = NULL;
 	return (target);
 }

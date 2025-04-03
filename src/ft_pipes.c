@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 18:01:18 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/02 18:02:03 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:41:53 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_pipes(t_shell *shl, int pos, int *fd)
 
 	status = 0;
 	if (pos != 0)
-		status = ft_stdin_to_pipe(fd);
+		status = ft_stdin_to_pipe(*fd);
 	if (status != 0)
 	{
 		shl->exit_code = 1;

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:24:59 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:35:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:51:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_count_pipes(char **tok, int pos)
 
 	i = -1;
 	count = 0;
-	while (ft_is_delimiter(tok[++i + pos]) == 0)
+	while (ft_is_chunk_delim(tok[++i + pos]) == 0)
 	{
 		if (ft_b_strcmp(tok[i + pos], "|") == 0)
 			count++;

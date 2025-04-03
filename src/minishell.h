@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:03:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:51:40 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ int		ft_cooler_open(char *filename, int flags, mode_t mode);
 int		ft_is_delimiter(char *str);
 int		ft_is_redirector(char *str);
 int		ft_is_del_or_red(char *str);
+int		ft_is_chunk_delim(char *str);
 int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);
@@ -205,28 +206,28 @@ t_lst	*ft_hdlst_new(int fd);
 void	ft_hdlst_add(t_lst **lst, int fd);
 void	ft_hdlst_clear(t_lst *lst);
 // Commands
-int		ft_token_cmds(t_shell *shl, int i);
+int		ft_token_cmds(t_shell *shl, int i, char ***envp);
 int		ft_is_directory(char *path);
 // Builtin command
 int		ft_builtin_check(char *inp);
-int		ft_builtin_cmd(t_shell *shl, int *pos);
+int		ft_builtin_cmd(t_shell *shl, int *pos, char ***env);
 int		ft_builtin_exit(t_shell *shl, int *pos);
-int		ft_builtin_env(t_shell *shl, int *pos);
+int		ft_builtin_env(t_shell *shl, int *pos, char ***env);
 int		ft_builtin_pwd(t_shell *shl, int *pos);
-int		ft_builtin_cd(t_shell *shl, int *pos);
-int		ft_builtin_export(t_shell *shl, int *pos);
+int		ft_builtin_cd(t_shell *shl, int *pos, char ***env);
+int		ft_builtin_export(t_shell *shl, int *pos, char ***env);
 void	ft_builtin_export_blank(char **envp);
-int		ft_builtin_unset(t_shell *shl, int *pos);
+int		ft_builtin_unset(t_shell *shl, int *pos, char ***env);
 int		ft_builtin_echo(t_shell *shl, int *pos);
 int		ft_builtin_history(t_shell *shl, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
-int		ft_absolute_cmd(t_shell *shl, int *pos);
+int		ft_absolute_cmd(t_shell *shl, int *pos, char ***env);
 int		ft_check_access(char *path, char *cmd);
-int		ft_run_cmd(t_shell *shl, char *path, char **argv);
+int		ft_run_cmd(t_shell *shl, char *path, char **argv, char ***env);
 char	*ft_get_path(char *cmd, char ***envp);
-int		ft_regular_cmd(t_shell *shl, int *pos);
+int		ft_regular_cmd(t_shell *shl, int *pos, char ***env);
 char	**ft_prepare_argv(char **arg, int *pos);
-void	ft_update_last_arg(t_shell *shl, char *arg);
+void	ft_update_last_arg(char *arg, char ***env);
 
 #endif

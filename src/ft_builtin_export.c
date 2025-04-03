@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 16:52:09 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:27:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ static int	ft_check_key(t_shell * shl, char *str)
 // key=value pairs in the envp
 // export PATH=/usr/bin
 // Auto corrects SHLVL to valid integer
-int	ft_builtin_export(t_shell *shl, int *pos)
+int	ft_builtin_export(t_shell *shl, int *pos, char ***env)
 {
 	(*pos)++;
 	shl->exit_code = 0;
 	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
 	{
-		ft_builtin_export_blank(*shl->env);
+		ft_builtin_export_blank(*env);
 		return (0);
 	}
 	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
 	{
 		if (ft_check_key(shl, shl->tok[*pos]) == 1)
-			ft_change_env(shl->env, shl->tok[*pos]);
+			ft_change_env(env, shl->tok[*pos]);
 		(*pos)++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:38:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 17:09:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 17:38:56 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@
 // close STD
 // clear HEREDOCs
 // check return status
-int	ft_subchunk(t_shell *shl, int *pos, char ***envp)
+int	ft_subchunk(t_shell *shl, int *pos, char ***env)
 {
 	int	status;
 
 	status = ft_token_redirect(shl, *pos);
 	if (status > 0)
 		return (status);
-	status = ft_token_cmds(shl, *pos);
+	status = ft_token_cmds(shl, *pos, env);
 	if (status > 0)
 		return (status);
 	while (ft_is_delimiter(shl->tok[*pos]) != 1)
