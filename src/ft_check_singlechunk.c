@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_delimiter.c                                  :+:      :+:    :+:   */
+/*   ft_check_singlechunk.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/14 14:48:00 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 16:05:52 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/02 15:24:59 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/03 15:59:05 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// returns 1 if string is exactly
-// NULL, "|" or ";"
-// otherwise returns 0
-// For SEMICOLON handling change semicolon check return to 1
-int	ft_is_delimiter(char *str)
+// maybe change to count_pipes, same use case here, but more later
+int	ft_check_singlechunk(char **tok, int pos)
 {
-	if (str == NULL)
-		return (1);
-	if (str[0] == '\0')
-		return (0);
-	if (str[0] == '|' && str[1] == '\0')
-		return (0);
-	if (str[0] == ';' && str[1] == '\0')
-		return (1);
-	return (0);
+	int	i;
+
+	i = -1;
+	while (ft_is_delimiter(tok[++i + pos]) == 0)
+	{
+		if (ft_b_strcmp(tok[i + pos], "|") == 0)
+			return (0);
+	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 15:43:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/03 16:05:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
 // For SEMICOLON handling add semicolon to SPECIALS, more in ft_isdelimiter
-# define SPECIALS "><|"
+# define SPECIALS "><|;"
 // Used to define how many times argument substitution is called on same string
 # define MAX_SUBSTITUTIONS 10
 
@@ -183,6 +183,10 @@ char	**ft_tokenization(char *s);
 void	ft_strip_tokens(char **tok);
 // Executing the input
 int		ft_handle_input_loop(t_shell *shl, int *std);
+int		ft_syntax_check(t_shell *shl);
+int		ft_check_singlechunk(char **tok, int pos);
+int		ft_singlechunk(t_shell *shl, int *pos);
+int		ft_multichunk(t_shell *shl, int *std, int *pos);
 int		ft_pipe_setup(char **tokens, int pos);
 int		ft_handle_chunks(t_shell *shl, int *i);
 // Redirecting

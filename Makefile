@@ -88,6 +88,10 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_subst_reg.c \
 	ft_my_readline.c \
 	ft_heredoc_sigs.c \
+	ft_syntax_check.c \
+	ft_check_singlechunk.c \
+	ft_singlechunk.c \
+	ft_multichunk.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
