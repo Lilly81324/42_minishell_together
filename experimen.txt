@@ -1,0 +1,6 @@
+Now ; does not delimit chunk
+A chunk is anyhting that goes until NULL (or ;)
+That chunk is either singlechunk
+-> singlechunk handling
+Or it is a multichunk
+-> multichunk handling
