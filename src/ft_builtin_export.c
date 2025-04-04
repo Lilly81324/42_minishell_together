@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 01:01:45 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 13:31:25 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_check_key(char *str)
 	while (str[i] != '\0' && (ft_isalnum(str[i]) != 0 || str[i] == '_'))
 		i++;
 	if (str[i] == '\0')
-		return (0);
+		return (1);
 	if (i <= 0 || str[i] != '=')
 		return (st_export_error(str));
 	return (1);
