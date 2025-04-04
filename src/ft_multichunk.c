@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:07:08 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 00:01:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:09:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_multichunk(t_shell *shl, int *std, int *pos)
 		ft_std_reset(std);
 		if (ft_pipes(shl, *pos, &last_pipe) != 0)
 			break ;
-		pid = ft_subchunk(shl, pos, &(subenv[i]), std, last_pipe);
+		pid = ft_subchunk(shl, pos, subenv, i, std, last_pipe);
 		if (shl->tok[*pos] != NULL)
 			(*pos)++;
 		i++;
