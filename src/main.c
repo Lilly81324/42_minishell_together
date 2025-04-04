@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 16:26:28 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:58:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	main(int argc, char **argv, char **envp)
 // 2: should save full binary path for commands
 // 3: show only binary name with echo $_
 // make builtins stop at last argument?
+// following quotes without psaces are one token "1""2""3" -> 123
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?

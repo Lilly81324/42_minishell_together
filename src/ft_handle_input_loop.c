@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 18:30:46 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 15:15:50 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:07:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	ft_handle_input_loop(t_shell *shl, int *std)
 			status = ft_singlechunk(shl, &i);
 		else
 			status = ft_multichunk(shl, std, &i);
+		while (ft_is_delimiter(shl->tok[i]) == 0)
+			i++;
 		if (shl->tok[i] != NULL)
 			i++;
 		if (status > 0)

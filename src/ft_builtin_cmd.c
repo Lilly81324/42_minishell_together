@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 16:31:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:01:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ int	ft_builtin_cmd(t_shell *shl, int *pos, char ***env, int *ex)
 	else
 		status = ft_builtin_echo(shl, pos);
 	st_update_last_arg(shl, *pos, env);
+	while (ft_is_delimiter(shl->tok[*pos]) == 0)
+		(*pos)++;
 	return (status);
 }
