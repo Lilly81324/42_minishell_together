@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:26:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 00:57:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:50:13 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@ int	ft_token_cmds(t_shell *shl, int i, char ***envp, int *ex)
 
 	while (ft_is_delimiter(shl->tok[i]) == 0)
 	{
-		if (ft_is_redirector(shl->tok[i]) == 1)
-			i += 2;
+		ft_skip_redirector(shl->tok, &i);
+		if (ft_is_delimiter(shl->tok[i]) == 1)
+			return (0);
+		if (ft_builtin_check(shl->tok[i]) == 1)
+			ex_code = ft_builtin_cmd(shl, &i, envp, ex);
+		else if (ft_check_abs_cmds(shl->tok, i) == 1)
+			ex_code = ft_absolute_cmd(shl, &i, envp);
 		else
-		{
-			if (ft_builtin_check(shl->tok[i]) == 1)
-				ex_code = ft_builtin_cmd(shl, &i, envp, ex);
-			else if (ft_check_abs_cmds(shl->tok, i) == 1)
-				ex_code = ft_absolute_cmd(shl, &i, envp);
-			else
-				ex_code = ft_regular_cmd(shl, &i, envp);
-			return (ex_code);
-		}
+			ex_code = ft_regular_cmd(shl, &i, envp);
+		return (ex_code);
 	}
 	return (0);
 }
