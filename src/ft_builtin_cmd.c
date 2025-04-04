@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:59:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 00:47:00 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:31:33 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_builtin_cmd(t_shell *shl, int *pos, char ***env, int *ex)
 	else if (ft_b_strcmp(&(shl->tok[*pos][i]), "env") == 0)
 		status = ft_builtin_env(shl, pos, env);
 	else if (ft_b_strcmp(&(shl->tok[*pos][i]), "pwd") == 0)
-		status = ft_builtin_pwd(shl, pos);
+		status = ft_builtin_pwd(pos);
 	else if (ft_b_strcmp(&(shl->tok[*pos][i]), "cd") == 0)
 		status = ft_builtin_cd(shl, pos, env);
 	else if (ft_b_strcmp(&(shl->tok[*pos][i]), "export") == 0)
