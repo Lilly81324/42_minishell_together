@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 00:37:27 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:15:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ int	ft_builtin_exit(t_shell *shl, int *pos, int *ex)
 	int	status;
 
 	(*pos)++;
+	ft_skip_redirector(shl->tok, pos);
 	status = 0;
 	if (isatty(STDIN_FILENO) != 0)
 		ft_perror("exit\n", NULL, NULL);
 	*ex = 1;
-	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
+	if (ft_is_delimiter(shl->tok[*pos]) == 1)
 		return (0);
 	status = st_exit_atoi(shl->tok[*pos]);
 	if (status < 0)
@@ -76,7 +77,9 @@ int	ft_builtin_exit(t_shell *shl, int *pos, int *ex)
 		ft_perror(EXIT_NUMERIC_ERROR, shl->tok[*pos], NULL);
 		return (ERNUM_EXIT_NUMERIC);
 	}
-	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 1)
+	(*pos)++;
+	ft_skip_redirector(shl->tok, pos);
+	if (ft_is_delimiter(shl->tok[(*pos)]) == 1)
 		return (status);
 	*ex = 0;
 	return (ft_too_many_args("exit", ERNUM_EXIT_ARGC));

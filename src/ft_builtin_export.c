@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:17:47 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 13:31:25 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:19:09 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,17 @@ int	ft_builtin_export(t_shell *shl, int *pos, char ***env)
 
 	status = 0;
 	(*pos)++;
-	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
+	ft_skip_redirector(shl->tok, pos);
+	if (ft_is_delimiter(shl->tok[*pos]) == 1)
 	{
 		ft_builtin_export_blank(*env);
 		return (0);
 	}
-	while (ft_is_del_or_red(shl->tok[*pos]) == 0)
+	while (ft_is_delimiter(shl->tok[*pos]) == 0)
 	{
+		ft_skip_redirector(shl->tok, pos);
+		if (ft_is_delimiter(shl->tok[*pos]) == 1)
+			break ;
 		if (ft_check_key(shl->tok[*pos]) == 1)
 		{
 			ft_change_env(env, shl->tok[*pos]);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 14:52:38 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:10:08 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ int	main(int argc, char **argv, char **envp)
 // change the thing in ft_builtin_cmd
 // heredocs dont need to be LL make them an array
 // signals again
+// _ does not owrk properly
+// 1: can take redirs as last arg
+// 2: should save full binary path for commands
+// 3: show only binary name with echo $_
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?
