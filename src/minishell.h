@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 14:10:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:15:03 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
 void	ft_env_decrease(char ***envp, char *target, int value);
-char	***ft_env_subshell(char ***src, int count);
+char	**ft_env_subshell(char ***src);
 // Error Functions
 int		ft_too_many_args(char *str, int exit);
 void	ft_perror(char *input, char *arg1, char *arg2);
@@ -196,7 +196,7 @@ int		ft_count_pipes(char **tok, int pos);
 int		ft_singlechunk(t_shell *shl, int *pos);
 int		ft_multichunk(t_shell *shl, int *std, int *pos);
 int		ft_pipes(t_shell *shl, int pos, int *fd);
-int		ft_subchunk(t_shell *shl, int *pos, char ***env, int sub, int *std, int lpipe);
+int		ft_subchunk(t_shell *shl, int *pos, char **env, int *std, int lpipe);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:16:37 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 18:23:19 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:13:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,13 @@
 // Creates new eviroment for each subshell
 // This means <count> enviroments
 // Does not reset _ enviroment var <-- CONTROVERSIAL
-char	***ft_env_subshell(char ***src, int count)
+char	**ft_env_subshell(char ***src)
 {
 	int		i;
-	char	***target;
-	char	**temp;
+	char	**target;
 
 	i = -1;
-	target = (char ***)malloc((count + 1) * sizeof(char **));
-	if (target == NULL)
-		return (NULL);
-	while (++i < count)
-	{
-		temp = ft_copy_env(*src);
-		ft_env_decrease(&temp, "SHLVL", -1);
-		target[i] = temp;
-	}
-	target[count] = NULL;
+	target = ft_copy_env(*src);
+	ft_env_decrease(&target, "SHLVL", -1);
 	return (target);
 }
