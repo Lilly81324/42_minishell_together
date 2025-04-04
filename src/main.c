@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 16:58:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:38:27 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ int	main(int argc, char **argv, char **envp)
 // valgrind error on first Ctrl+C use
 // maybe remove handling of semicolon
 // Remove custom shortcuts from non-interactive mode?
-// Dont treat redirection as delimiters for commands "echo abc >out.txt def ghi"
-// should be echoing all of that, and regular commads should get all arguments
-// as well, "./prog arg1 >out.txt arg2" gets both args
 // change the thing in ft_builtin_cmd
 // heredocs dont need to be LL make them an array
 // signals again
@@ -48,6 +45,7 @@ int	main(int argc, char **argv, char **envp)
 // 3: show only binary name with echo $_
 // make builtins stop at last argument?
 // following quotes without psaces are one token "1""2""3" -> 123
+// Broken pipes not detected, but occur: "yes | echo hi"
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?
