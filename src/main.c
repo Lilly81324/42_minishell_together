@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 13:57:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:22:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv, char **envp)
 // should be echoing all of that, and regular commads should get all arguments
 // as well, "./prog arg1 >out.txt arg2" gets both args
 // change the thing in ft_builtin_cmd
-// Way too much reachable memory and it keeps getting more
+// heredocs dont need to be LL make them an array
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?

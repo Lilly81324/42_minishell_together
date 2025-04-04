@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:07:08 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 14:15:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:20:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ static void	st_wait(t_shell *shl, int childcount, pid_t last_pid)
 	{
 		died = waitpid(-1, &status, 0);
 		if (died == last_pid)
-		{
 			shl->exit_code = WEXITSTATUS(status);
-			printf("Exit Status for pid %i with exit code %i\n", died,  WEXITSTATUS(status));
-		}
 	}
 }
 
