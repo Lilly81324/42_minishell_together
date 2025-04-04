@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:38:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 14:15:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:27:59 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	st_subchunk_cleanup(t_shell *shl, int *std, int lpipe, char ***env)
 	ft_nullb(env);
 }
 
-int	ft_subchunk(t_shell *shl, int *pos, char **env, int *std, int lpipe)
+int	ft_subchunk(t_shell *shl, int *pos, int *std, int lpipe)
 {
 	int		status;
 	pid_t	pid;
@@ -38,12 +38,11 @@ int	ft_subchunk(t_shell *shl, int *pos, char **env, int *std, int lpipe)
 	{
 		status = ft_token_redirect(shl, *pos);
 		if (status == 0)
-			status = ft_token_cmds(shl, *pos, &(env), &ex);
-		st_subchunk_cleanup(shl, std, lpipe, &env);
+			status = ft_token_cmds(shl, *pos, &(shl->subenv), &ex);
+		st_subchunk_cleanup(shl, std, lpipe, &(shl->subenv));
 		exit (status);
 	}
 	while (ft_is_delimiter(shl->tok[*pos]) != 1)
 		(*pos)++;
 	return (pid);
 }
-

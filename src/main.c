@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 14:22:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 14:52:38 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv, char **envp)
 // as well, "./prog arg1 >out.txt arg2" gets both args
 // change the thing in ft_builtin_cmd
 // heredocs dont need to be LL make them an array
+// signals again
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?

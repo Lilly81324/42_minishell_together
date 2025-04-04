@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:07:08 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 14:20:16 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:28:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	st_wait(t_shell *shl, int childcount, pid_t last_pid)
 {
-	int 	i;
+	int		i;
 	int		status;
 	pid_t	died;
 
@@ -33,19 +33,18 @@ int	ft_multichunk(t_shell *shl, int *std, int *pos)
 	pid_t	pid;
 	int		last_pipe;
 	int		pipe_count;
-	char	**subenv;
 
 	i = 0;
 	last_pipe = -1;
 	pipe_count = ft_count_pipes(shl->tok, *pos);
 	while (ft_is_chunk_delim(shl->tok[*pos]) == 0)
-	{// For each piped subchunk:
+	{
 		ft_std_reset(std);
 		if (ft_pipes(shl, *pos, &last_pipe) != 0)
 			break ;
-		subenv = ft_env_subshell(shl->env);
-		pid = ft_subchunk(shl, pos, subenv, std, last_pipe);
-		ft_nullb(&subenv);
+		shl->subenv = ft_env_subshell(shl->env);
+		pid = ft_subchunk(shl, pos, std, last_pipe);
+		ft_nullb(&shl->subenv);
 		if (shl->tok[*pos] != NULL)
 			(*pos)++;
 		i++;

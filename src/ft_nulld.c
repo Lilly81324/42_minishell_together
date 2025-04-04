@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 16:58:23 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/03 18:20:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:15:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 // pointer my be NULL, which will not do anything
 void	ft_nulld(char ****ptr)
 {
-	int i;
+	int	i;
 	int	j;
 
 	if (*ptr == NULL)
 		return ;
 	i = -1;
-	while ((*ptr)[++i] != NULL)	
+	while ((*ptr)[++i] != NULL)
 	{
 		j = -1;
 		while ((*ptr)[i][++j])

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:00:27 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 01:00:53 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:22:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,17 @@ static void	st_cleanup(t_shell *shl, int *pos)
 int	ft_builtin_cd(t_shell *shl, int *pos, char ***env)
 {
 	int		status;
+	int		after;
 
 	(*pos)++;
-	if (ft_is_del_or_red(shl->tok[*pos]) == 1)
+	after = 1;
+	while (ft_is_redirector(shl->tok[*pos]) == 1)
+		(*pos) += 2;
+	if (ft_is_delimiter(shl->tok[*pos]) == 1)
 		return (ft_blank_cd(env));
-	if (ft_is_del_or_red(shl->tok[(*pos) + 1]) == 0)
+	while (ft_is_redirector(shl->tok[(*pos) + after]) == 1)
+		after += 2;
+	if (ft_is_delimiter(shl->tok[(*pos) + after]) == 0)
 		return (ft_too_many_args("cd", ERNUM_CD_ARGC));
 	if (shl->tok[*pos][0] == '/')
 		status = chdir(shl->tok[*pos]);
