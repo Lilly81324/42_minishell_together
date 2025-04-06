@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/06 16:41:17 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:27:06 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ int	main(int argc, char **argv, char **envp)
 // maybe remove handling of semicolon
 // Remove custom shortcuts from non-interactive mode?
 // change the thing in ft_builtin_cmd
-// heredocs dont need to be LL make them an array
-// signals again
+// (heredocs dont need to be LL make them an array)
 // _ does not owrk properly
 // 1: can take redirs as last arg
 // 2: should save full binary path for commands
@@ -47,13 +46,8 @@ int	main(int argc, char **argv, char **envp)
 // following quotes without psaces are one token "1""2""3" -> 123
 // Broken pipes not detected, but occur: "yes | echo hi"
 // echo ' 		added  		by me		' does not print the last space unlike bash
+// Signals:
+// Ctrl+D does not close in HEREDOCS? check on work Pc
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?
-// Do not expand $ if spacer is next char (or EOS or ' or ")
-// exporting "something" without = sets exit code to 0, not 1
-// an exported variables name must start with a non number, otherwise error
-// does not perror exit when running builtin exit in non interactive mode
-// Made file redirection errors set exit code to 1
-// Invalid abs commands say "No such file or directory"
-// Invalid regular commands say "Command not found"
