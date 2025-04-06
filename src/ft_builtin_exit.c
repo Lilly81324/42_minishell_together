@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 16:15:19 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/06 17:00:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static int	st_exit_atoi(char *nptr)
 		number = (number * 10) + (nptr[i] - '0');
 		i++;
 	}
+	if (nptr[i] != '\0')
+		return (-1);
 	if (fac < 1)
 		return (((number * fac) % 256 + 256) % 256);
 	return ((number * fac) % 256);
