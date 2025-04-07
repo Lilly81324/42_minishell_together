@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/06 17:27:06 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 18:30:51 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,13 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // TODO:
-// valgrind error on first Ctrl+C use
-// maybe remove handling of semicolon
-// Remove custom shortcuts from non-interactive mode?
 // change the thing in ft_builtin_cmd
 // (heredocs dont need to be LL make them an array)
-// _ does not owrk properly
-// 1: can take redirs as last arg
-// 2: should save full binary path for commands
-// 3: show only binary name with echo $_
-// make builtins stop at last argument?
-// following quotes without psaces are one token "1""2""3" -> 123
-// Broken pipes not detected, but occur: "yes | echo hi"
+// following quotes without spaces are one token "1""2""3" -> 123
 // echo ' 		added  		by me		' does not print the last space unlike bash
 // Signals:
 // Ctrl+D does not close in HEREDOCS? check on work Pc
+// After ^ and using CtrlC, input is not treated correctly, no CtrlD and no input used
 
 // Fixes fo testers:
 // ?Display prompt in non interactive mode?

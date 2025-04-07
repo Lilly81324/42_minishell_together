@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:07:08 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 17:49:17 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 18:26:40 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ int	ft_multichunk(t_shell *shl, int *std, int *pos)
 			(*pos)++;
 		i++;
 	}
+	ft_std_reset(std);
+	ft_b_close(&last_pipe);
 	if (i == pipe_count + 1)
 		st_wait(shl, pipe_count + 1, pid);
-	ft_b_close(&last_pipe);
 	return (0);
 }

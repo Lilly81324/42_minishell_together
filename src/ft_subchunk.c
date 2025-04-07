@@ -6,23 +6,21 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:38:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 15:27:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:55:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	st_subchunk_cleanup(t_shell *shl, int *std, int lpipe, char ***env)
+static void	st_subchunk_cleanup(t_shell *shl, char ***env)
 {
 	clear_history();
 	ft_hdlst_clear(shl->start);
 	ft_nullb(shl->env);
 	ft_nullb(&shl->tok);
-	ft_std_close(std);
-	close(0);
-	close(1);
-	close(2);
-	ft_b_close(&lpipe);
+	close(STDIN_FILENO);
+	close(STDOUT_FILENO);
+	close(STDERR_FILENO);
 	ft_nullb(env);
 }
 
@@ -36,10 +34,12 @@ int	ft_subchunk(t_shell *shl, int *pos, int *std, int lpipe)
 	pid = fork();
 	if (pid == 0)
 	{
+		ft_b_close(&lpipe);
+		ft_std_close(std);
 		status = ft_token_redirect(shl, *pos);
 		if (status == 0)
 			status = ft_token_cmds(shl, *pos, &(shl->subenv), &ex);
-		st_subchunk_cleanup(shl, std, lpipe, &(shl->subenv));
+		st_subchunk_cleanup(shl, &(shl->subenv));
 		exit (status);
 	}
 	while (ft_is_delimiter(shl->tok[*pos]) != 1)
