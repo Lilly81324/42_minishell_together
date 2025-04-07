@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:38:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/07 17:55:55 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:40:42 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	st_subchunk_cleanup(t_shell *shl, char ***env)
 {
 	clear_history();
-	ft_hdlst_clear(shl->start);
+	ft_null_int(&shl->hd_fd);
 	ft_nullb(shl->env);
 	ft_nullb(&shl->tok);
 	close(STDIN_FILENO);

@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hdlst_clear.c                                   :+:      :+:    :+:   */
+/*   ft_null_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 17:55:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/21 19:20:17 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/07 20:08:42 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/07 20:38:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Frees linked list of file descriptors, starting with <lst>
-// Closes file descriptors only if they are >= 0
-// Sets lst to NULL, though this probably works only locally
-void	ft_hdlst_clear(t_lst *lst)
+// frees 1d array of ints
+void	ft_null_int(int **ptr)
 {
-	t_lst	*node;
-	t_lst	*path;
+	int	i;
 
-	if (lst == NULL)
+	i = -1;
+	if (*ptr == NULL)
 		return ;
-	node = lst;
-	while (node != NULL)
-	{
-		if (node->data >= 0)
-			close(node->data);
-		path = node->next;
-		free (node);
-		node = path;
-	}
-	lst = NULL;
+	while ((*ptr)[++i] != -2)
+		ft_b_close(&((*ptr)[i]));
+	free(*ptr);
+	*ptr = NULL;
 }

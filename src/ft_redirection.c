@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 17:52:10 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 01:05:59 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 19:21:58 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	ft_redirection(t_shell *shl, int pos)
 	else if (ft_b_strcmp(tok[pos], ">>") == 0)
 		status = ft_stdout_to_outfile_append(tok[pos + 1]);
 	else if (ft_b_strcmp(tok[pos], "<<") == 0)
-		status = ft_stdin_to_heredoc(shl);
+		status = ft_stdin_to_heredoc(shl, pos);
 	return (status);
 }

@@ -69,10 +69,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_initial_shlvl.c \
 	ft_get_pid_str.c \
 	ft_heredoc_prepare.c \
-	ft_hdlst_add.c \
-	ft_hdlst_new.c \
 	ft_stdin_to_heredoc.c \
-	ft_hdlst_clear.c \
 	ft_b_strcmp.c \
 	ft_is_directory.c \
 	ft_strip_tokens.c \
@@ -98,6 +95,8 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_nulld.c \
 	ft_is_chunk_delim.c \
 	ft_skip_redirector.c \
+	ft_count_prev_hds.c \
+	ft_null_int.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

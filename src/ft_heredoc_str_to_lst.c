@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 18:45:08 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/25 18:45:51 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:35:05 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // Puts <s> into pipe and adds read_end fd to linked list in shl
 // For a NULL string puts nothing into pipe
 // which later gets interpreted as empty input
-void	ft_heredoc_str_to_lst(t_shell *shl, char *s)
+void	ft_heredoc_str_to_lst(t_shell *shl, char *s, int pos)
 {
 	int	pipeline[2];
 
@@ -27,5 +27,5 @@ void	ft_heredoc_str_to_lst(t_shell *shl, char *s)
 	if (s != NULL)
 		write(pipeline[1], s, (ft_strlen(s) * sizeof(char)));
 	close(pipeline[1]);
-	ft_hdlst_add(&(shl->start), pipeline[0]);
+	shl->hd_fd[pos] = pipeline[0];
 }

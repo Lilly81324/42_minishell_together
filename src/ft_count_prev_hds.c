@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hdlst_new.c                                     :+:      :+:    :+:   */
+/*   ft_count_prev_hds.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 14:12:36 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 18:29:38 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/07 19:32:01 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/07 20:38:17 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Make a new node and return its adress
-// Fills the node with <fd>
-// if allocation error NULL is returned
-t_lst	*ft_hdlst_new(int fd)
+// Returns the number of "<<" tokens that is left of the <pos>
+int	ft_count_prev_hds(t_shell *shl, int pos)
 {
-	t_lst	*new;
+	int	count;
 
-	new = (t_lst *)malloc(sizeof(t_lst));
-	if (new == NULL)
-		return (NULL);
-	new->data = fd;
-	new->next = NULL;
-	return (new);
+	count = 0;
+	pos++;
+	while (--pos >= 0)
+	{
+		if (ft_b_strcmp(shl->tok[pos], "<<") != 0)
+			continue ;
+		count++;
+	}
+	return (count);
 }

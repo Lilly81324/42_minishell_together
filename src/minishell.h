@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/07 17:42:43 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:23:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,13 @@
 # define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
-typedef struct s_lst
-{
-	int				data;
-	struct s_lst	*next;
-}	t_lst;
-
 typedef struct s_shell
 {
 	char		**tok;
 	char		***env;
 	char		**subenv;
 	int			exit_code;
-	t_lst		*start;
-	int			heredoc_pos;
+	int			*hd_fd;
 }	t_shell;
 
 extern volatile sig_atomic_t	g_sig;
@@ -124,6 +117,7 @@ void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
 void	ft_nulld(char ****ptr);
+void	ft_null_int(int **ptr);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_cooler_open(char *filename, int flags, mode_t mode);
 int		ft_is_delimiter(char *str);
@@ -145,7 +139,7 @@ void	ft_std_dup(int *std);
 void	ft_std_reset(int *std);
 void	ft_std_close(int *std);
 int		ft_stdout_to_outfile_append(char *filename);
-int		ft_stdin_to_heredoc(t_shell *shl);
+int		ft_stdin_to_heredoc(t_shell *shl, int pos);
 // Debugging
 void	ft_print_tokens(char **tokens);
 // Enviroment Functions
@@ -177,8 +171,9 @@ char	*ft_my_readline(char *prompt);
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
 // HEREDOcs
+int		ft_count_prev_hds(t_shell *shl, int pos);
 int		ft_heredoc_string(t_shell *shl, char **new_buf, char **total_buf);
-void	ft_heredoc_str_to_lst(t_shell *shl, char *s);
+void	ft_heredoc_str_to_lst(t_shell *shl, char *s, int pos);
 int		ft_heredoc_prepare(t_shell *shl);
 int		ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf);
 // Tokenize input
@@ -202,10 +197,6 @@ int		ft_subchunk(t_shell *shl, int *pos, int *std, int lpipe);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);
-// Heredoc list
-t_lst	*ft_hdlst_new(int fd);
-void	ft_hdlst_add(t_lst **lst, int fd);
-void	ft_hdlst_clear(t_lst *lst);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i, char ***envp, int *ex);
 int		ft_is_directory(char *path);
