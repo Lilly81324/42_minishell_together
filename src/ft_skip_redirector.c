@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hdlst_clear.c                                   :+:      :+:    :+:   */
+/*   ft_skip_redirector.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 17:55:55 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/21 19:20:17 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/04 15:38:42 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/04 15:44:45 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Frees linked list of file descriptors, starting with <lst>
-// Closes file descriptors only if they are >= 0
-// Sets lst to NULL, though this probably works only locally
-void	ft_hdlst_clear(t_lst *lst)
+// Skips past redirector in <tok> at <pos>
+// If not called at redirector does nothing
+// If called at ">" from ">", "file", NULL
+// skips to NULL (+2)
+// If called at ">" from ">", NULL
+// also skips to NULL (+1)
+void	ft_skip_redirector(char **tok, int *pos)
 {
-	t_lst	*node;
-	t_lst	*path;
-
-	if (lst == NULL)
-		return ;
-	node = lst;
-	while (node != NULL)
+	while (ft_is_redirector(tok[*pos]) == 1)
 	{
-		if (node->data >= 0)
-			close(node->data);
-		path = node->next;
-		free (node);
-		node = path;
+		(*pos)++;
+		if (ft_is_delimiter(tok[*pos]) == 1)
+			continue ;
+		(*pos)++;
 	}
-	lst = NULL;
 }

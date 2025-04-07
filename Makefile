@@ -21,7 +21,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_regular_cmd.c \
 	ft_builtin_check.c \
 	ft_skip_spaces.c \
-	ft_handle_chunks.c \
 	ft_is_delimiter.c \
 	ft_is_redirector.c \
 	ft_is_del_or_red.c \
@@ -48,7 +47,6 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_builtin_export.c \
 	ft_builtin_unset.c \
 	ft_stdout_to_outfile_append.c \
-	ft_pipe_setup.c \
 	ft_builtin_echo.c \
 	ft_builtin_history.c \
 	ft_write_string.c \
@@ -71,10 +69,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_initial_shlvl.c \
 	ft_get_pid_str.c \
 	ft_heredoc_prepare.c \
-	ft_hdlst_add.c \
-	ft_hdlst_new.c \
 	ft_stdin_to_heredoc.c \
-	ft_hdlst_clear.c \
 	ft_b_strcmp.c \
 	ft_is_directory.c \
 	ft_strip_tokens.c \
@@ -88,6 +83,20 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_subst_reg.c \
 	ft_my_readline.c \
 	ft_heredoc_sigs.c \
+	ft_syntax_check.c \
+	ft_count_pipes.c \
+	ft_singlechunk.c \
+	ft_multichunk.c \
+	ft_pipes.c \
+	ft_subchunk.c \
+	ft_b_close.c \
+	ft_env_decrease.c \
+	ft_env_subshell.c \
+	ft_nulld.c \
+	ft_is_chunk_delim.c \
+	ft_skip_redirector.c \
+	ft_count_prev_hds.c \
+	ft_null_int.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))

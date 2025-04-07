@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_builtin_env.c                                   :+:      :+:    :+:   */
+/*   ft_nulld.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 17:53:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 16:07:46 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/03 16:58:23 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/04 15:15:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// prints env variable
-int	ft_builtin_env(t_shell *shl, int *pos, char ***env)
+// Frees a 3d array and its contents
+// that ends with its last element being null
+// should receive the address of the variable: ft_nulld(&array)
+// pointer my be NULL, which will not do anything
+void	ft_nulld(char ****ptr)
 {
 	int	i;
+	int	j;
 
+	if (*ptr == NULL)
+		return ;
 	i = -1;
-	(*pos)++;
-	ft_skip_redirector(shl->tok, pos);
-	if (ft_is_delimiter(shl->tok[*pos]) == 0)
-		return (ft_too_many_args("env", ERNUM_ENV_ARGC));
-	while ((*env)[++i] != NULL)
+	while ((*ptr)[++i] != NULL)
 	{
-		ft_write_string((*env)[i]);
-		ft_write_string("\n");
+		j = -1;
+		while ((*ptr)[i][++j])
+		{
+			free((*ptr)[i][j]);
+			(*ptr)[i][j] = NULL;
+		}
+		free((*ptr)[i]);
+		(*ptr)[i] = NULL;
 	}
-	return (0);
+	free(*ptr);
+	(*ptr) = NULL;
 }

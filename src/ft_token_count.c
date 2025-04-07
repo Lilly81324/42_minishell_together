@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:35:33 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 18:31:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:30:31 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	move_until(char *s, int i, char opt)
 
 // returns index of character that is not regular
 // so either a SPACES or a SPECIALS or a \0
-static int	move_regulars(char *s, int *i)
+static void	move_regulars(char *s, int *i)
 {
 	while (s[*i] != '\0' && ft_find_c(s[*i], SPACES) == -1 && \
 			ft_find_c(s[*i], SPECIALS) == -1)
@@ -38,25 +38,27 @@ static int	move_regulars(char *s, int *i)
 		else if (s[*i] == '\"')
 			*i = move_until(s, *i, '\"');
 		if (*i < 0)
-			return (-1);
+			return ;
 		(*i)++;
 	}
-	return (*i);
+	return ;
 }
 
 // if >abc moves to next, if >>abc moves to next next
 // if abc doesnt move
+// returns 0 if i not increase -> not at special
+// otherwise return 1
 static int	move_specials(char *s, int *i)
 {
 	if (ft_find_c(s[*i], SPECIALS) == -1)
-		return (*i);
+		return (0);
 	if (s[*i] == '>' && s[(*i) + 1] == '>')
 		(*i) += 2;
 	else if (s[*i] == '<' && s[(*i) + 1] == '<')
 		(*i) += 2;
 	else
 		(*i)++;
-	return (*i);
+	return (1);
 }
 
 // returns how many tokens are in a string
@@ -77,7 +79,7 @@ int	ft_token_count(char *s)
 		ft_skip_spaces(&i, s);
 		if (s[i] != '\0')
 			strings++;
-		if (i != move_specials(s, &i))
+		if (move_specials(s, &i) == 1)
 			continue ;
 		move_regulars(s, &i);
 		if (i < 0)

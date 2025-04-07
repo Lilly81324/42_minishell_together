@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_b_close.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/31 18:01:52 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 18:04:12 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/01 18:11:58 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/03 16:31:53 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv)
+// Closes file descriptor if value bigger then 0
+// then sets value to -1
+void	ft_b_close(int *fd)
 {
-	int	i;
-
-	i = -1;
-	while (++i < argc)
-		printf("--%s--\n", argv[i]);
-	return (0);
+	if (*fd < 0)
+		return ;
+	close(*fd);
+	*fd = -1;
 }

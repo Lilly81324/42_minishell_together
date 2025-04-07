@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:24:50 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 17:39:09 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:11:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_token_redirect(t_shell *shl, int i)
 		if (ft_is_redirector(shl->tok[i]) == 1)
 		{
 			status = ft_redirection(shl, i);
-			if (status > 0)
+			if (status != 0)
 				return (status);
 			i += 2;
 		}

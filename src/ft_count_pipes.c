@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hdlst_add.c                                     :+:      :+:    :+:   */
+/*   ft_count_pipes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 14:13:33 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/20 18:29:53 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/02 15:24:59 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/04 15:14:16 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Adds new node at end of <lst> with <cont> and <fd>
-// Or sets it as first node if list empty
-void	ft_hdlst_add(t_lst **lst, int fd)
+// counts how many pipes between <tok[pos]> and next delim
+int	ft_count_pipes(char **tok, int pos)
 {
-	t_lst	*node;
+	int	i;
+	int	count;
 
-	if (*lst == NULL)
+	i = -1;
+	count = 0;
+	while (ft_is_chunk_delim(tok[++i + pos]) == 0)
 	{
-		*lst = ft_hdlst_new(fd);
-		return ;
+		if (ft_b_strcmp(tok[i + pos], "|") == 0)
+			count++;
 	}
-	node = *lst;
-	while (node->next != NULL)
-		node = node->next;
-	node->next = ft_hdlst_new(fd);
+	return (count);
 }

@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stdin_to_heredoc.c                              :+:      :+:    :+:   */
+/*   ft_null_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 16:28:00 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/07 20:39:02 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/07 20:08:42 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/07 20:38:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// << EOF cat | << EOF cat | cat
-int	ft_stdin_to_heredoc(t_shell *shl, int pos)
+// frees 1d array of ints
+void	ft_null_int(int **ptr)
 {
-	int	count;
+	int	i;
 
-	count = ft_count_prev_hds(shl, pos) - 1;
-	if (dup2(shl->hd_fd[count], STDIN_FILENO) < 0)
-	{
-		ft_b_close(&(shl->hd_fd[count]));
-		return (1);
-	}
-	ft_b_close(&(shl->hd_fd[count]));
-	return (0);
+	i = -1;
+	if (*ptr == NULL)
+		return ;
+	while ((*ptr)[++i] != -2)
+		ft_b_close(&((*ptr)[i]));
+	free(*ptr);
+	*ptr = NULL;
 }

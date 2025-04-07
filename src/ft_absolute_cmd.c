@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 16:56:02 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/04 01:02:46 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	*st_prepare_path(char **token, int pos)
 
 // For running absolute commands like /usr/local/bin/norminette or ./minishell
 // Waits for process to be done before giving back control
-int	ft_absolute_cmd(t_shell *shl, int *pos)
+int	ft_absolute_cmd(t_shell *shl, int *pos, char ***env)
 {
 	int		len;
 	int		status;
@@ -45,11 +45,10 @@ int	ft_absolute_cmd(t_shell *shl, int *pos)
 	if (status != 0)
 	{
 		ft_null(&path);
-		shl->exit_code = status;
-		return (0);
+		return (status);
 	}
 	argv = ft_prepare_argv(shl->tok, pos);
-	status = ft_run_cmd(shl, path, argv);
+	status = ft_run_cmd(path, argv, env);
 	ft_nullc(&argv);
 	ft_null(&path);
 	len = 0;

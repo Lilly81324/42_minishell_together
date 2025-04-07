@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:37:24 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/06 16:20:04 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/06 16:29:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	move_until(char *s, int i, char opt)
 
 // returns index of character that is not regular
 // so either a SPACES or a SPECIALS or a \0
-static int	move_regulars(char *s, int *i)
+static void	move_regulars(char *s, int *i)
 {
 	while (s[*i] != '\0' && ft_find_c(s[*i], SPACES) == -1 && \
 			ft_find_c(s[*i], SPECIALS) == -1)
@@ -38,25 +38,25 @@ static int	move_regulars(char *s, int *i)
 		else if (s[*i] == '\"')
 			*i = move_until(s, *i, '\"');
 		if (*i < 0)
-			return (-1);
+			return ;
 		(*i)++;
 	}
-	return (*i);
+	return ;
 }
 
 // if >abc moves to next, if >>abc moves to next next
 // if abc doesnt move
-static int	move_specials(char *s, int *i)
+static void	move_specials(char *s, int *i)
 {
 	if (ft_find_c(s[*i], SPECIALS) == -1)
-		return (*i);
+		return ;
 	if (s[*i] == '>' && s[(*i) + 1] == '>')
 		(*i) += 2;
 	else if (s[*i] == '<' && s[(*i) + 1] == '<')
 		(*i) += 2;
 	else
 		(*i)++;
-	return (*i);
+	return ;
 }
 
 // called with the index of where a token begins

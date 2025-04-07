@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 18:22:58 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:23:10 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@
 # include "../libft/libft.h"
 
 // Error messages
+// 		Syntax
+# define SYNTAX_REDIR "lelshell: syntax error near unexpected token `%s'\n"
 // 		Redirection
 # define REDIR_INVAL_PIPE "Invalid read end fd for pipe given\n"
 # define REDIR_PIPE_TO_INP "Error redirecting stdin to read end of pipe\n"
@@ -68,6 +70,7 @@
 
 // Error return values
 # define ERNUM_START_ARGC	1
+# define ERNUM_SYNTAX		2
 # define ERNUM_CMD_IS_DIR	126
 # define ERNUM_CMD_NOTEXIST	127
 # define ERNUM_CMD_PERM		126
@@ -88,7 +91,8 @@
 
 // Used in ft_tokenization to know what to skip over
 # define SPACES " \n\t\v\f\r"
-# define SPECIALS "><;|"
+// For SEMICOLON handling add semicolon to SPECIALS, more in ft_isdelimiter
+# define SPECIALS "><|"
 // Used to define how many times argument substitution is called on same string
 # define MAX_SUBSTITUTIONS 10
 
@@ -97,19 +101,13 @@
 # define PROMPT "[lelshell]>"
 # define POST_PROMPT "$ "
 
-typedef struct s_lst
-{
-	int				data;
-	struct s_lst	*next;
-}	t_lst;
-
 typedef struct s_shell
 {
 	char		**tok;
 	char		***env;
+	char		**subenv;
 	int			exit_code;
-	t_lst		*start;
-	int			heredoc_pos;
+	int			*hd_fd;
 }	t_shell;
 
 extern volatile sig_atomic_t	g_sig;
@@ -118,15 +116,20 @@ extern volatile sig_atomic_t	g_sig;
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
+void	ft_nulld(char ****ptr);
+void	ft_null_int(int **ptr);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_cooler_open(char *filename, int flags, mode_t mode);
 int		ft_is_delimiter(char *str);
 int		ft_is_redirector(char *str);
 int		ft_is_del_or_red(char *str);
+int		ft_is_chunk_delim(char *str);
 int		ft_find_c(char c, char *string);
 void	ft_write_string(char *string);
 char	*ft_strip(char *extra, char *core);
 int		ft_b_strcmp(char *s1, char *s2);
+void	ft_b_close(int *fd);
+void	ft_skip_redirector(char **tok, int *pos);
 // Redirection
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
@@ -136,7 +139,7 @@ void	ft_std_dup(int *std);
 void	ft_std_reset(int *std);
 void	ft_std_close(int *std);
 int		ft_stdout_to_outfile_append(char *filename);
-int		ft_stdin_to_heredoc(t_shell *shl);
+int		ft_stdin_to_heredoc(t_shell *shl, int pos);
 // Debugging
 void	ft_print_tokens(char **tokens);
 // Enviroment Functions
@@ -145,6 +148,8 @@ void	ft_remove_env(char ***envp, char *key);
 char	*ft_get_env(char **envp, char *key);
 void	ft_change_env(char ***envp, char *pair);
 void	ft_env_increase(char ***envp, char *target, int value);
+void	ft_env_decrease(char ***envp, char *target, int value);
+char	**ft_env_subshell(char ***src);
 // Error Functions
 int		ft_too_many_args(char *str, int exit);
 void	ft_perror(char *input, char *arg1, char *arg2);
@@ -166,8 +171,9 @@ char	*ft_my_readline(char *prompt);
 char	*ft_make_prompt(char ***envp);
 int		ft_handle_input(char **inp, t_shell *shl);
 // HEREDOcs
+int		ft_count_prev_hds(t_shell *shl, int pos);
 int		ft_heredoc_string(t_shell *shl, char **new_buf, char **total_buf);
-void	ft_heredoc_str_to_lst(t_shell *shl, char *s);
+void	ft_heredoc_str_to_lst(t_shell *shl, char *s, int pos);
 int		ft_heredoc_prepare(t_shell *shl);
 int		ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf);
 // Tokenize input
@@ -182,38 +188,38 @@ char	**ft_tokenization(char *s);
 void	ft_strip_tokens(char **tok);
 // Executing the input
 int		ft_handle_input_loop(t_shell *shl, int *std);
-int		ft_pipe_setup(char **tokens, int pos);
-int		ft_handle_chunks(t_shell *shl, int *i);
+int		ft_syntax_check(t_shell *shl);
+int		ft_count_pipes(char **tok, int pos);
+int		ft_singlechunk(t_shell *shl, int *pos);
+int		ft_multichunk(t_shell *shl, int *std, int *pos);
+int		ft_pipes(t_shell *shl, int pos, int *fd);
+int		ft_subchunk(t_shell *shl, int *pos, int *std, int lpipe);
 // Redirecting
 int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);
-// Heredoc list
-t_lst	*ft_hdlst_new(int fd);
-void	ft_hdlst_add(t_lst **lst, int fd);
-void	ft_hdlst_clear(t_lst *lst);
 // Commands
-int		ft_token_cmds(t_shell *shl, int i);
+int		ft_token_cmds(t_shell *shl, int i, char ***envp, int *ex);
 int		ft_is_directory(char *path);
 // Builtin command
 int		ft_builtin_check(char *inp);
-int		ft_builtin_cmd(t_shell *shl, int *pos);
-int		ft_builtin_exit(t_shell *shl, int *pos);
-int		ft_builtin_env(t_shell *shl, int *pos);
-int		ft_builtin_pwd(t_shell *shl, int *pos);
-int		ft_builtin_cd(t_shell *shl, int *pos);
-int		ft_builtin_export(t_shell *shl, int *pos);
+int		ft_builtin_cmd(t_shell *shl, int *pos, char ***env, int *ex);
+int		ft_builtin_exit(t_shell *shl, int *pos, int *ex);
+int		ft_builtin_env(t_shell *shl, int *pos, char ***env);
+int		ft_builtin_pwd(int *pos);
+int		ft_builtin_cd(t_shell *shl, int *pos, char ***env);
+int		ft_builtin_export(t_shell *shl, int *pos, char ***env);
 void	ft_builtin_export_blank(char **envp);
-int		ft_builtin_unset(t_shell *shl, int *pos);
+int		ft_builtin_unset(t_shell *shl, int *pos, char ***env);
 int		ft_builtin_echo(t_shell *shl, int *pos);
 int		ft_builtin_history(t_shell *shl, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
-int		ft_absolute_cmd(t_shell *shl, int *pos);
+int		ft_absolute_cmd(t_shell *shl, int *pos, char ***env);
 int		ft_check_access(char *path, char *cmd);
-int		ft_run_cmd(t_shell *shl, char *path, char **argv);
+int		ft_run_cmd(char *path, char **argv, char ***env);
 char	*ft_get_path(char *cmd, char ***envp);
-int		ft_regular_cmd(t_shell *shl, int *pos);
+int		ft_regular_cmd(t_shell *shl, int *pos, char ***env);
 char	**ft_prepare_argv(char **arg, int *pos);
-void	ft_update_last_arg(t_shell *shl, char *arg);
+void	ft_update_last_arg(char *arg, char ***env);
 
 #endif

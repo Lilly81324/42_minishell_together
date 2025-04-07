@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:52:25 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/28 18:29:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:45:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_handle_input(char **inp, t_shell *shl)
 	int		std[3];
 
 	status = st_tokenizer(shl, inp);
+	ft_null(inp);
 	if (status != 0)
 		return (status);
 	ft_std_dup(std);
@@ -52,7 +53,7 @@ int	ft_handle_input(char **inp, t_shell *shl)
 		status = ft_handle_input_loop(shl, std);
 	ft_std_reset(std);
 	ft_std_close(std);
-	ft_hdlst_clear(shl->start);
+	ft_null_int(&shl->hd_fd);
 	ft_nullb(&shl->tok);
 	return (status);
 }
