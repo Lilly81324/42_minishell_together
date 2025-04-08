@@ -6,19 +6,21 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 17:52:56 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 18:37:31 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // 0 => dont expand		1 => expand
-// Returns 0 if at dollar sign with spacer after or not expandable
-// returns 1 if $ and then valid char
+// Returns 0 if should be expanded
+// returns 1 if $ and then invalid char
 static int	st_after_dollar(char *str, int i)
 {
 	if (str[i + 1] == '\0')
 		return (0);
+	if (str[i + 1] == '?')
+		return (1);
 	if (ft_isalnum(str[i + 1]) != 0 || str[i + 1] == '_')
 		return (1);
 	return (0);
