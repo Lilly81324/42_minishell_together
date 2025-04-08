@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:38:18 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 15:20:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 18:31:31 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int	ft_syntax_check(t_shell *shl)
 		status = st_redir_check(shl->tok);
 	if (status == 0)
 		status = st_pipe_check(shl->tok);
-	if (status != 0)
-		return (status);
 	shl->exit_code = ERNUM_SYNTAX;
-	return (0);
+	return (status);
 }

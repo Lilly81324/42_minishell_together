@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:13:26 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/31 17:54:12 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 17:43:49 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_stdin_to_infile(char *filename)
 							S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (infile < 0)
 	{
-		ft_perror(REDIR_INVAL_INFILE, NULL, NULL);
+		ft_perror(NO_SUCH_FILE, filename, NULL);
 		return (1);
 	}
 	if (dup2(infile, STDIN_FILENO) < 0)
