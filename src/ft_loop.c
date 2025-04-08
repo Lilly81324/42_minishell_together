@@ -6,17 +6,17 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/07 20:44:21 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 15:45:24 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	st_get_input(t_shell *shl, char ***envp, char **input)
+static int	st_get_input(t_shell *shl, char **input)
 {
 	char	*prompt;
 
-	prompt = ft_make_prompt(envp);
+	prompt = ft_make_prompt(shl->env);
 	*input = ft_my_readline(prompt);
 	ft_null(&prompt);
 	if (g_sig == SIGINT)
