@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 19:08:46 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 20:57:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ static int	st_dotcheck(char *tok)
 		return (0);
 	if (tok[0] == '.' && tok[1] == '\0')
 	{
-		ft_perror("lelshell: .: filename argument required \n%s\n",\
+		ft_perror("lelshell: .: filename argument required \n%s\n", \
 				".: usage: . filename [arguments]", NULL);
 		return (1);
+	}
+	if (ft_b_strcmp(tok, "..") == 0)
+	{
+		ft_perror(INVALID_COMMAND, "..", NULL);
+		return (ERNUM_CMD_NOTEXIST);
 	}
 	return (0);
 }
@@ -55,8 +60,9 @@ int	ft_absolute_cmd(t_shell *shl, int *pos, char ***env)
 	char	*path;
 	char	**argv;
 
-	if (st_dotcheck(shl->tok[*pos]) == 1)
-		return (2);
+	status = st_dotcheck(shl->tok[*pos]);
+	if (status != 0)
+		return (status);
 	path = st_prepare_path(shl->tok, *pos);
 	status = ft_check_access(path, shl->tok[*pos]);
 	if (status != 0)
