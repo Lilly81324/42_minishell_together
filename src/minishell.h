@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 17:46:44 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:35:39 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void	ft_sig_int(int sig);
 void	ft_sig_quit(int sig);
 int		ft_sig_term(char *input);
 // Starting up
+void	ft_init_setup(char ***env);
 void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
 // Input getting

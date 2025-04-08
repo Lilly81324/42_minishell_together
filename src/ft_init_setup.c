@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_init_setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 15:56:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 19:37:13 by sikunne          ###   ########.fr       */
+/*   Created: 2025/04/08 19:29:56 by sikunne           #+#    #+#             */
+/*   Updated: 2025/04/08 19:35:21 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-volatile sig_atomic_t	g_sig = 0;
-
-int	main(int argc, char **argv, char **envp)
+// Sets up the inital PWD variable
+static void	st_initial_pwd(char ***env)
 {
-	char	**new_env;
+	char	*pwd;
+	char	*new_pwd;
 
-	(void)argv;
-	(void)argc;
-	if (argc > 1)
-	{
-		ft_perror(ARGC_START, NULL, NULL);
-		return (ERNUM_START_ARGC);
-	}
-	signal(SIGINT, ft_sig_int);
-	signal(SIGQUIT, ft_sig_quit);
-	new_env = ft_copy_env(envp);
-	ft_init_setup(&new_env);
-	return (ft_loop(&new_env));
+	if (ft_get_env((*env), "PWD") != NULL)
+		return ;
+	pwd = getcwd(NULL, 0);
+	new_pwd = ft_strjoin("PWD=", pwd);
+	ft_change_env(env, new_pwd);
+	ft_null(&pwd);
+	ft_null(&new_pwd);
+}
+
+// Sets up inital values for the enviroment
+void	ft_init_setup(char ***env)
+{
+	ft_initial_shlvl(env);
+	st_initial_pwd(env);
 }

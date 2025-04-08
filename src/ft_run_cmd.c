@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:14:17 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 17:49:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 19:23:55 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	ft_run_cmd(char *path, char **argv, char ***env)
 	while (argv[i] != NULL)
 		i++;
 	i--;
-	ft_update_last_arg(argv[i], env);
+	if (i == 0)
+		ft_update_last_arg(path, env);
+	else
+		ft_update_last_arg(argv[i], env);
 	return (WEXITSTATUS(temp));
 }

@@ -96,6 +96,7 @@ SRC_FILES = $(addprefix $(SRC_DIR), \
 	ft_skip_redirector.c \
 	ft_count_prev_hds.c \
 	ft_null_int.c \
+	ft_init_setup.c \
 )
 
 OBJ_FILES = $(subst $(SRC_DIR),$(OBJ_DIR),$(SRC_FILES:%.c=%.o))
