@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 17:46:42 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 15:45:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 17:32:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_loop(char ***envp)
 		shl.tok = NULL;
 		shl.hd_fd = NULL;
 		input = NULL;
-		if (st_get_input(&shl, envp, &input) == 1)
+		if (st_get_input(&shl, &input) == 1)
 			continue ;
 		add_history(input);
 		status = ft_handle_input(&input, &shl);

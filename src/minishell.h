@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 17:42:19 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/07 20:23:10 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/08 17:46:44 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@
 # include "../libft/libft.h"
 
 // Error messages
+//		General
+# define ARGC_START "lelshell: Too many arguments for lelshell\n"
+# define ERR_SHLVL_MAX \
+"lelshell: warning: shell level (%s) too high, resetting to 1\n"
+# define NO_SUCH_FILE "lelshell: %s: No such file or directory\n"
+# define QUOTE_UNCLOSED "lelshell: Error, unquoted quote unclosed\n"
+# define FORK_ERROR "lelshell: Error creating fork\n"
 // 		Syntax
 # define SYNTAX_REDIR "lelshell: syntax error near unexpected token `%s'\n"
 // 		Redirection
 # define REDIR_INVAL_PIPE "Invalid read end fd for pipe given\n"
 # define REDIR_PIPE_TO_INP "Error redirecting stdin to read end of pipe\n"
 # define REDIR_OUT_TO_PIPE "Error redirecting stdout to write end of pipe\n"
-# define REDIR_INVAL_INFILE "lelshell: No such file or directory\n"
 # define REDIR_INF_TO_INP "Error redirecting stdin to infile\n"
 # define REDIR_INVAL_OUTF "Error opening outfile\n"
 # define REDIR_OUT_TO_OUTF "Error redirecting stdout to outfile\n"
 //		Commands
-# define NO_SUCH_FILE "lelshell: %s: No such file or directory\n"
-# define ERR_SHLVL_MAX \
-"lelshell: warning: shell level (%s) too high, resetting to 1\n"
-# define QUOTE_UNCLOSED "lelshell: Error, unquoted quote unclosed\n"
-# define ARGC_START "lelshell: Too many arguments for lelshell\n"
 # define INVALID_COMMAND "lelshell: %s: command not found\n"
 # define CMD_IS_DIR "lelshell: %s: Is a directory\n"
-# define FORK_ERROR "lelshell: Error creating fork\n"
 # define PWD_NONEXISTENT_ERROR "lelshell: pwd: No pwd exists\n"
 # define ARG_MUCH_ERROR "lelshell: %s: too many arguments\n"
 # define CD_INVALID_PATH "lelshell: cd: %s: No such file or directory\n"
@@ -65,8 +65,6 @@
 # define EXIT_NUMERIC_ERROR "lelshell: exit: %s: numeric argument required\n"
 # define FILE_EXECUTE_NO_PERMISSION	"lelshell: %s: Permission denied\n"
 # define EXPORT_INVALID	"lelshell: export: %s: not a valid identifier\n"
-# define NULL_INPUT "lelshell: NULL input detected\n"
-# define HERDOC_DIV "lelshell: Count of given and asked Heredocs diverge\n"
 
 // Error return values
 # define ERNUM_START_ARGC	1
@@ -94,7 +92,7 @@
 // For SEMICOLON handling add semicolon to SPECIALS, more in ft_isdelimiter
 # define SPECIALS "><|"
 // Used to define how many times argument substitution is called on same string
-# define MAX_SUBSTITUTIONS 10
+# define MAX_SUBSTITUTIONS 20
 
 // Used for showing the prompt before readline like this:
 // <PROMPT><PWD><POST_PROMPT>
@@ -116,7 +114,6 @@ extern volatile sig_atomic_t	g_sig;
 void	ft_null(char **ptr);
 void	ft_nullb(char ***ptr);
 void	ft_nullc(char ***ptr);
-void	ft_nulld(char ****ptr);
 void	ft_null_int(int **ptr);
 void	ft_skip_spaces(int *i, char *str);
 int		ft_cooler_open(char *filename, int flags, mode_t mode);
@@ -131,13 +128,13 @@ int		ft_b_strcmp(char *s1, char *s2);
 void	ft_b_close(int *fd);
 void	ft_skip_redirector(char **tok, int *pos);
 // Redirection
+void	ft_std_dup(int *std);
+void	ft_std_reset(int *std);
+void	ft_std_close(int *std);
 int		ft_stdout_to_outfile(char *filename);
 int		ft_stdout_to_pipe(void);
 int		ft_stdin_to_infile( char *filename);
 int		ft_stdin_to_pipe(int r_end);
-void	ft_std_dup(int *std);
-void	ft_std_reset(int *std);
-void	ft_std_close(int *std);
 int		ft_stdout_to_outfile_append(char *filename);
 int		ft_stdin_to_heredoc(t_shell *shl, int pos);
 // Debugging
@@ -161,21 +158,14 @@ int		ft_str_cut(char **src, int pos, int cutlen);
 // Signals
 void	ft_sig_int(int sig);
 void	ft_sig_quit(int sig);
-void	ft_sig_int_heredoc(int sig);
 int		ft_sig_term(char *input);
 // Starting up
 void	ft_initial_shlvl(char ***new_env);
 int		ft_loop(char ***envp);
-char	*ft_my_readline(char *prompt);
 // Input getting
 char	*ft_make_prompt(char ***envp);
+char	*ft_my_readline(char *prompt);
 int		ft_handle_input(char **inp, t_shell *shl);
-// HEREDOcs
-int		ft_count_prev_hds(t_shell *shl, int pos);
-int		ft_heredoc_string(t_shell *shl, char **new_buf, char **total_buf);
-void	ft_heredoc_str_to_lst(t_shell *shl, char *s, int pos);
-int		ft_heredoc_prepare(t_shell *shl);
-int		ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf);
 // Tokenize input
 void	ft_subst_string(t_shell *shl, char **str);
 int		ft_subst_excode(t_shell *shl, char **str, int index);
@@ -186,6 +176,12 @@ int		ft_token_count(char *s);
 void	ft_token_extractor(char *s, char ***result);
 char	**ft_tokenization(char *s);
 void	ft_strip_tokens(char **tok);
+// HEREDOcs
+int		ft_count_prev_hds(t_shell *shl, int pos);
+int		ft_heredoc_string(t_shell *shl, char **new_buf, char **total_buf);
+void	ft_heredoc_str_to_lst(t_shell *shl, char *s, int pos);
+int		ft_heredoc_prepare(t_shell *shl);
+int		ft_heredoc_sigs(t_shell *shl, char **n_buf, char **t_buf);
 // Executing the input
 int		ft_handle_input_loop(t_shell *shl, int *std);
 int		ft_syntax_check(t_shell *shl);
@@ -199,7 +195,6 @@ int		ft_token_redirect(t_shell *shl, int i);
 int		ft_redirection(t_shell *shl, int pos);
 // Commands
 int		ft_token_cmds(t_shell *shl, int i, char ***envp, int *ex);
-int		ft_is_directory(char *path);
 // Builtin command
 int		ft_builtin_check(char *inp);
 int		ft_builtin_cmd(t_shell *shl, int *pos, char ***env, int *ex);
@@ -214,12 +209,13 @@ int		ft_builtin_echo(t_shell *shl, int *pos);
 int		ft_builtin_history(t_shell *shl, int *pos);
 // Basic command or rest
 int		ft_check_abs_cmds(char **token, int pos);
-int		ft_absolute_cmd(t_shell *shl, int *pos, char ***env);
 int		ft_check_access(char *path, char *cmd);
-int		ft_run_cmd(char *path, char **argv, char ***env);
+int		ft_is_directory(char *path);
+int		ft_absolute_cmd(t_shell *shl, int *pos, char ***env);
 char	*ft_get_path(char *cmd, char ***envp);
 int		ft_regular_cmd(t_shell *shl, int *pos, char ***env);
 char	**ft_prepare_argv(char **arg, int *pos);
+int		ft_run_cmd(char *path, char **argv, char ***env);
 void	ft_update_last_arg(char *arg, char ***env);
 
 #endif
