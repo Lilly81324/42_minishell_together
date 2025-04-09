@@ -136,17 +136,17 @@ fclean: clean
 	rm -f $(NAME)
 
 # Print the required .o and given .c files
-show:
-	echo $(SRC_FILES)
-	echo $(OBJ_FILES)
+# show:
+# 	echo $(SRC_FILES)
+# 	echo $(OBJ_FILES)
 
-# Basic execution
-run: $(NAME)
-	valgrind --leak-check=full --track-fds=all ./$(NAME)
+# # Basic execution
+# run: $(NAME)
+# 	valgrind --leak-check=full --track-fds=all ./$(NAME)
 
-# Norminette
-norm:
-	norminette | grep -v OK! | grep -v Global
+# # Norminette
+# norm:
+# 	norminette | grep -v OK! | grep -v Global
 
 # Redo programm
 re: fclean all
