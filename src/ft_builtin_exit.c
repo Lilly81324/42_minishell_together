@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:00:34 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/06 17:00:24 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:56:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	st_skip_for_atoi(char *nptr, int *i)
 
 	fac = 1;
 	while (nptr[*i] == ' ' || nptr[*i] == '\n' || nptr[*i] == '\t' \
-		|| nptr[*i] == '\v' || nptr[*i] == '\f' || nptr[*i] == '\r')
+|| nptr[*i] == '\v' || nptr[*i] == '\f' || nptr[*i] == '\r')
 		(*i)++;
 	if (nptr[*i] == '-' || nptr[*i] == '+')
 	{

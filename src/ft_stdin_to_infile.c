@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:13:26 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 17:43:49 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:00:02 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_stdin_to_infile(char *filename)
 	int	infile;
 
 	infile = ft_cooler_open(filename, O_RDONLY, \
-							S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
+S_IRUSR | S_IRGRP | S_IROTH | S_IWUSR);
 	if (infile < 0)
 	{
 		ft_perror(NO_SUCH_FILE, filename, NULL);

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:03:44 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 20:57:19 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:56:34 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	st_dotcheck(char *tok)
 	if (tok[0] == '.' && tok[1] == '\0')
 	{
 		ft_perror("lelshell: .: filename argument required \n%s\n", \
-				".: usage: . filename [arguments]", NULL);
+".: usage: . filename [arguments]", NULL);
 		return (1);
 	}
 	if (ft_b_strcmp(tok, "..") == 0)

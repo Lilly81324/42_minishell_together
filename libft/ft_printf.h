@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:54:23 by sikunne           #+#    #+#             */
-/*   Updated: 2024/11/22 12:26:12 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:55:49 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ size_t			ft_ptr_to_hex(uintptr_t num);
 
 int				ft_handle_strings(const char *input, t_helper *h);
 int				ft_handle_specials(const char	*input, t_helper *h, \
-				va_list pargs);
+va_list pargs);
 void			ft_handle_diff(const char *input, t_helper *h, va_list pargs);
 
 size_t			ft_print_char(char c);

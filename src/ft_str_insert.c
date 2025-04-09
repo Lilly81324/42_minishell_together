@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:58:30 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/10 19:18:52 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:59:19 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_str_insert(char *src, char *goal, int pos)
 	if (pos < 0 || pos >= (int)st_get_len(src))
 		pos = st_get_len(src);
 	new = (char *)malloc((st_get_len(src) + st_get_len(goal) + 1) \
-						* sizeof(char));
+* sizeof(char));
 	if (new == NULL)
 		return (NULL);
 	i = -1;
