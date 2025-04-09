@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:18:56 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 18:37:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:24:36 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	st_after_dollar(char *str, int i)
 	if (str[i + 1] == '\0')
 		return (0);
 	if (str[i + 1] == '?')
+		return (1);
+	if (str[i + 1] == '$')
 		return (1);
 	if (ft_isalnum(str[i + 1]) != 0 || str[i + 1] == '_')
 		return (1);
