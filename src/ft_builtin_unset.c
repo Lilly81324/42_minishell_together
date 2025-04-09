@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 16:52:20 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/04 16:35:01 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:57:37 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	ft_builtin_unset(t_shell *shl, int *pos, char ***env)
 		while ((*env)[++i] != NULL)
 		{
 			if (ft_strncmp((*env)[i], shl->tok[*pos], \
-				ft_strlen(shl->tok[*pos])) == 0 && \
-				(*env)[i][ft_strlen(shl->tok[*pos])] == '=')
+ft_strlen(shl->tok[*pos])) == 0 && \
+(*env)[i][ft_strlen(shl->tok[*pos])] == '=')
 			{
 				ft_remove_env(env, shl->tok[*pos]);
 				break ;

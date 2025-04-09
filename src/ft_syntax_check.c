@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 15:38:18 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/08 18:31:31 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:01:14 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	st_redir_check(char **tok)
 	while (tok[++i] != NULL)
 	{
 		if (ft_is_redirector(tok[i]) == 1 && \
-			ft_is_del_or_red(tok[i + 1]) == 1)
+ft_is_del_or_red(tok[i + 1]) == 1)
 		{
 			ft_perror(SYNTAX_REDIR, tok[i], NULL);
 			return (1);
@@ -43,13 +43,13 @@ static int	st_pipe_check(char **tok)
 	while (tok[++i] != NULL)
 	{
 		if (ft_b_strcmp(tok[i], "|") == 0 && \
-			tok[i + 1] == NULL)
+tok[i + 1] == NULL)
 		{
 			ft_perror(SYNTAX_REDIR, tok[i], NULL);
 			return (1);
 		}
 		else if (ft_b_strcmp(tok[i], "|") == 0 && \
-			ft_b_strcmp(tok[i + 1], "|") == 0)
+ft_b_strcmp(tok[i + 1], "|") == 0)
 		{
 			ft_perror(SYNTAX_REDIR, tok[i], NULL);
 			return (1);

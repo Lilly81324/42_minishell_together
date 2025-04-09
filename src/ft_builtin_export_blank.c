@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:38:45 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/14 19:25:35 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:57:22 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	ft_builtin_export_blank(char **envp)
 	{
 		smal_ind = st_next_index(envp, smal_ind);
 		if (smal_ind != -1 && \
-			!(envp[smal_ind][0] == '_' && envp[smal_ind][1] == '='))
+!(envp[smal_ind][0] == '_' && envp[smal_ind][1] == '='))
 			st_print_key(envp[smal_ind]);
 	}
 }

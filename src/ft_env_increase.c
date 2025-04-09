@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 16:19:35 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 16:59:08 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:58:11 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	st_atoi(const char *nptr)
 	if (nptr == NULL)
 		return (-1);
 	while (nptr[i] == ' ' || nptr[i] == '\n' || nptr[i] == '\t' \
-		|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
+|| nptr[i] == '\v' || nptr[i] == '\f' || nptr[i] == '\r')
 		i++;
 	if (nptr[i] == '+')
 		i++;

@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:16 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/18 16:49:40 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:58:03 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_remove_env(char ***envp, char *key)
 	while ((*envp)[++i] != NULL)
 	{
 		if (ft_strncmp((*envp)[i], key, ft_strlen(key)) == 0 && \
-			(*envp)[i][ft_strlen(key)] == '=')
+(*envp)[i][ft_strlen(key)] == '=')
 			break ;
 		new[i] = ft_strdup((*envp)[i]);
 	}

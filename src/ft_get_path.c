@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:23:06 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/13 16:34:40 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:58:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*ft_make_name(char *path, char *name)
 	char	*full_path;
 
 	full_path = (char *)malloc((ft_strlen(path) + ft_strlen(name) \
-								+ 2) * sizeof(char));
++ 2) * sizeof(char));
 	ft_strlcpy(full_path, path, ft_strlen(path) + 1);
 	ft_strlcpy(full_path + ft_strlen(full_path), "/", 2);
 	ft_strlcpy(full_path + ft_strlen(full_path), name, ft_strlen(name) + 1);

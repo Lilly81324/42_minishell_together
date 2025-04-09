@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:23:13 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/05 18:42:20 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:00:49 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*st_promp_assign(int allocated_pwd, char *pwd)
 	char	*prompt;
 
 	prompt = (char *)malloc((ft_strlen(pwd) + ft_strlen(PROMPT) + \
-	ft_strlen(POST_PROMPT) + 1) * sizeof(char));
+ft_strlen(POST_PROMPT) + 1) * sizeof(char));
 	if (!prompt)
 	{
 		if (allocated_pwd)

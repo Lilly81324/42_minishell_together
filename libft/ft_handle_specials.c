@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 16:10:30 by sikunne           #+#    #+#             */
-/*   Updated: 2024/11/22 12:20:34 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:55:03 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_handle_specials(const char	*input, t_helper *h, va_list pargs)
 		return (0);
 	}
 	else if (input[h->pos] != '\0' && \
-			ft_char_in_str("cspdiuxX", input[h->pos]) == 1)
+ft_char_in_str("cspdiuxX", input[h->pos]) == 1)
 	{
 		ft_handle_diff(input, h, pargs);
 		h->pos ++;

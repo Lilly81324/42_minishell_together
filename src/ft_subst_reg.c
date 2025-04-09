@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 17:14:11 by sikunne           #+#    #+#             */
-/*   Updated: 2025/03/26 17:50:33 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 13:59:43 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ft_subst_reg(char **env, char **str, int index)
 
 	len = 0;
 	while ((*str)[index + len + 1] != '\0' && \
-			(ft_isalnum((*str)[index + len + 1]) != 0 || \
-			(*str)[index + len + 1] == '_'))
+(ft_isalnum((*str)[index + len + 1]) != 0 || \
+(*str)[index + len + 1] == '_'))
 		len++;
 	key = (char *)malloc((len + 1) * sizeof(char));
 	ft_strlcpy(key, &((*str)[index + 1]), len + 1);

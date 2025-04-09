@@ -6,7 +6,7 @@
 /*   By: sikunne <sikunne@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:37:24 by sikunne           #+#    #+#             */
-/*   Updated: 2025/04/06 16:29:22 by sikunne          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:00:26 by sikunne          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	move_until(char *s, int i, char opt)
 static void	move_regulars(char *s, int *i)
 {
 	while (s[*i] != '\0' && ft_find_c(s[*i], SPACES) == -1 && \
-			ft_find_c(s[*i], SPECIALS) == -1)
+ft_find_c(s[*i], SPECIALS) == -1)
 	{
 		if (s[*i] == '\'')
 			*i = move_until(s, *i, '\'');
